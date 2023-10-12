@@ -9,6 +9,13 @@ const profileApi = api.injectEndpoints({
       }),
       providesTags: ["profile"],
     }),
+    getUsers: builder.query({
+      query: ({ page, limit, sortBy, sortOrder, filter }) => ({
+        url: `/profile/get-users?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&filter=${filter}`,
+        method: "GET",
+      }),
+      providesTags: ["users_profile"],
+    }),
     editProfile: builder.mutation({
       query: ({ profileId, ...payload }) => ({
         url: `/profile/edit-profile/${profileId}`,
@@ -20,4 +27,5 @@ const profileApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetProfileQuery, useEditProfileMutation } = profileApi;
+export const { useGetProfileQuery, useGetUsersQuery, useEditProfileMutation } =
+  profileApi;
