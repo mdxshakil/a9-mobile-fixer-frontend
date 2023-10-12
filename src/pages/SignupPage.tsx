@@ -15,6 +15,7 @@ function SignupPage() {
     formState: { errors },
     watch,
   } = useForm();
+  const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
   const handleSignup = async (data: FieldValues) => {
     const formData = new FormData();
@@ -56,6 +57,7 @@ function SignupPage() {
       <h1 className="text-2xl font-bold">Signup</h1>
       <form className="card-body" onSubmit={handleSubmit(handleSignup)}>
         <div className="flex gap-3">
+          {/* first name */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">First Name</span>
@@ -75,6 +77,7 @@ function SignupPage() {
               </p>
             )}
           </div>
+          {/* last name */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Last Name</span>
@@ -95,6 +98,7 @@ function SignupPage() {
             )}
           </div>
         </div>
+        {/* contact no */}
         <div className="form-control">
           <label className="label">
             <span className="label-text">Contact No</span>
@@ -112,6 +116,7 @@ function SignupPage() {
             <p className="text-[12px] text-red-500 ">This field is required</p>
           )}
         </div>
+        {/* email */}
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -129,6 +134,7 @@ function SignupPage() {
             <p className="text-[12px] text-red-500 ">This field is required</p>
           )}
         </div>
+        {/* password */}
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
@@ -139,13 +145,24 @@ function SignupPage() {
             className="input input-bordered"
             required
             {...register("password", {
-              required: true,
+              required: {
+                value: true,
+                message: "Password is required",
+              },
+              pattern: {
+                value: passwordValidation,
+                message:
+                  " Password must contain at least one uppercase, one lowercase, and be at least 6 characters long.",
+              },
             })}
           />
           {errors.password && (
-            <p className="text-[12px] text-red-500 ">This field is required</p>
+            <p className="text-[12px] text-red-500 ">
+              {errors.password.message as string}
+            </p>
           )}
         </div>
+        {/* confirm password */}
         <div className="form-control">
           <label className="label">
             <span className="label-text">Confirm Password</span>
@@ -173,6 +190,7 @@ function SignupPage() {
             </p>
           )}
         </div>
+        {/* profile pic */}
         <div className="form-control">
           <label className="label">
             <span className="label-text">Profile Picture</span>
@@ -190,7 +208,7 @@ function SignupPage() {
             <p className="text-[12px] text-red-500 ">This field is required</p>
           )}
         </div>
-
+        {/* submit btn */}
         <div className="form-control mt-6">
           <button
             className={`btn btn-primary ${

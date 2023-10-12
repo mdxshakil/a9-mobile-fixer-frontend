@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useGetUserFromStore from "../hooks/useGetUser";
 import { useAppDispatch } from "../redux/hooks";
 import { userLoggedOut } from "../redux/features/auth/authSlice";
+import { FaCartArrowDown } from "react-icons/fa";
 
 const Navbar = () => {
   const { profilePicture } = useGetUserFromStore();
@@ -39,11 +40,14 @@ const Navbar = () => {
           </Link>
         ) : (
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src={profilePicture} />
-              </div>
-            </label>
+            <div className="flex gap-3 items-center">
+              <FaCartArrowDown size={25} />
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={profilePicture} />
+                </div>
+              </label>
+            </div>
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
