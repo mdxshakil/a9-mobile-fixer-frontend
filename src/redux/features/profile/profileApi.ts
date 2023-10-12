@@ -24,8 +24,28 @@ const profileApi = api.injectEndpoints({
       }),
       invalidatesTags: ["profile"],
     }),
+    changeUserRole: builder.mutation({
+      query: (payload) => ({
+        url: "/profile/change-user-role",
+        method: "PATCH",
+        body: payload,
+      }),
+      invalidatesTags: ["users_profile"],
+    }),
+    deleteUser: builder.mutation({
+      query: (userId) => ({
+        url: `/profile/delete-user?userId=${userId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["users_profile"],
+    }),
   }),
 });
 
-export const { useGetProfileQuery, useGetUsersQuery, useEditProfileMutation } =
-  profileApi;
+export const {
+  useGetProfileQuery,
+  useGetUsersQuery,
+  useEditProfileMutation,
+  useChangeUserRoleMutation,
+  useDeleteUserMutation,
+} = profileApi;

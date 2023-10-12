@@ -4,9 +4,16 @@ import LoadingSpinner from "../../components/Loader/LoadingSpinner";
 import ErrorElement from "../../components/shared/ErrorElement";
 import NoContantFound from "../../components/shared/NoContantFound";
 import { IProfile } from "../../interface";
-import { useGetUsersQuery } from "../../redux/features/profile/profileApi";
+import {
+  useChangeUserRoleMutation,
+  useDeleteUserMutation,
+  useGetUsersQuery,
+} from "../../redux/features/profile/profileApi";
 import { USER_ROLE, roleButtons } from "../../constants";
 import PaginationButton from "../../components/pagination/PaginationButton";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const ManageAdminsPage = () => {
   const [page, setPage] = useState(1);
@@ -19,14 +26,49 @@ const ManageAdminsPage = () => {
     isLoading,
     isError,
   } = useGetUsersQuery({ page, sortBy, sortOrder, filter, limit: 10 });
+  const [changeRole, changeRoleState] = useChangeUserRoleMutation();
+  const [deleteUser, deleteUserState] = useDeleteUserMutation();
 
   const handleSortByAndSortOrder = (e: FormEvent<HTMLSelectElement>) => {
     setSortBy("createdAt");
     setSortOrder(e.currentTarget.value);
   };
 
+  const handleRoleChange = async (role: string, userId: string) => {
+    await changeRole({ newRole: role, userId });
+  };
+
+  const handleUserDelete = async (userId: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteUser(userId);
+      }
+    });
+  };
+
   const isPreviousButtonDisabled = page === 1;
   const isNextButtonDisabled = page === profiles?.data?.meta?.pageCount;
+
+  useEffect(() => {
+    if (changeRoleState.isSuccess || deleteUserState.isSuccess) {
+      toast.success("Action succed!");
+    }
+    if (changeRoleState.isError || deleteUserState.isError) {
+      toast.error("Action failed.Try again");
+    }
+  }, [changeRoleState, deleteUserState]);
+
+  if (changeRoleState.isLoading || deleteUserState.isLoading) {
+    return <LoadingSpinner />;
+  }
 
   let content;
   if (isLoading) {
@@ -82,6 +124,12 @@ const ManageAdminsPage = () => {
                               <button
                                 key={buttonInfo.role}
                                 className={`btn btn-xs ${buttonInfo.buttonStyle}`}
+                                onClick={() =>
+                                  handleRoleChange(
+                                    buttonInfo.role,
+                                    profile.user.id
+                                  )
+                                }
                               >
                                 {buttonInfo.buttonText}
                               </button>
@@ -92,7 +140,10 @@ const ManageAdminsPage = () => {
                       </>
                     )}
                     {profile.user.role !== USER_ROLE.super_admin && (
-                      <button className="text-error cursor-pointer">
+                      <button
+                        className="text-error cursor-pointer"
+                        onClick={() => handleUserDelete(profile?.user?.id)}
+                      >
                         <FaTrash size={20} />
                       </button>
                     )}
