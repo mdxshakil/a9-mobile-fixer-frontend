@@ -1,5 +1,6 @@
 import { useForm, FieldValues } from "react-hook-form";
-
+import { Link } from "react-router-dom";
+import BackToHome from "../components/shared/BackToHome";
 const LoginPage = () => {
   const {
     register,
@@ -11,7 +12,7 @@ const LoginPage = () => {
     console.log(data);
   };
   return (
-    <div className="hero min-h-screen p-12">
+    <div className="hero min-h-screen p-12 ">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
@@ -30,7 +31,6 @@ const LoginPage = () => {
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
-                required
                 {...register("email", {
                   required: true,
                 })}
@@ -49,7 +49,6 @@ const LoginPage = () => {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
-                required
                 {...register("password", {
                   required: true,
                 })}
@@ -64,6 +63,10 @@ const LoginPage = () => {
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
+          <BackToHome />
+          <Link to="/signup">
+            <p className="p-3 text-sm text-center">Don't have an account?</p>
+          </Link>
         </div>
       </div>
     </div>

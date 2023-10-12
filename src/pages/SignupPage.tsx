@@ -1,4 +1,6 @@
 import { useForm, FieldValues } from "react-hook-form";
+import { Link } from "react-router-dom";
+import BackToHome from "../components/shared/BackToHome";
 
 function SignupPage() {
   const {
@@ -146,6 +148,10 @@ function SignupPage() {
           <button className="btn btn-primary">SignUp</button>
         </div>
       </form>
+      <BackToHome />
+      <Link to="/login">
+        <p className="p-3 text-sm">Already have an account?</p>
+      </Link>
     </div>
   );
 }
