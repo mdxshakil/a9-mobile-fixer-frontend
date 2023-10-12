@@ -6,6 +6,7 @@ import SignupPage from "../pages/SignupPage";
 import Dashboard from "../layout/Dashboard";
 import ProfilePage from "../pages/Dashboard/ProfilePage";
 import EditProfilePage from "../pages/Dashboard/EditProfilePage";
+import RequireAuth from "../components/ProtectRoute/RequireAuth";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <RequireAuth>
+        <Dashboard />
+      </RequireAuth>
+    ),
     children: [
       {
         path: "",
