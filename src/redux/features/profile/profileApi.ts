@@ -7,8 +7,17 @@ const profileApi = api.injectEndpoints({
         url: `/profile/get-profile/${profileId}`,
         method: "GET",
       }),
+      providesTags: ["profile"],
+    }),
+    editProfile: builder.mutation({
+      query: ({ profileId, ...payload }) => ({
+        url: `/profile/edit-profile/${profileId}`,
+        method: "PATCH",
+        body: payload,
+      }),
+      invalidatesTags: ["profile"],
     }),
   }),
 });
 
-export const { useGetProfileQuery } = profileApi;
+export const { useGetProfileQuery, useEditProfileMutation } = profileApi;

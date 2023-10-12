@@ -2,6 +2,7 @@ import { FaEdit } from "react-icons/fa";
 import LoadingSpinner from "../../components/Loader/LoadingSpinner";
 import useGetUserFromStore from "../../hooks/useGetUser";
 import { useGetProfileQuery } from "../../redux/features/profile/profileApi";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const { profileId } = useGetUserFromStore();
@@ -26,9 +27,11 @@ const ProfilePage = () => {
           <p>Mobile: {contactNo}</p>
         </div>
         <div className="mt-3">
-          <button className="btn btn-sm">
-            Edit Profile <FaEdit />
-          </button>
+          <Link to={"/dashboard/edit-profile"}>
+            <button className="btn btn-sm">
+              Edit Profile <FaEdit />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
 import Dashboard from "../layout/Dashboard";
 import ProfilePage from "../pages/Dashboard/ProfilePage";
+import EditProfilePage from "../pages/Dashboard/EditProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <ProfilePage />,
+      },
+      {
+        path: "edit-profile",
+        element: <EditProfilePage />,
       },
     ],
   },

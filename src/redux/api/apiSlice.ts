@@ -24,4 +24,5 @@ export const api = createApi({
     return result;
   },
   endpoints: () => ({}),
+  tagTypes:["profile"]
 });
