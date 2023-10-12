@@ -1,16 +1,37 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm, FieldValues } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BackToHome from "../components/shared/BackToHome";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+
 const LoginPage = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [login, loginState] = useLoginMutation();
 
   const handleLogin = async (data: FieldValues) => {
-    console.log(data);
+    await login(data);
   };
+
+  useEffect(() => {
+    if (loginState.isSuccess) {
+      toast.success("Welcome back!");
+      navigate("/");
+    }
+    if (loginState.isError) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      toast.error(
+        (loginState.error as any)?.data?.message || "An error occured"
+      );
+    }
+  }, [loginState, navigate]);
+
   return (
     <div className="hero min-h-screen p-12 ">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -60,7 +81,12 @@ const LoginPage = () => {
               )}
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button
+                className="btn btn-primary"
+                disabled={loginState.isLoading}
+              >
+                Login
+              </button>
             </div>
           </form>
           <BackToHome />

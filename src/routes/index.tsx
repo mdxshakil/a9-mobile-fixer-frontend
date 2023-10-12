@@ -3,6 +3,8 @@ import Main from "../layout/Main";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
+import Dashboard from "../layout/Dashboard";
+import ProfilePage from "../pages/Dashboard/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -15,20 +17,16 @@ const router = createBrowserRouter([
       },
     ],
   },
-  //   {
-  //     path: "/dashboard",
-  //     element: <Dashboard />,
-  //     children: [
-  //       {
-  //         path: "",
-  //         element: <ProfilePage />,
-  //       },
-  //       {
-  //         path: "statistics",
-  //         element: <StatisticsPage />,
-  //       },
-  //     ],
-  //   },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "",
+        element: <ProfilePage />,
+      },
+    ],
+  },
   {
     path: "/login",
     element: <LoginPage />,
