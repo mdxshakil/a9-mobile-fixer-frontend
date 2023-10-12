@@ -7,6 +7,8 @@ import Dashboard from "../layout/Dashboard";
 import ProfilePage from "../pages/Dashboard/ProfilePage";
 import EditProfilePage from "../pages/Dashboard/EditProfilePage";
 import RequireAuth from "../components/ProtectRoute/RequireAuth";
+import AddAdminPage from "../pages/Dashboard/AddAdminPage";
+import ManageAdminsPage from "../pages/Dashboard/ManageAdminsPage";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: "edit-profile",
         element: <EditProfilePage />,
+      },
+      {
+        path: "add-new-admin",
+        element: <AddAdminPage />,
+      },
+      {
+        path: "manage-admins",
+        element: <ManageAdminsPage />,
       },
     ],
   },

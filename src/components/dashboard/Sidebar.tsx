@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
   return (
     <div className="drawer">
@@ -12,10 +14,13 @@ const Sidebar = () => {
         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
           {/* Sidebar content here */}
           <li>
-            <a>Sidebar Item 1</a>
+            <Link to="/dashboard">Profile</Link>
           </li>
           <li>
-            <a>Sidebar Item 2</a>
+            <Link to="/dashboard/add-new-admin">Add Admin</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/manage-admins">Manage Admins</Link>
           </li>
         </ul>
       </div>
