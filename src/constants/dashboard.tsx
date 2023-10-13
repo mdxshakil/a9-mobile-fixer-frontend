@@ -1,11 +1,13 @@
 import {
   AiFillBook,
+  AiFillFileAdd,
   AiFillTrophy,
   AiOutlineHistory,
   AiOutlineUser,
 } from "react-icons/ai";
 import { BiSolidCategory } from "react-icons/bi";
 import { BiSolidDashboard } from "react-icons/bi";
+import { FaAddressBook } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
 
 export const SidebarLinks = (location: string, userRole: string) => {
@@ -58,14 +60,14 @@ export const SidebarLinks = (location: string, userRole: string) => {
     {
       id: 2,
       path: "/dashboard/add-new-admin",
-      icon: <AiFillBook className="text-sm md:text-xl" />,
+      icon: <AiFillFileAdd className="text-sm md:text-xl" />,
       label: "Add Admin",
       isActive: location === "/dashboard/add-new-admin",
     },
     {
       id: 3,
       path: "/dashboard/manage-admins",
-      icon: <AiFillTrophy className="text-sm md:text-xl" />,
+      icon: <FaAddressBook className="text-sm md:text-xl" />,
       label: "Manage Admins",
       isActive: location === "/dashboard/manage-admins",
     },
