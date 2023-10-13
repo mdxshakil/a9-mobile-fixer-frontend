@@ -158,10 +158,10 @@ const ManageAdminsPage = () => {
   }
   return (
     <div>
-      <div className="my-3">
+      <div className="my-3 flex justify-center">
         {/* filter users */}
         <select
-          className="select select-bordered w-full max-w-xs"
+          className="select"
           onChange={(e) => setFilter(e.currentTarget.value)}
           value={filter}
         >
@@ -185,8 +185,7 @@ const ManageAdminsPage = () => {
         </select>
       </div>
       <p>Total users: {profiles?.data?.meta?.total}</p>
-      <div className="overflow-x-auto"></div>
-      {content}
+      <div className="overflow-x-auto">{content}</div>
       <div>
         <PaginationButton
           setPage={setPage}

@@ -18,7 +18,7 @@ const ProfilePage = () => {
   return (
     <div className="mt-12">
       <div className="flex flex-col items-center justify-center">
-        <img src={profilePicture} alt={firstName} className="w-36" />
+        <img src={profilePicture} alt={firstName} className="w-36 h-36 rounded-full object-cover" />
         <div className="text-center">
           <h2 className="text-2xl font-semibold">
             {firstName + " " + lastName}

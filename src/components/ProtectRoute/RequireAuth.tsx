@@ -3,6 +3,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../Loader/LoadingSpinner";
+
 const RequireAuth = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
   const { user, isLoading } = useAppSelector((state) => state.auth);
@@ -15,17 +16,22 @@ const RequireAuth = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (isLoading) {
       setLoading(true);
+      return;
     }
+
     if (!email) {
-      setLoading(false);
       navigate("/login", { replace: true, state: { from } });
+    } else {
+      setLoading(false);
     }
   }, [email, from, isLoading, navigate]);
 
   if (loading) {
     return <LoadingSpinner />;
   }
+
   return children;
 };
 
 export default RequireAuth;
+
