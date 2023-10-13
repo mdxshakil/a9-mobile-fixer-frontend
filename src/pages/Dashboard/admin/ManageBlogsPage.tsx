@@ -1,12 +1,17 @@
 import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useState, FormEvent } from "react";
-import { useGetAllBlogsQuery } from "../../../redux/features/blog/blogApi";
+import { useState, FormEvent, useEffect } from "react";
+import {
+  useDeleteBlogByIdMutation,
+  useGetAllBlogsQuery,
+} from "../../../redux/features/blog/blogApi";
 import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
 import ErrorElement from "../../../components/shared/ErrorElement";
 import NoContantFound from "../../../components/shared/NoContantFound";
 import PaginationButton from "../../../components/pagination/PaginationButton";
 import { IBlog } from "../../../interface";
+import toast from "react-hot-toast";
+import { deleteConfirmationModal } from "../../../utils/deleteConfirmationModal";
 
 const ManageBlogsPage = () => {
   const [page, setPage] = useState(1);
@@ -18,6 +23,7 @@ const ManageBlogsPage = () => {
     isLoading,
     isError,
   } = useGetAllBlogsQuery({ page, sortBy, sortOrder, limit: 10 });
+  const [deleteBlog, deleteBlogState] = useDeleteBlogByIdMutation();
 
   const isPreviousButtonDisabled = page === 1;
   const isNextButtonDisabled = page === blogs?.data?.meta?.pageCount;
@@ -26,6 +32,27 @@ const ManageBlogsPage = () => {
     setSortBy("createdAt");
     setSortOrder(e.currentTarget.value);
   };
+
+  const handleBlogDelete = async (blogId: string) => {
+    deleteConfirmationModal(
+      "Are you sure?",
+      "You won't be able to revert this!",
+      () => deleteBlog(blogId)
+    );
+  };
+
+  useEffect(() => {
+    if (deleteBlogState.isSuccess) {
+      toast.success("Action succed!");
+    }
+    if (deleteBlogState.isError) {
+      toast.error("Action failed.Try again");
+    }
+  }, [deleteBlogState]);
+
+  if (deleteBlogState.isLoading) {
+    return <LoadingSpinner />;
+  }
 
   let content;
   if (isLoading) {
@@ -47,9 +74,11 @@ const ManageBlogsPage = () => {
         <tbody>
           {blogs?.data?.data?.map((blog: IBlog) => {
             return (
-              <tr>
+              <tr key={blog.id}>
                 <td className="cursor-pointer hover:text-primary">
-                  {blog.title}
+                  <Link to={`/blog/${blog.id}`}>
+                    <span>{blog.title}</span>
+                  </Link>
                 </td>
                 <td>{blog.profile.firstName + " " + blog.profile.lastName}</td>
                 <td>
@@ -59,7 +88,10 @@ const ManageBlogsPage = () => {
                         <FaEdit size={20} />
                       </button>
                     </Link>
-                    <button className="btn btn-xs btn-ghost btn-error">
+                    <button
+                      className="btn btn-xs btn-ghost btn-error"
+                      onClick={() => handleBlogDelete(blog.id)}
+                    >
                       <FaTrash size={20} />
                     </button>
                   </div>

@@ -19,6 +19,9 @@ import EditUserInfoPage from "../pages/Dashboard/admin/EditUserInfoPage";
 import { EditEmailPage } from "../pages/Dashboard/admin/EditEmailPage";
 import ManageBlogsPage from "../pages/Dashboard/admin/ManageBlogsPage";
 import { AddNewBlogPage } from "../pages/Dashboard/admin/AddNewBlogPage";
+import { BlogDetailsPage } from "../pages/BlogDetailsPage";
+import { AllBlogsPage } from "../pages/AllBlogsPage";
+import { EditBlogPage } from "../pages/Dashboard/admin/EditBlogPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/blog/:blogId",
+        element: <BlogDetailsPage />,
+      },
+      {
+        path: "/blogs",
+        element: <AllBlogsPage />,
       },
     ],
   },
@@ -124,6 +135,14 @@ const router = createBrowserRouter([
         element: (
           <RequireAdmin>
             <AddNewBlogPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "edit-blog/:blogId",
+        element: (
+          <RequireAdmin>
+            <EditBlogPage />
           </RequireAdmin>
         ),
       },

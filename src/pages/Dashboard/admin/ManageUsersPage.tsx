@@ -9,9 +9,9 @@ import NoContantFound from "../../../components/shared/NoContantFound";
 import { IProfile } from "../../../interface";
 import PaginationButton from "../../../components/pagination/PaginationButton";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { deleteConfirmationModal } from "../../../utils/deleteConfirmationModal";
 
 const ManageUsersPage = () => {
   const [page, setPage] = useState(1);
@@ -34,19 +34,11 @@ const ManageUsersPage = () => {
   };
 
   const handleUserDelete = async (userId: string) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteUser(userId);
-      }
-    });
+    deleteConfirmationModal(
+      "Are you sure?",
+      "You wont be able to revert this",
+      () => deleteUser(userId)
+    );
   };
 
   useEffect(() => {

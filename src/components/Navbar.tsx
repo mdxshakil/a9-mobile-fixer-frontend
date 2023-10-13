@@ -31,6 +31,9 @@ const Navbar = () => {
           mobileFix
         </Link>
       </div>
+      <div className="navbar-center">
+        <Link to="/blogs">Blogs</Link>
+      </div>
       <div className="navbar-end">
         {!profilePicture ? (
           <Link to={"/login"}>
