@@ -27,3 +27,13 @@ export type IProfile = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type IBlog = {
+  id: string;
+  title: string;
+  description: string;
+  profileId: string;
+  profile: IProfile;
+  createdAt: Date;
+  updatedAt: Date;
+};

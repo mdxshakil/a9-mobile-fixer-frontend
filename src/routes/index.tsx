@@ -17,6 +17,8 @@ import RequireSuperAdmin from "../components/ProtectRoute/RequireSuperAdmin";
 import RequireAdmin from "../components/ProtectRoute/RequireAdmin";
 import EditUserInfoPage from "../pages/Dashboard/admin/EditUserInfoPage";
 import { EditEmailPage } from "../pages/Dashboard/admin/EditEmailPage";
+import ManageBlogsPage from "../pages/Dashboard/admin/ManageBlogsPage";
+import { AddNewBlogPage } from "../pages/Dashboard/admin/AddNewBlogPage";
 
 const router = createBrowserRouter([
   {
@@ -106,6 +108,22 @@ const router = createBrowserRouter([
         element: (
           <RequireAdmin>
             <AddServicePage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "manage-blogs",
+        element: (
+          <RequireAdmin>
+            <ManageBlogsPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "add-new-blog",
+        element: (
+          <RequireAdmin>
+            <AddNewBlogPage />
           </RequireAdmin>
         ),
       },
