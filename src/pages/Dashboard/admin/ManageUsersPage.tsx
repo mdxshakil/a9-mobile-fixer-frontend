@@ -11,6 +11,7 @@ import PaginationButton from "../../../components/pagination/PaginationButton";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const ManageUsersPage = () => {
   const [page, setPage] = useState(1);
@@ -97,19 +98,25 @@ const ManageUsersPage = () => {
                       <div className="font-bold">
                         {profile.firstName + " " + profile.lastName}
                       </div>
-                      <div className="text-sm opacity-50">
-                        {profile.firstName + " " + profile.lastName}
-                      </div>
                     </div>
                   </div>
                 </td>
-                <td>{profile.user.email}</td>
+                <td className="flex items-center gap-2">
+                  <span>{profile.user.email}</span>
+                  <span className="cursor-pointer">
+                    <Link to={`/dashboard/edit-email/${profile.user.id}`}>
+                      <FaEdit size={20} />
+                    </Link>
+                  </span>
+                </td>
                 <td>{profile.user.role}</td>
                 <th>
                   <div className="flex gap-1">
-                    <button className="btn btn-xs btn-ghost btn-info">
-                      <FaEdit size={20} />
-                    </button>
+                    <Link to={`/dashboard/edit-user-info/${profile.id}`}>
+                      <button className="btn btn-xs btn-ghost btn-info">
+                        <FaEdit size={20} />
+                      </button>
+                    </Link>
                     <button
                       className="btn btn-xs btn-ghost btn-error"
                       onClick={() => handleUserDelete(profile?.user?.id)}

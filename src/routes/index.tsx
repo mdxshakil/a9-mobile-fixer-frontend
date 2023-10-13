@@ -13,6 +13,10 @@ import ManageUsersPage from "../pages/Dashboard/admin/ManageUsersPage";
 import ManageServicesPage from "../pages/Dashboard/admin/ManageServicesPage";
 import AddUserPage from "../pages/Dashboard/admin/AddUserPage";
 import AddServicePage from "../pages/Dashboard/admin/AddServicePage";
+import RequireSuperAdmin from "../components/ProtectRoute/RequireSuperAdmin";
+import RequireAdmin from "../components/ProtectRoute/RequireAdmin";
+import EditUserInfoPage from "../pages/Dashboard/admin/EditUserInfoPage";
+import { EditEmailPage } from "../pages/Dashboard/admin/EditEmailPage";
 
 const router = createBrowserRouter([
   {
@@ -43,27 +47,67 @@ const router = createBrowserRouter([
       },
       {
         path: "add-new-admin",
-        element: <AddAdminPage />,
+        element: (
+          <RequireSuperAdmin>
+            <AddAdminPage />
+          </RequireSuperAdmin>
+        ),
       },
       {
         path: "manage-admins",
-        element: <ManageAdminsPage />,
+        element: (
+          <RequireSuperAdmin>
+            <ManageAdminsPage />
+          </RequireSuperAdmin>
+        ),
       },
       {
         path: "manage-users",
-        element: <ManageUsersPage />,
+        element: (
+          <RequireAdmin>
+            <ManageUsersPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "edit-user-info/:profileId",
+        element: (
+          <RequireAdmin>
+            <EditUserInfoPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "edit-email/:userId",
+        element: (
+          <RequireAdmin>
+            <EditEmailPage />
+          </RequireAdmin>
+        ),
       },
       {
         path: "add-user",
-        element: <AddUserPage />,
+        element: (
+          <RequireAdmin>
+            <AddUserPage />
+          </RequireAdmin>
+        ),
       },
       {
         path: "manage-services",
-        element: <ManageServicesPage />,
+        element: (
+          <RequireAdmin>
+            <ManageServicesPage />
+          </RequireAdmin>
+        ),
       },
       {
         path: "add-service",
-        element: <AddServicePage />,
+        element: (
+          <RequireAdmin>
+            <AddServicePage />
+          </RequireAdmin>
+        ),
       },
     ],
   },

@@ -45,6 +45,13 @@ export const SidebarLinks = (location: string, userRole: string) => {
       label: "Add Service",
       isActive: location === "/dashboard/add-service",
     },
+    {
+      id: 6,
+      path: "/dashboard/manage-blogs",
+      icon: <AiFillBook className="text-sm md:text-xl" />,
+      label: "Manage Blogs",
+      isActive: location === "/dashboard/manage-blogs",
+    },
   ];
 
   const superAdminDashboardSidebarLinks = [

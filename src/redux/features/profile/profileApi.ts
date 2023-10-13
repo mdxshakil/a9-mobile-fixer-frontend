@@ -22,7 +22,7 @@ const profileApi = api.injectEndpoints({
         method: "PATCH",
         body: payload,
       }),
-      invalidatesTags: ["profile"],
+      invalidatesTags: ["profile", "all_users_profile"],
     }),
     changeUserRole: builder.mutation({
       query: (payload) => ({
@@ -37,7 +37,7 @@ const profileApi = api.injectEndpoints({
         url: `/profile/delete-user?userId=${userId}`,
         method: "PATCH",
       }),
-      invalidatesTags: ["users_profile","all_users_profile"],
+      invalidatesTags: ["users_profile", "all_users_profile"],
     }),
     getAllUsers: builder.query({
       query: ({ page, limit, sortBy, sortOrder }) => ({

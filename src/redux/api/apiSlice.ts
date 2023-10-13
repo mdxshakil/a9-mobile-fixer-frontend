@@ -24,5 +24,5 @@ export const api = createApi({
     return result;
   },
   endpoints: () => ({}),
-  tagTypes: ["profile", "users_profile","all_users_profile"],
+  tagTypes: ["profile", "user", "users_profile", "all_users_profile"],
 });
