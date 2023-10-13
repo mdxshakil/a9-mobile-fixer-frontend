@@ -3,9 +3,7 @@ import {
   AiFillFileAdd,
   AiFillTrophy,
   AiOutlineHistory,
-  AiOutlineUser,
 } from "react-icons/ai";
-import { BiSolidCategory } from "react-icons/bi";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaAddressBook } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
@@ -21,31 +19,31 @@ export const SidebarLinks = (location: string, userRole: string) => {
     },
     {
       id: 2,
-      path: "/dashboard/statistics",
-      icon: <BiSolidDashboard className="text-sm md:text-xl" />,
-      label: "Statistics",
-      isActive: location === "/dashboard/statistics",
-    },
-    {
-      id: 3,
-      path: "/dashboard/manage-blogs",
-      icon: <AiFillBook className="text-sm md:text-xl" />,
-      label: "Manage Blogs",
-      isActive: location === "/dashboard/manage-blogs",
-    },
-    {
-      id: 4,
       path: "/dashboard/manage-users",
-      icon: <AiOutlineUser className="text-sm md:text-xl" />,
+      icon: <BiSolidDashboard className="text-sm md:text-xl" />,
       label: "Manage Users",
       isActive: location === "/dashboard/manage-users",
     },
     {
+      id: 3,
+      path: "/dashboard/add-user",
+      icon: <BiSolidDashboard className="text-sm md:text-xl" />,
+      label: "Add User",
+      isActive: location === "/dashboard/add-user",
+    },
+    {
+      id: 4,
+      path: "/dashboard/manage-services",
+      icon: <AiFillBook className="text-sm md:text-xl" />,
+      label: "Manage Services",
+      isActive: location === "/dashboard/manage-services",
+    },
+    {
       id: 5,
-      path: "/dashboard/manage-categories",
-      icon: <BiSolidCategory className="text-sm md:text-xl" />,
-      label: "Manage Users",
-      isActive: location === "/dashboard/manage-categories",
+      path: "/dashboard/add-service",
+      icon: <AiFillBook className="text-sm md:text-xl" />,
+      label: "Add Service",
+      isActive: location === "/dashboard/add-service",
     },
   ];
 

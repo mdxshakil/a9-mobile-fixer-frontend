@@ -74,7 +74,7 @@ const ManageAdminsPage = () => {
   if (isLoading) {
     return <LoadingSpinner />;
   } else if (!isLoading && isError) {
-    content = <ErrorElement message="Failed to load admins data." />;
+    content = <ErrorElement message="Failed to load users data." />;
   } else if (!isLoading && !isError && profiles?.data?.data?.length === 0) {
     content = <NoContantFound message="No data available" />;
   } else if (!isLoading && !isError && profiles?.data?.data?.length > 0) {

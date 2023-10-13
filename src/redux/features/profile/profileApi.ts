@@ -37,7 +37,14 @@ const profileApi = api.injectEndpoints({
         url: `/profile/delete-user?userId=${userId}`,
         method: "PATCH",
       }),
-      invalidatesTags: ["users_profile"],
+      invalidatesTags: ["users_profile","all_users_profile"],
+    }),
+    getAllUsers: builder.query({
+      query: ({ page, limit, sortBy, sortOrder }) => ({
+        url: `/profile/get-all-users?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
+        method: "GET",
+      }),
+      providesTags: ["all_users_profile"],
     }),
   }),
 });
@@ -48,4 +55,5 @@ export const {
   useEditProfileMutation,
   useChangeUserRoleMutation,
   useDeleteUserMutation,
+  useGetAllUsersQuery,
 } = profileApi;

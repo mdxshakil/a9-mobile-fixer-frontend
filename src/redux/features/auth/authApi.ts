@@ -9,7 +9,7 @@ const authApi = api.injectEndpoints({
         method: "POST",
         body: payload,
       }),
-      invalidatesTags:["users_profile"]
+      invalidatesTags:["users_profile","all_users_profile"]
     }),
     login: builder.mutation({
       query: (payload) => ({
