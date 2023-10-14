@@ -1,40 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, FormEvent, useEffect } from "react";
-import {
-  useEditBlogMutation,
-  useGetBlogByIdQuery,
-} from "../../../redux/features/blog/blogApi";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
+import {
+  useEditFaqMutation,
+  useGetFaqByIdQuery,
+} from "../../../redux/features/faq/faqApi";
 
-export const EditBlogPage = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const EditFaqPage = () => {
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
-  const { blogId } = useParams();
+  const { faqId } = useParams();
 
-  const { data: blog, isLoading } = useGetBlogByIdQuery(blogId);
-  const [editBlog, editState] = useEditBlogMutation();
+  const { data: faq, isLoading } = useGetFaqByIdQuery(faqId);
+  const [editFaq, editState] = useEditFaqMutation();
 
   useEffect(() => {
-    setTitle(blog?.data?.title);
-    setDescription(blog?.data?.description);
-  }, [blog?.data?.description, blog?.data?.title]);
+    setQuestion(faq?.data?.question);
+    setAnswer(faq?.data?.answer);
+  }, [faq?.data?.answer, faq?.data?.question]);
 
-  const handleEditBlog = (e: FormEvent) => {
+  const handleEditFaq = (e: FormEvent) => {
     e.preventDefault();
     const updatedData = {
-      title,
-      description,
+      question,
+      answer,
     };
-    editBlog({ blogId, updatedData });
+    editFaq({ faqId, updatedData });
   };
 
   useEffect(() => {
     if (editState.isSuccess) {
-      toast.success("Blog updated successfully");
-      navigate("/dashboard/manage-blogs");
+      toast.success("Faq updated successfully");
+      navigate("/dashboard/manage-faqs");
     }
     if (editState.isError) {
       toast.error(
@@ -51,9 +51,9 @@ export const EditBlogPage = () => {
     <div className="flex justify-center items-center h-screen">
       <div className="bg-primary-100 rounded-lg p-8 shadow-lg w-full md:w-1/3 bg-base-300">
         <h1 className="text-3xl font-bold text-center text-primary-text mb-4">
-          edit blog
+          Edit Faq
         </h1>
-        <form onSubmit={handleEditBlog}>
+        <form onSubmit={handleEditFaq}>
           <div className="mb-4">
             <label htmlFor="title" className="text-primary-text">
               Title
@@ -62,10 +62,10 @@ export const EditBlogPage = () => {
               type="text"
               id="title"
               name="title"
-              value={title}
+              value={question}
               className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
               required
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setQuestion(e.target.value)}
             />
           </div>
 
@@ -79,8 +79,8 @@ export const EditBlogPage = () => {
               className="w-full p-2 rounded-lg textarea textarea-primary focus:outline-none"
               rows={4}
               required
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
             ></textarea>
           </div>
 
@@ -100,3 +100,5 @@ export const EditBlogPage = () => {
     </div>
   );
 };
+
+export default EditFaqPage;

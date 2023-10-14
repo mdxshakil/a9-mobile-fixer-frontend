@@ -31,5 +31,7 @@ export const api = createApi({
     "all_users_profile",
     "blogs",
     "blog",
+    "faqs",
+    "faq",
   ],
 });

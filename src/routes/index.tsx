@@ -22,6 +22,9 @@ import { AddNewBlogPage } from "../pages/Dashboard/admin/AddNewBlogPage";
 import { BlogDetailsPage } from "../pages/BlogDetailsPage";
 import { AllBlogsPage } from "../pages/AllBlogsPage";
 import { EditBlogPage } from "../pages/Dashboard/admin/EditBlogPage";
+import ManageFaqsPage from "../pages/Dashboard/admin/ManageFaqsPage";
+import AddNewFaqPage from "../pages/Dashboard/admin/AddNewFaqPage";
+import EditFaqPage from "../pages/Dashboard/admin/EditFaqPage";
 
 const router = createBrowserRouter([
   {
@@ -143,6 +146,30 @@ const router = createBrowserRouter([
         element: (
           <RequireAdmin>
             <EditBlogPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "manage-faqs",
+        element: (
+          <RequireAdmin>
+            <ManageFaqsPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "add-new-faq",
+        element: (
+          <RequireAdmin>
+            <AddNewFaqPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "edit-faq/:faqId",
+        element: (
+          <RequireAdmin>
+            <EditFaqPage />
           </RequireAdmin>
         ),
       },

@@ -1,6 +1,7 @@
 import {
   AiFillBook,
   AiFillFileAdd,
+  AiFillQuestionCircle,
   AiFillTrophy,
   AiOutlineHistory,
 } from "react-icons/ai";
@@ -51,6 +52,13 @@ export const SidebarLinks = (location: string, userRole: string) => {
       icon: <AiFillBook className="text-sm md:text-xl" />,
       label: "Manage Blogs",
       isActive: location === "/dashboard/manage-blogs",
+    },
+    {
+      id: 7,
+      path: "/dashboard/manage-faqs",
+      icon: <AiFillQuestionCircle className="text-sm md:text-xl" />,
+      label: "Manage FAQ's",
+      isActive: location === "/dashboard/manage-faqs",
     },
   ];
 

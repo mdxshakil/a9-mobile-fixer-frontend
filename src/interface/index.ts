@@ -37,3 +37,11 @@ export type IBlog = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type IFaq = {
+  id: string;
+  question: string;
+  answer: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
