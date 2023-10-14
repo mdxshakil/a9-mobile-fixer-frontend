@@ -12,7 +12,6 @@ import ManageAdminsPage from "../pages/Dashboard/ManageAdminsPage";
 import ManageUsersPage from "../pages/Dashboard/admin/ManageUsersPage";
 import ManageServicesPage from "../pages/Dashboard/admin/ManageServicesPage";
 import AddUserPage from "../pages/Dashboard/admin/AddUserPage";
-import AddServicePage from "../pages/Dashboard/admin/AddServicePage";
 import RequireSuperAdmin from "../components/ProtectRoute/RequireSuperAdmin";
 import RequireAdmin from "../components/ProtectRoute/RequireAdmin";
 import EditUserInfoPage from "../pages/Dashboard/admin/EditUserInfoPage";
@@ -25,6 +24,9 @@ import { EditBlogPage } from "../pages/Dashboard/admin/EditBlogPage";
 import ManageFaqsPage from "../pages/Dashboard/admin/ManageFaqsPage";
 import AddNewFaqPage from "../pages/Dashboard/admin/AddNewFaqPage";
 import EditFaqPage from "../pages/Dashboard/admin/EditFaqPage";
+import { AddServicePage } from "../pages/Dashboard/admin/AddServicePage";
+import AllServicesPage from "../pages/AllServicesPage";
+import { EditServicePage } from "../pages/Dashboard/admin/EditServicePage";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <AllBlogsPage />,
+      },
+      {
+        path: "/all-services",
+        element: <AllServicesPage />,
       },
     ],
   },
@@ -122,6 +128,14 @@ const router = createBrowserRouter([
         element: (
           <RequireAdmin>
             <AddServicePage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "edit-service/:serviceId",
+        element: (
+          <RequireAdmin>
+            <EditServicePage />
           </RequireAdmin>
         ),
       },

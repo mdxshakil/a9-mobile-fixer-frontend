@@ -40,13 +40,6 @@ export const SidebarLinks = (location: string, userRole: string) => {
       isActive: location === "/dashboard/manage-services",
     },
     {
-      id: 5,
-      path: "/dashboard/add-service",
-      icon: <AiFillBook className="text-sm md:text-xl" />,
-      label: "Add Service",
-      isActive: location === "/dashboard/add-service",
-    },
-    {
       id: 6,
       path: "/dashboard/manage-blogs",
       icon: <AiFillBook className="text-sm md:text-xl" />,

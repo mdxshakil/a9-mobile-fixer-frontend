@@ -35,3 +35,5 @@ const RequireAuth = ({ children }: { children: ReactNode }) => {
 
 export default RequireAuth;
 
+
+

@@ -1,34 +1,27 @@
-import RatingStar from "./RatingStar";
+import { IService } from "../interface";
 
-const ServiceCard = () => {
+const ServiceCard = ({ service }: { service: IService }) => {
+  const { title, image, cost, category } = service || {};
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-      <a href="#">
+    <div className="card border bg-base-100 shadow-xl">
+      <figure>
         <img
-          className="p-6 rounded-3xl"
-          src="https://www.fonehouse.co.uk/blog/wp-content/uploads/2023/01/Screen-Repairs-Header.jpg"
-          alt="service image"
+          src={image}
+          alt="Shoes"
+          className="w-96 h-56 object-cover p-2 rounded-2xl"
         />
-      </a>
-      <div className="px-5 pb-5">
-        <a href="#">
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900">
-            Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport
-          </h5>
-        </a>
-        <div className="flex items-center mt-2.5 mb-5">
-          <div className="flex">
-            <RatingStar />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title">{title}</h2>
+        <div className="badge badge-primary badge-outline">{category}</div>
+        <div className="flex items-center justify-between mt-3">
+          <div className="flex gap-1 place-items-center">
+            <p className="text-xl font-bold">{cost}</p>
+            <p className="text-sm">bdt</p>
           </div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-            5.0
-          </span>
-        </div>
-        <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-gray-900">$599</span>
-          <a href="#" className="btn btn-primary btn-sm rounded-full">
+          <button className="btn btn-primary btn-sm rounded-full">
             Add to cart
-          </a>
+          </button>
         </div>
       </div>
     </div>

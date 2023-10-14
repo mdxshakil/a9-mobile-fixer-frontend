@@ -45,3 +45,31 @@ export type IFaq = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type IService = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  cost: number;
+  slotsPerDay: number;
+  status: "live" | "upcoming";
+  reviews?: IReview;
+  ratings?: IRating;
+  createdAt: Date;
+  updatedAt: Date;
+  category: string;
+};
+
+export type IReview = {
+  id: string;
+  comment: string;
+  serviceId?: string;
+  service?: IService;
+};
+export type IRating = {
+  id: string;
+  ratingValue: number;
+  serviceId?: string;
+  service?: IService;
+};

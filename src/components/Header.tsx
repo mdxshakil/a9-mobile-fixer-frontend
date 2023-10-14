@@ -1,4 +1,4 @@
-import HeroImage from "../assets/hero-image.jpg"
+import HeroImage from "../assets/hero-image.jpg";
 
 const Header = () => {
   return (
@@ -37,7 +37,7 @@ const Header = () => {
         <div className="relative mx-auto mt-4 md:mt-8">
           <div className="lg:max-w-full lg:mx-auto">
             <img
-              className="px-4 md:px-8"
+              className="px-4 md:px-8 h-96 object-cover w-full"
               src={HeroImage}
             />
           </div>

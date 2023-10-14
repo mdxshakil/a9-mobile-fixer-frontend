@@ -33,5 +33,8 @@ export const api = createApi({
     "blog",
     "faqs",
     "faq",
+    "services",
+    "service",
+    "dashboard_services",
   ],
 });

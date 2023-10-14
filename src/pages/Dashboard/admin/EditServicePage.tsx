@@ -1,71 +1,87 @@
 import { FieldValues, useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { useAddNewServiceMutation } from "../../../redux/features/service/serviceApi";
-import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
-import toast from "react-hot-toast";
+import {
+  useEditServiceMutation,
+  useGetServiceByIdQuery,
+} from "../../../redux/features/service/serviceApi";
+
 import { serviceCategories } from "../../../constants";
+import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
+import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
 
-export const AddServicePage = () => {
-  const [loading, setLoading] = useState(false);
-  const [addNewService, { isLoading, isError, isSuccess, error }] =
-    useAddNewServiceMutation();
+export const EditServicePage = () => {
+  const [loading, setloading] = useState(false);
+  const { serviceId } = useParams();
+  const navigate = useNavigate();
+  const { data: service, isLoading } = useGetServiceByIdQuery(serviceId);
+  const { title, description, cost, slotsPerDay, status, category } =
+    service?.data || {};
+  const { handleSubmit, register } = useForm();
+  const [editService, editState] = useEditServiceMutation();
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-    reset,
-  } = useForm();
+  const handleServiceEdit = async (data: FieldValues) => {
+    let payload;
 
-  const handleAddService = async (data: FieldValues) => {
-    const formData = new FormData();
-    formData.append("file", data.image[0]);
-    formData.append(
-      "upload_preset",
-      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-    );
-    formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+    if (data.image[0]) {
+      setloading(true);
+      const formData = new FormData();
+      formData.append("file", data.image[0]);
+      formData.append(
+        "upload_preset",
+        import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+      );
+      formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+      const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
+        method: "post",
+        body: formData,
+      });
+      const result = await res.json();
+      setloading(false);
+      payload = {
+        ...data,
+        image: result.url,
+        cost: Number(data.cost),
+        slotsPerDay: Number(data.slotsPerDay),
+      };
+    } else {
+      payload = {
+        title: data.title,
+        description: data.description,
+        status: data.status,
+        category: data.category,
+        cost: Number(data.cost),
+        slotsPerDay: Number(data.slotsPerDay),
+      };
+    }
 
-    setLoading(true);
-    const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
-      method: "post",
-      body: formData,
-    });
-    const result = await res.json();
-    setLoading(false);
-
-    const newServiceData = {
-      ...data,
-      image: result.url,
-      cost: Number(data.cost),
-      slotsPerDay: Number(data.slotsPerDay),
-    };
-
-    addNewService(newServiceData);
+    await editService({ payload, serviceId });
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      toast.success("New Service created successfully");
-      reset();
+    if (editState.isSuccess) {
+      toast.success("Service info updated");
+      navigate("/dashboard/manage-services");
     }
-    if (isError) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      toast.error((error as any)?.data?.message || "An error occured");
+    if (editState.isError) {
+      toast.error(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (editState.error as any)?.data?.message || "An error occured"
+      );
     }
-  }, [isError, isSuccess, error, reset]);
+  }, [editState, navigate]);
 
-  if (isLoading || loading) {
+  if (isLoading || editState.isLoading || loading) {
     return <LoadingSpinner />;
   }
 
   return (
     <div className="flex justify-center items-center h-screen mt-6">
-      <div className="bg-primary-100 rounded-lg p-8 shadow-lg w-full md:w-1/2 ">
+      <div className="bg-primary-100 rounded-lg p-8 shadow-lg w-full md:w-1/2">
         <h1 className="text-3xl font-bold text-center text-primary-text mb-4">
-          Add new service
+          Edit service
         </h1>
-        <form onSubmit={handleSubmit(handleAddService)}>
+        <form onSubmit={handleSubmit(handleServiceEdit)}>
           <div className="mb-4">
             <label htmlFor="title" className="text-primary-text">
               Title
@@ -73,13 +89,9 @@ export const AddServicePage = () => {
             <input
               type="text"
               className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
-              {...register("title", {
-                required: true,
-              })}
+              {...register("title")}
+              defaultValue={title}
             />
-            {errors.title && (
-              <p className="text-[12px] text-red-500 ">Title is required</p>
-            )}
           </div>
 
           <div className="mb-4">
@@ -89,15 +101,9 @@ export const AddServicePage = () => {
             <textarea
               className="w-full p-2 rounded-lg textarea textarea-primary focus:outline-none"
               rows={3}
-              {...register("description", {
-                required: true,
-              })}
+              {...register("description")}
+              defaultValue={description}
             ></textarea>
-            {errors.description && (
-              <p className="text-[12px] text-red-500 ">
-                Description is required
-              </p>
-            )}
 
             <div className="flex items-center gap-3">
               <div className="mb-4">
@@ -107,21 +113,15 @@ export const AddServicePage = () => {
                 <input
                   type="number"
                   className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
-                  {...register("cost", {
-                    required: true,
-                  })}
+                  {...register("cost")}
+                  defaultValue={cost}
                 />
-                {errors.cost && (
-                  <p className="text-[12px] text-red-500 ">Cost is required</p>
-                )}
               </div>
               <div>
                 <select
                   className="select select-bordered w-full"
-                  required
-                  {...register("slotsPerDay", {
-                    required: true,
-                  })}
+                  {...register("slotsPerDay")}
+                  defaultValue={slotsPerDay}
                 >
                   <option disabled selected>
                     Slots per day
@@ -133,21 +133,14 @@ export const AddServicePage = () => {
                   <option value={5}>5</option>
                   <option value={6}>6</option>
                 </select>
-                {errors.slotsPerDay && (
-                  <p className="text-[12px] text-red-500 ">
-                    Slots per day is required{" "}
-                  </p>
-                )}
               </div>
             </div>
 
             <div>
               <select
                 className="select select-bordered w-full"
-                required
-                {...register("status", {
-                  required: true,
-                })}
+                {...register("status")}
+                defaultValue={status}
               >
                 <option disabled selected>
                   Status
@@ -155,18 +148,13 @@ export const AddServicePage = () => {
                 <option value="live">Live</option>
                 <option value="upcoming">Upcoming</option>
               </select>
-              {errors.status && (
-                <p className="text-[12px] text-red-500 ">Status is required </p>
-              )}
             </div>
 
             <div className="mt-3">
               <select
                 className="select select-bordered w-full"
-                required
-                {...register("category", {
-                  required: true,
-                })}
+                {...register("category")}
+                defaultValue={category}
               >
                 <option disabled selected>
                   Category
@@ -177,9 +165,6 @@ export const AddServicePage = () => {
                   </option>
                 ))}
               </select>
-              {errors.status && (
-                <p className="text-[12px] text-red-500 ">Status is required </p>
-              )}
             </div>
 
             <div className="form-control">
@@ -189,15 +174,9 @@ export const AddServicePage = () => {
               <input
                 type="file"
                 className="file-input input-primary file-input-bordered file-input-sm w-full"
-                required
                 accept="image/*"
-                {...register("image", {
-                  required: true,
-                })}
+                {...register("image")}
               />
-              {errors.image && (
-                <p className="text-[12px] text-red-500 ">Image is required</p>
-              )}
             </div>
           </div>
 

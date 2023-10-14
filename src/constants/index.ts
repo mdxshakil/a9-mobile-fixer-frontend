@@ -31,3 +31,34 @@ export const carouselSettings = {
   autoplaySpeed: 5000,
   arrows: false,
 };
+
+export const serviceCategories = [
+  {
+    label: "Display",
+    value: "display",
+  },
+  {
+    label: "Speaker",
+    value: "speaker",
+  },
+  {
+    label: "Battery",
+    value: "battery",
+  },
+  {
+    label: "Backshell",
+    value: "backshell",
+  },
+  {
+    label: "Microphone",
+    value: "microphone",
+  },
+  {
+    label: "Charger",
+    value: "charger",
+  },
+  {
+    label: "Camera",
+    value: "camera",
+  },
+];
