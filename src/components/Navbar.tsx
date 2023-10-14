@@ -31,8 +31,13 @@ const Navbar = () => {
           mobileFix
         </Link>
       </div>
-      <div className="navbar-center">
-        <Link to="/blogs">Blogs</Link>
+      <div className="navbar-center hidden md:block">
+        <Link className="m-2" to="/blogs">
+          Blogs
+        </Link>
+        <Link className="m-2" to="#faq-section">
+          FAQ
+        </Link>
       </div>
       <div className="navbar-end">
         {!profilePicture ? (
@@ -57,6 +62,9 @@ const Navbar = () => {
             >
               <li>
                 <Link to={"/dashboard"}>Dashboard</Link>
+              </li>
+              <li className="block md:hidden">
+                <Link to="/blogs">Blogs</Link>
               </li>
               <li>
                 <button onClick={handleLogout}>Logout</button>

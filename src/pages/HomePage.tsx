@@ -15,7 +15,8 @@ const HomePage = () => {
         <ServiceCard />
         <ServiceCard />
       </div>
-      <div className="flex items-center justify-center ">
+      {/* faq section */}
+      <div className="flex items-center justify-center " id="faq-section">
         <div className="py-12">
           <h1 className="text-center text-2xl md:text-3xl font-bold mb-12">
             Frequently asked questions

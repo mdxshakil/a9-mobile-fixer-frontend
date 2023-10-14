@@ -47,7 +47,7 @@ const ManageFaqsPage = () => {
     content = <NoContantFound message="No faqs available" />;
   } else if (!isLoading && !isError && faqs?.data?.length > 0) {
     content = (
-      <div className="my-3 mx-auto w-3/5">
+      <div className="my-3 mx-auto w-full md:w-3/5">
         {faqs?.data?.map((faq: IFaq) => (
           <div className="flex items-center gap-2">
             <AccordionItem key={faq.id} faq={faq} />
@@ -71,14 +71,15 @@ const ManageFaqsPage = () => {
 
   return (
     <div>
-      <div className="py-3">
+      <div className="py-3 px-2">
         <Link to="/dashboard/add-new-faq">
           <button className="btn btn-sm btn-primary ">
             Add New FAQ <FaPlus />
           </button>
         </Link>
       </div>
-      <div>{content}</div>
+      <p className="text-center text-primary">Total faqs: {faqs?.data?.length}</p>
+      <div className="px-2">{content}</div>
     </div>
   );
 };
