@@ -36,5 +36,6 @@ export const api = createApi({
     "services",
     "service",
     "dashboard_services",
+    "cart",
   ],
 });

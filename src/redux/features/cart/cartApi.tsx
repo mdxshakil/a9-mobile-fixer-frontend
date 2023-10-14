@@ -1,0 +1,34 @@
+import { api } from "../../api/apiSlice";
+
+const blogApi = api.injectEndpoints({
+  endpoints: (builder) => ({
+    addToCart: builder.mutation({
+      query: (payload) => ({
+        url: "/cart/add-to-cart",
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["cart"],
+    }),
+    removeFromCart: builder.mutation({
+      query: (blogId) => ({
+        url: `/cart/remove-from-cart/${blogId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["cart"],
+    }),
+    getMyCart: builder.query({
+      query: (profileId) => ({
+        url: `/cart/get-my-cart/${profileId}`,
+        method: "GET",
+      }),
+      providesTags: ["cart"],
+    }),
+  }),
+});
+
+export const {
+  useAddToCartMutation,
+  useRemoveFromCartMutation,
+  useGetMyCartQuery,
+} = blogApi;

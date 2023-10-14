@@ -27,6 +27,7 @@ import EditFaqPage from "../pages/Dashboard/admin/EditFaqPage";
 import { AddServicePage } from "../pages/Dashboard/admin/AddServicePage";
 import AllServicesPage from "../pages/AllServicesPage";
 import { EditServicePage } from "../pages/Dashboard/admin/EditServicePage";
+import MyCartPage from "../pages/MyCartPage";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/all-services",
         element: <AllServicesPage />,
+      },
+      {
+        path: "/my-cart/:profileId",
+        element: <MyCartPage />,
       },
     ],
   },

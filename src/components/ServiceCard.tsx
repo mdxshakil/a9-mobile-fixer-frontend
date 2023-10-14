@@ -1,7 +1,35 @@
+import { useNavigate } from "react-router-dom";
+import useGetUserFromStore from "../hooks/useGetUser";
 import { IService } from "../interface";
+import { useAddToCartMutation } from "../redux/features/cart/cartApi";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const ServiceCard = ({ service }: { service: IService }) => {
-  const { title, image, cost, category } = service || {};
+  const { id, title, image, cost, category, status } = service || {};
+  const { role, profileId } = useGetUserFromStore();
+  const navigate = useNavigate();
+  const [addToCart, { isLoading, isError, isSuccess, error }] =
+    useAddToCartMutation();
+
+  const handleAddToCart = () => {
+    if (!profileId) {
+      navigate("/login");
+      return;
+    }
+    addToCart({ profileId, serviceId: id });
+  };
+
+  useEffect(() => {
+    if (isError) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      toast.error((error as any)?.data?.message || "An error occured");
+    }
+    if (isSuccess) {
+      toast.success("Successfully added to cart");
+    }
+  }, [isError, isSuccess, error]);
+
   return (
     <div className="card border bg-base-100 shadow-xl">
       <figure>
@@ -19,9 +47,17 @@ const ServiceCard = ({ service }: { service: IService }) => {
             <p className="text-xl font-bold">{cost}</p>
             <p className="text-sm">bdt</p>
           </div>
-          <button className="btn btn-primary btn-sm rounded-full">
-            Add to cart
-          </button>
+          {(!role || role === "user") && status !== "upcoming" && (
+            <button
+              className={`btn btn-primary btn-sm rounded-full ${
+                isLoading ? "loading-ball" : ""
+              }`}
+              onClick={handleAddToCart}
+              disabled={isLoading}
+            >
+              Add to cart
+            </button>
+          )}
         </div>
       </div>
     </div>

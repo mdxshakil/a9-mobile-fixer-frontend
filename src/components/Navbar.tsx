@@ -6,7 +6,7 @@ import { userLoggedOut } from "../redux/features/auth/authSlice";
 import { FaCartArrowDown } from "react-icons/fa";
 
 const Navbar = () => {
-  const { profilePicture } = useGetUserFromStore();
+  const { profilePicture, profileId } = useGetUserFromStore();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -49,7 +49,9 @@ const Navbar = () => {
         ) : (
           <div className="dropdown dropdown-end">
             <div className="flex gap-3 items-center">
-              <FaCartArrowDown size={25} />
+              <Link to={`/my-cart/${profileId}`}>
+                <FaCartArrowDown size={25} />
+              </Link>
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img src={profilePicture} />

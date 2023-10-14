@@ -73,3 +73,10 @@ export type IRating = {
   serviceId?: string;
   service?: IService;
 };
+
+export type ICart = {
+  id: string;
+  profileId: string;
+  serviceId: string;
+  service: IService;
+};
