@@ -18,8 +18,8 @@ const cartApi = api.injectEndpoints({
       invalidatesTags: ["cart"],
     }),
     getMyCart: builder.query({
-      query: (profileId) => ({
-        url: `/cart/get-my-cart/${profileId}`,
+      query: ({ profileId, page, limit, sortBy, sortOrder }) => ({
+        url: `/cart/get-my-cart/${profileId}?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
         method: "GET",
       }),
       providesTags: ["cart"],
