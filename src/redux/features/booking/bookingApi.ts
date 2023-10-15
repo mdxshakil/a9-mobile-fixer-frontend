@@ -17,8 +17,8 @@ const bookingApi = api.injectEndpoints({
       invalidatesTags: ["cart", "bookings"],
     }),
     getMyBookings: builder.query({
-      query: (profileId) => ({
-        url: `/booking/my-bookings/${profileId}`,
+      query: ({ profileId, page, limit, sortBy, sortOrder, filter }) => ({
+        url: `/booking/my-bookings/${profileId}?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&filter=${filter}`,
         method: "GET",
       }),
       providesTags: ["bookings"],

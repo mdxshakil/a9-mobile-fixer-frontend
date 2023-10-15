@@ -1,16 +1,19 @@
+import { useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../components/Loader/LoadingSpinner";
 import ServiceCard from "../components/ServiceCard";
 import PaginationButton from "../components/pagination/PaginationButton";
 import { serviceCategories } from "../constants";
 import { IService } from "../interface";
 import { useGetAllServiceQuery } from "../redux/features/service/serviceApi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AllServicesPage = () => {
   const [page, setPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("desc");
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("searchText");
 
   const { data: services, isLoading } = useGetAllServiceQuery({
     page,
@@ -20,6 +23,12 @@ const AllServicesPage = () => {
     searchTerm,
     category,
   });
+
+  useEffect(() => {
+    if (query) {
+      setSearchTerm(query as string);
+    }
+  }, [query]);
 
   const isPreviousButtonDisabled = page === 1;
   const isNextButtonDisabled = page === services?.data?.meta?.pageCount;

@@ -32,6 +32,7 @@ import ConfirmBookingPage from "../pages/ConfirmBookingPage";
 import MyOrdersPage from "../pages/MyOrdersPage";
 import ManageBookingPage from "../pages/Dashboard/admin/ManageBookingPage";
 import ServiceDetailsPage from "../pages/ServiceDetailsPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -237,6 +238,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignupPage />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 

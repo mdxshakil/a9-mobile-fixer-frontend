@@ -1,6 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import HeroImage from "../assets/hero-image.jpg";
+import { useState, FormEvent } from "react";
 
 const Header = () => {
+  const [searchText, setSearchText] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (searchText.length < 3) {
+      setErrorMessage("Search text must be atleast 3 chracters");
+      return;
+    } else {
+      setErrorMessage("");
+      navigate(`/all-services?searchText=${searchText}`);
+      setSearchText("");
+    }
+  };
+
   return (
     <section className="pt-12 bg-gray-50 sm:pt-16">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -16,19 +34,22 @@ const Header = () => {
 
           <div className="px-8 sm:items-start sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-9">
             <div className="relative w-full sm:w-1/2">
-              <div className="relative">
+              <form className="relative" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   placeholder="Search..."
                   className="w-full py-3 px-6 pr-16 text-lg text-gray-900 font-bold bg-white border-2 border-gray-300 rounded-full outline-none"
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
                 />
                 <button
-                  type="button"
+                  type="submit"
                   className="absolute top-0 right-0 h-full px-4 md:px-8 bg-gray-900 text-white rounded-full hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                 >
                   Search
                 </button>
-              </div>
+              </form>
+              {errorMessage && <p className="text-error text-sm">{errorMessage}</p>}
             </div>
           </div>
         </div>

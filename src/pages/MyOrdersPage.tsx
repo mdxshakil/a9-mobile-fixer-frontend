@@ -1,26 +1,42 @@
 import LoadingSpinner from "../components/Loader/LoadingSpinner";
+import PaginationButton from "../components/pagination/PaginationButton";
 import ErrorElement from "../components/shared/ErrorElement";
 import NoContantFound from "../components/shared/NoContantFound";
 import useGetUserFromStore from "../hooks/useGetUser";
 import { IBooking } from "../interface";
 import { useGetMyBookingsQuery } from "../redux/features/booking/bookingApi";
+import { useState } from "react";
 
 const MyOrdersPage = () => {
+  const [page, setPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("desc");
+  const [filter, setFilter] = useState("");
   const { profileId } = useGetUserFromStore();
+
   const {
     data: myBookings,
     isLoading,
     isError,
-  } = useGetMyBookingsQuery(profileId);
+  } = useGetMyBookingsQuery({
+    profileId,
+    page,
+    limit: 10,
+    sortBy: "createdAt",
+    sortOrder,
+    filter,
+  });
+
+  const isPreviousButtonDisabled = page === 1;
+  const isNextButtonDisabled = page === myBookings?.data?.meta?.pageCount;
 
   let content;
   if (isLoading) {
     return <LoadingSpinner />;
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load bookings data." />;
-  } else if (!isLoading && !isError && myBookings?.data?.length === 0) {
+  } else if (!isLoading && !isError && myBookings?.data?.data?.length === 0) {
     content = <NoContantFound message="No orders available" />;
-  } else if (!isLoading && !isError && myBookings?.data?.length > 0) {
+  } else if (!isLoading && !isError && myBookings?.data?.data?.length > 0) {
     content = (
       <div className="overflow-x-auto">
         <table className="table">
@@ -34,7 +50,7 @@ const MyOrdersPage = () => {
             </tr>
           </thead>
           <tbody>
-            {myBookings?.data?.map((item: IBooking) => (
+            {myBookings?.data?.data?.map((item: IBooking) => (
               <tr key={item.id}>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -85,15 +101,51 @@ const MyOrdersPage = () => {
     <div>
       <div className="py-3 px-2">
         <h1 className="text-center text-4xl my-3">My Bookings</h1>
-        <p className="text-center">Total orders: {myBookings?.data?.length}</p>
+        <p className="text-center">
+          Total orders: {myBookings?.data?.meta?.total}
+        </p>
       </div>
-      <div className="flex gap-2">
-        <button className="btn btn-xs btn-warning">All</button>
-        <button className="btn btn-xs btn-info">pending</button>
-        <button className="btn btn-xs btn-success">Completed</button>
-        <button className="btn btn-xs btn-error">Rejected</button>
+      <div className="flex">
+        <div>
+          {/* filter by booking status*/}
+          <select
+            className="select"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          >
+            <option defaultValue={filter} value={"all"}>
+              All
+            </option>
+            <option value={"pending"}>Pending</option>
+            <option value={"rejected"}>Rejected</option>
+            <option value={"completed"}>Completed</option>
+          </select>
+        </div>
+        <div>
+          {/* sort bookings - createdAt*/}
+          <select
+            className="select"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option defaultValue={sortOrder} value={"asc"}>
+              Ordered First
+            </option>
+            <option value={"desc"}>Ordered Last</option>
+          </select>
+        </div>
       </div>
       <div className="px-2">{content}</div>
+      <div>
+        <div>
+          <PaginationButton
+            setPage={setPage}
+            isPreviousButtonDisabled={isPreviousButtonDisabled}
+            isNextButtonDisabled={isNextButtonDisabled}
+            currentPage={page}
+          />
+        </div>
+      </div>
     </div>
   );
 };
