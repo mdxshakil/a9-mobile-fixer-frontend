@@ -6,11 +6,13 @@ import { serviceCategories } from "../constants";
 import { IService } from "../interface";
 import { useGetAllServiceQuery } from "../redux/features/service/serviceApi";
 import { useState, useEffect } from "react";
+import { useDebounce } from "../hooks/useDebounce";
 
 const AllServicesPage = () => {
   const [page, setPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("desc");
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm);
   const [category, setCategory] = useState("");
   const [searchParams] = useSearchParams();
   const query = searchParams.get("searchText");
@@ -20,7 +22,7 @@ const AllServicesPage = () => {
     limit: 6,
     sortBy: "cost",
     sortOrder,
-    searchTerm,
+    searchTerm: debouncedSearchTerm,
     category,
   });
 
