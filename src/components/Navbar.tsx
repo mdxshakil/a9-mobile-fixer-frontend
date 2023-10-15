@@ -55,7 +55,6 @@ const Navbar = () => {
                 <button className="btn btn-ghost btn-circle">
                   <IoNotificationsSharp size={20} />
                 </button>
-
                 <Notification />
               </div>
             )}

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useGetUserFromStore from "../hooks/useGetUser";
 import { IService } from "../interface";
 import { useAddToCartMutation } from "../redux/features/cart/cartApi";
@@ -41,7 +41,9 @@ const ServiceCard = ({ service }: { service: IService }) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{title}</h2>
+        <h2 className="card-title hover:underline">
+          <Link to={`/service/${id}`}>{title}</Link>
+        </h2>
         <div className="badge badge-primary badge-outline">{category}</div>
         <div>
           <p className="text-start mt-3">

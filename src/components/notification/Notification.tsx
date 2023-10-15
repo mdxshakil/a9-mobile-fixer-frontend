@@ -17,7 +17,7 @@ const Notification = () => {
 
   let content;
   if (isLoading) {
-    return <LoadingSpinner />;
+    content = <LoadingSpinner />;
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load notifications." />;
   } else if (!isLoading && !isError && notifications?.data?.length === 0) {

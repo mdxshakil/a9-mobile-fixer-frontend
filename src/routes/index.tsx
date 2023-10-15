@@ -31,6 +31,7 @@ import MyCartPage from "../pages/MyCartPage";
 import ConfirmBookingPage from "../pages/ConfirmBookingPage";
 import MyOrdersPage from "../pages/MyOrdersPage";
 import ManageBookingPage from "../pages/Dashboard/admin/ManageBookingPage";
+import ServiceDetailsPage from "../pages/ServiceDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/all-services",
         element: <AllServicesPage />,
+      },
+      {
+        path: "/service/:serviceId",
+        element: <ServiceDetailsPage />,
       },
       {
         path: "/my-cart/:profileId",
