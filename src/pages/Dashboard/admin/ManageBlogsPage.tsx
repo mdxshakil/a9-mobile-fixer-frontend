@@ -123,9 +123,9 @@ const ManageBlogsPage = () => {
             value={sortOrder}
           >
             <option defaultValue={sortOrder} value={"asc"}>
-              Ascending
+              Added First
             </option>
-            <option value={"desc"}>Descending</option>
+            <option value={"desc"}>Added last</option>
           </select>
         </div>
         <p>Total blogs: {blogs?.data?.meta?.total}</p>

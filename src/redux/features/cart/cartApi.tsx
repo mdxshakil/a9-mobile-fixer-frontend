@@ -1,6 +1,6 @@
 import { api } from "../../api/apiSlice";
 
-const blogApi = api.injectEndpoints({
+const cartApi = api.injectEndpoints({
   endpoints: (builder) => ({
     addToCart: builder.mutation({
       query: (payload) => ({
@@ -38,4 +38,4 @@ export const {
   useRemoveFromCartMutation,
   useGetMyCartQuery,
   useGetCartItemQuery,
-} = blogApi;
+} = cartApi;

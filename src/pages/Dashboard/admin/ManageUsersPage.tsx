@@ -142,9 +142,9 @@ const ManageUsersPage = () => {
           value={sortOrder}
         >
           <option defaultValue={sortOrder} value={"asc"}>
-            Ascending
+            Registered First
           </option>
-          <option value={"desc"}>Descending</option>
+          <option value={"desc"}>Registered Last</option>
         </select>
       </div>
       <p>Total users: {users?.data?.meta?.total}</p>

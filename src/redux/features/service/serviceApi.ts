@@ -30,8 +30,8 @@ const serviceApi = api.injectEndpoints({
       }),
     }),
     getDashboardServices: builder.query({
-      query: () => ({
-        url: "/service/get-dashboard-services",
+      query: ({ page, limit, sortBy, sortOrder, filter }) => ({
+        url: `/service/get-dashboard-services?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&filter=${filter}`,
         method: "GET",
       }),
       providesTags: ["dashboard_services"],
@@ -48,7 +48,7 @@ const serviceApi = api.injectEndpoints({
         url: `/service/${serviceId}`,
         method: "GET",
       }),
-      providesTags:["service"]
+      providesTags: ["service"],
     }),
     editService: builder.mutation({
       query: ({ serviceId, payload }) => ({
@@ -56,7 +56,7 @@ const serviceApi = api.injectEndpoints({
         method: "PATCH",
         body: payload,
       }),
-      invalidatesTags: ["dashboard_services","service"],
+      invalidatesTags: ["dashboard_services", "service"],
     }),
   }),
 });

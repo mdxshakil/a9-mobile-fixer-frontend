@@ -11,14 +11,29 @@ import {
 import { deleteConfirmationModal } from "../../../utils/deleteConfirmationModal";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import PaginationButton from "../../../components/pagination/PaginationButton";
 
 const ManageServicesPage = () => {
+  const [page, setPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("desc");
+  const [filter, setFilter] = useState("all");
+
   const {
     data: services,
     isLoading,
     isError,
-  } = useGetDashboardServicesQuery(undefined);
+  } = useGetDashboardServicesQuery({
+    page,
+    limit: 10,
+    sortBy: "createdAt",
+    sortOrder,
+    filter,
+  });
   const [deleteService, deleteState] = useDeleteServiceMutation();
+
+  const isPreviousButtonDisabled = page === 1;
+  const isNextButtonDisabled = page === services?.data?.meta?.pageCount;
 
   const handleServiceDelete = async (serviceId: string) => {
     deleteConfirmationModal(
@@ -46,9 +61,9 @@ const ManageServicesPage = () => {
     return <LoadingSpinner />;
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load faqs." />;
-  } else if (!isLoading && !isError && services?.data?.length === 0) {
+  } else if (!isLoading && !isError && services?.data?.data?.length === 0) {
     content = <NoContantFound message="No faqs available" />;
-  } else if (!isLoading && !isError && services?.data?.length > 0) {
+  } else if (!isLoading && !isError && services?.data?.data?.length > 0) {
     content = (
       <div className="overflow-x-auto">
         <table className="table">
@@ -62,7 +77,7 @@ const ManageServicesPage = () => {
             </tr>
           </thead>
           <tbody>
-            {services?.data?.map((service: IService) => (
+            {services?.data?.data?.map((service: IService) => (
               <tr key={service.id}>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -109,7 +124,45 @@ const ManageServicesPage = () => {
           </button>
         </Link>
       </div>
+      <div className="mt-3 flex gap-2">
+        <div>
+          {/* sort bookings - createdAt*/}
+          <select
+            className="select"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option defaultValue={sortOrder} value={"asc"}>
+              Added First
+            </option>
+            <option value={"desc"}>Added Last</option>
+          </select>
+        </div>
+        <div>
+          {/* filter bookings by status*/}
+          <select
+            className="select"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          >
+            <option defaultValue={sortOrder} value={"all"}>
+              All
+            </option>
+            <option value={"live"}>Live</option>
+            <option value={"upcoming"}>Upcoming</option>
+          </select>
+        </div>
+      </div>
+      <p>Total service: {services?.data?.meta?.total}</p>
       <div className="px-2">{content}</div>
+      <div>
+        <PaginationButton
+          setPage={setPage}
+          isPreviousButtonDisabled={isPreviousButtonDisabled}
+          isNextButtonDisabled={isNextButtonDisabled}
+          currentPage={page}
+        />
+      </div>
     </div>
   );
 };
