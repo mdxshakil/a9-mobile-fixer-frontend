@@ -39,5 +39,6 @@ export const api = createApi({
     "cart",
     "bookings",
     "all_bookings",
+    "reviews",
   ],
 });

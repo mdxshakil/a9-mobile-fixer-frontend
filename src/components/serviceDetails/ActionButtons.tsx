@@ -1,14 +1,47 @@
-const ActionButtons = () => {
+import { useNavigate } from "react-router-dom";
+import { useAddToCartMutation } from "../../redux/features/cart/cartApi";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+
+type IProps = {
+  profileId: string;
+  serviceId: string;
+};
+
+const ActionButtons = ({ profileId, serviceId }: IProps) => {
+  const navigate = useNavigate();
+  const [addToCart, { isLoading, isError, isSuccess, error }] =
+    useAddToCartMutation();
+
+  const handleAddToCart = () => {
+    if (!profileId) {
+      navigate("/login");
+      return;
+    }
+    addToCart({ profileId, serviceId });
+  };
+
+  useEffect(() => {
+    if (isError) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      toast.error((error as any)?.data?.message || "An error occured");
+    }
+    if (isSuccess) {
+      toast.success("Successfully added to cart");
+    }
+  }, [isError, isSuccess, error]);
+
   return (
     <div className="flex -mx-2 mb-4">
-      <div className="w-1/2 px-2">
-        <button className="w-full bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800">
+      <div className="w-full px-2">
+        <button
+          className={`w-full bg-gray-400 text-gray-800 py-2 px-4 rounded-full font-bold hover:bg-gray-300 ${
+            isLoading ? "loading-ball" : ""
+          }`}
+          disabled={isLoading}
+          onClick={handleAddToCart}
+        >
           Add to Cart
-        </button>
-      </div>
-      <div className="w-1/2 px-2">
-        <button className="w-full bg-gray-400 text-gray-800 py-2 px-4 rounded-full font-bold hover:bg-gray-300">
-          Book Now
         </button>
       </div>
     </div>

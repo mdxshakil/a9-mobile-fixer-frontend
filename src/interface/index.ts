@@ -66,6 +66,9 @@ export type IReview = {
   comment: string;
   serviceId?: string;
   service?: IService;
+  profileId: string;
+  profile: IProfile;
+  createdAt: Date;
 };
 export type IRating = {
   id: string;

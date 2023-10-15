@@ -13,7 +13,7 @@ import Header from "../components/serviceDetails/Header";
 
 const ServiceDetailsPage = () => {
   const { serviceId } = useParams();
-  const { profileId } = useGetUserFromStore();
+  const { profileId, role } = useGetUserFromStore();
 
   const {
     data: service,
@@ -37,7 +37,10 @@ const ServiceDetailsPage = () => {
           <div className="flex flex-col md:flex-row -mx-4 items-center">
             <div className="md:flex-1 px-4">
               <ServiceImage image={image} />
-              <ActionButtons />
+              <ActionButtons
+                profileId={profileId}
+                serviceId={serviceId as string}
+              />
             </div>
             <div className="md:flex-1 px-4">
               <Header title={title} description={description} />
@@ -56,8 +59,10 @@ const ServiceDetailsPage = () => {
       </div>
       {/* reviews */}
       <div className="mt-6 px-6">
-        <ReviewForm profileId={profileId} serviceId={serviceId as string} />
-        <Reviews />
+        {role === "user" && (
+          <ReviewForm profileId={profileId} serviceId={serviceId as string} />
+        )}
+        <Reviews serviceId={serviceId as string} />
       </div>
     </div>
   );

@@ -62,11 +62,11 @@ const ConfirmBookingPage = () => {
 
       <div className="flex items-center justify-center">
         <div>
-          <p className="mb-4 text-info">
+          <p className="mb-4 font-bold text-info">
             Slots per day: {cartItem?.data?.service?.slotsPerDay}
           </p>
           {bookingTime && (
-            <p className="text-info mb-4">
+            <p className="text-info mb-4 font-bold">
               Slots left on {bookingTime}: {slotData?.data?.slotsLeft}
             </p>
           )}
@@ -87,7 +87,7 @@ const ConfirmBookingPage = () => {
               max={maxDate.toISOString().split("T")[0]}
             />
             {!bookingTime && (
-              <p className="text-sm text-info">*Select a date to continue</p>
+              <p className="text-sm text-error">*Select a date to continue</p>
             )}
           </div>
           <button
