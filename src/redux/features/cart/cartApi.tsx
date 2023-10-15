@@ -24,6 +24,12 @@ const blogApi = api.injectEndpoints({
       }),
       providesTags: ["cart"],
     }),
+    getCartItem: builder.query({
+      query: (cartItemId) => ({
+        url: `/cart/get-cart-item/${cartItemId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -31,4 +37,5 @@ export const {
   useAddToCartMutation,
   useRemoveFromCartMutation,
   useGetMyCartQuery,
+  useGetCartItemQuery,
 } = blogApi;

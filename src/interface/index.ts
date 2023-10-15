@@ -80,3 +80,19 @@ export type ICart = {
   serviceId: string;
   service: IService;
 };
+
+export type IBooking = {
+  id: string;
+  profileId: string;
+  profile: IProfile;
+  serviceId: string;
+  service: IService;
+  bookingTime: string;
+  status: "pending" | "rejected" | "completed";
+};
+
+export type INotification = {
+  id: string;
+  profileId: string;
+  content: string;
+};

@@ -27,10 +27,10 @@ export const SidebarLinks = (location: string, userRole: string) => {
     },
     {
       id: 3,
-      path: "/dashboard/add-user",
+      path: "/dashboard/manage-bookings",
       icon: <BiSolidDashboard className="text-sm md:text-xl" />,
-      label: "Add User",
-      isActive: location === "/dashboard/add-user",
+      label: "Manage Bookings",
+      isActive: location === "/dashboard/manage-bookings",
     },
     {
       id: 4,

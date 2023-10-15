@@ -6,7 +6,8 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 const ServiceCard = ({ service }: { service: IService }) => {
-  const { id, title, image, cost, category, status } = service || {};
+  const { id, title, image, cost, category, status, slotsPerDay } =
+    service || {};
   const { role, profileId } = useGetUserFromStore();
   const navigate = useNavigate();
   const [addToCart, { isLoading, isError, isSuccess, error }] =
@@ -42,11 +43,14 @@ const ServiceCard = ({ service }: { service: IService }) => {
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <div className="badge badge-primary badge-outline">{category}</div>
-        <div className="flex items-center justify-between mt-3">
-          <div className="flex gap-1 place-items-center">
-            <p className="text-xl font-bold">{cost}</p>
-            <p className="text-sm">bdt</p>
-          </div>
+        <div>
+          <p className="text-start mt-3">
+            <span className="mr-1">{cost}</span>
+            <span>bdt</span>
+          </p>
+        </div>
+        <div className="flex items-center justify-between mt-1">
+          <p className="text-start">Slots per day: {slotsPerDay}</p>
           {(!role || role === "user") && status !== "upcoming" && (
             <button
               className={`btn btn-primary btn-sm rounded-full ${

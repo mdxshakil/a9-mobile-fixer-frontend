@@ -8,7 +8,7 @@ import ErrorElement from "../../../components/shared/ErrorElement";
 import NoContantFound from "../../../components/shared/NoContantFound";
 import { IProfile } from "../../../interface";
 import PaginationButton from "../../../components/pagination/PaginationButton";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { deleteConfirmationModal } from "../../../utils/deleteConfirmationModal";
@@ -127,6 +127,13 @@ const ManageUsersPage = () => {
 
   return (
     <div>
+      <div className="py-3">
+        <Link to="/dashboard/add-user">
+          <button className="btn btn-sm btn-primary ">
+            Add New User <FaPlus />
+          </button>
+        </Link>
+      </div>
       <div className="my-3 flex justify-center">
         {/* sort users - createdAt*/}
         <select

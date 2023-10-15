@@ -4,9 +4,11 @@ import useGetUserFromStore from "../hooks/useGetUser";
 import { useAppDispatch } from "../redux/hooks";
 import { userLoggedOut } from "../redux/features/auth/authSlice";
 import { FaCartArrowDown } from "react-icons/fa";
+import { IoNotificationsSharp } from "react-icons/io5";
+import Notification from "./notification/Notification";
 
 const Navbar = () => {
-  const { profilePicture, profileId } = useGetUserFromStore();
+  const { profilePicture, profileId, role } = useGetUserFromStore();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -47,31 +49,47 @@ const Navbar = () => {
             </button>
           </Link>
         ) : (
-          <div className="dropdown dropdown-end">
-            <div className="flex gap-3 items-center">
-              <Link to={`/my-cart/${profileId}`}>
-                <FaCartArrowDown size={25} />
-              </Link>
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src={profilePicture} />
-                </div>
-              </label>
+          <div>
+            {role === "user" && (
+              <div className="dropdown">
+                <button className="btn btn-ghost btn-circle">
+                  <IoNotificationsSharp size={20} />
+                </button>
+
+                <Notification />
+              </div>
+            )}
+
+            {role === "user" && (
+              <button>
+                <Link to={`/my-cart/${profileId}`}>
+                  <FaCartArrowDown size={25} />
+                </Link>
+              </button>
+            )}
+            <div className="dropdown dropdown-end ml-3">
+              <div className="flex gap-3 items-center">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={profilePicture} />
+                  </div>
+                </label>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to={"/dashboard"}>Dashboard</Link>
+                </li>
+                <li className="block md:hidden">
+                  <Link to="/blogs">Blogs</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link to={"/dashboard"}>Dashboard</Link>
-              </li>
-              <li className="block md:hidden">
-                <Link to="/blogs">Blogs</Link>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-            </ul>
           </div>
         )}
       </div>

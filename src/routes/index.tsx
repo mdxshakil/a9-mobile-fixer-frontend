@@ -28,6 +28,9 @@ import { AddServicePage } from "../pages/Dashboard/admin/AddServicePage";
 import AllServicesPage from "../pages/AllServicesPage";
 import { EditServicePage } from "../pages/Dashboard/admin/EditServicePage";
 import MyCartPage from "../pages/MyCartPage";
+import ConfirmBookingPage from "../pages/ConfirmBookingPage";
+import MyOrdersPage from "../pages/MyOrdersPage";
+import ManageBookingPage from "../pages/Dashboard/admin/ManageBookingPage";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +55,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-cart/:profileId",
-        element: <MyCartPage />,
+        element: (
+          <RequireAuth>
+            <MyCartPage />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/confirm-booking/:cartItemId",
+        element: (
+          <RequireAuth>
+            <ConfirmBookingPage />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/my-orders",
+        element: (
+          <RequireAuth>
+            <MyOrdersPage />
+          </RequireAuth>
+        ),
       },
     ],
   },
@@ -189,6 +212,14 @@ const router = createBrowserRouter([
         element: (
           <RequireAdmin>
             <EditFaqPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "manage-bookings",
+        element: (
+          <RequireAdmin>
+            <ManageBookingPage />
           </RequireAdmin>
         ),
       },

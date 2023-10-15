@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Link, useParams } from "react-router-dom";
 import {
   useGetMyCartQuery,
   useRemoveFromCartMutation,
@@ -52,6 +53,7 @@ const MyCartPage = () => {
           <thead>
             <tr>
               <th>Title</th>
+              <th>cost</th>
               <th>Category</th>
               <th>Action</th>
             </tr>
@@ -75,14 +77,22 @@ const MyCartPage = () => {
                   </div>
                 </td>
                 <td>
+                  <div className="badge badge-info">
+                    {item.service.cost} bdt
+                  </div>
+                </td>
+                <td>
                   <div className="badge badge-outline">
                     {item.service.category}
                   </div>
                 </td>
                 <td className="flex gap-2 items-center">
                   <button className="tooltip" data-tip="Place Order">
-                    <FaBookmark size={20} />
+                    <Link to={`/confirm-booking/${item.id}`}>
+                      <FaBookmark size={20} />
+                    </Link>
                   </button>
+
                   <button onClick={() => handleRemoveFromCart(item.id)}>
                     <FaTrash size={20} />
                   </button>
@@ -102,6 +112,9 @@ const MyCartPage = () => {
         <p className="text-center">
           Total service in cart: {myCart?.data?.length}
         </p>
+        <button className="btn btn-sm">
+          <Link to={"/my-orders"}>My Orders</Link>
+        </button>
       </div>
       <div className="px-2">{content}</div>
     </div>

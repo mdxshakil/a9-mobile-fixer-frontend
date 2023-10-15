@@ -37,5 +37,7 @@ export const api = createApi({
     "service",
     "dashboard_services",
     "cart",
+    "bookings",
+    "all_bookings",
   ],
 });
