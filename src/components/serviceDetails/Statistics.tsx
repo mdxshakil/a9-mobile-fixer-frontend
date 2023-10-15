@@ -13,14 +13,16 @@ const Statistics = ({ cost, slotsPerDay, category }: IProps) => {
           <span className="text-gray-600 badge badge-info">{cost} bdt</span>
         </div>
         <div>
-          <span className="font-bold text-gray-700">Slots per day:</span>
-          <span className="text-gray-600">{slotsPerDay}</span>
+          <span className="font-bold text-gray-700">Slots per day: </span>
+          <span className="text-gray-300 badge badge-primary px-4">
+            {slotsPerDay}
+          </span>
         </div>
       </div>
       <div className="flex mb-4">
         <div className="mr-4">
           <span className="font-bold text-gray-700">Rating: </span>
-          <span className="text-gray-600 badge badge-warning">5*</span>
+          <span className="text-gray-600 badge badge-warning px-4">5*</span>
         </div>
         <div className="mr-4">
           <span className="font-bold text-gray-700">Category: </span>

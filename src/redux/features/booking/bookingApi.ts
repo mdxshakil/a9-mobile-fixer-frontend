@@ -38,6 +38,12 @@ const bookingApi = api.injectEndpoints({
       }),
       invalidatesTags: ["all_bookings"],
     }),
+    getSingleBooking: builder.query({
+      query: ({ serviceId, profileId }) => ({
+        url: `/booking/single-booking-info?serviceId=${serviceId}&profileId=${profileId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -47,4 +53,5 @@ export const {
   useGetMyBookingsQuery,
   useGetAllBookingsQuery,
   useUpdateBookingStatusMutation,
+  useGetSingleBookingQuery,
 } = bookingApi;

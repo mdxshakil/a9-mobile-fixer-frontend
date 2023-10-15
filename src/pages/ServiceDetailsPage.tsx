@@ -13,7 +13,7 @@ import Header from "../components/serviceDetails/Header";
 
 const ServiceDetailsPage = () => {
   const { serviceId } = useParams();
-  const { role } = useGetUserFromStore();
+  const { profileId } = useGetUserFromStore();
 
   const {
     data: service,
@@ -46,14 +46,17 @@ const ServiceDetailsPage = () => {
                 slotsPerDay={slotsPerDay}
                 category={category}
               />
-              <RatingStar />
+              <RatingStar
+                profileId={profileId}
+                serviceId={serviceId as string}
+              />
             </div>
           </div>
         </div>
       </div>
       {/* reviews */}
       <div className="mt-6 px-6">
-        {role === "user" && <ReviewForm />}
+        <ReviewForm profileId={profileId} serviceId={serviceId as string} />
         <Reviews />
       </div>
     </div>
