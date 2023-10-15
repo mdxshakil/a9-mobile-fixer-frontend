@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetServiceByIdQuery } from "../redux/features/service/serviceApi";
-import RatingStar from "../components/RatingStar";
+import RatingStar from "../components/serviceDetails/RatingStar";
 import LoadingSpinner from "../components/Loader/LoadingSpinner";
 import ErrorElement from "../components/shared/ErrorElement";
 import useGetUserFromStore from "../hooks/useGetUser";
@@ -10,6 +10,7 @@ import ActionButtons from "../components/serviceDetails/ActionButtons";
 import Statistics from "../components/serviceDetails/Statistics";
 import ServiceImage from "../components/serviceDetails/ServiceImage";
 import Header from "../components/serviceDetails/Header";
+import { useCheckRatingGivenOrNotQuery } from "../redux/features/rating/ratingApi";
 
 const ServiceDetailsPage = () => {
   const { serviceId } = useParams();
@@ -22,6 +23,13 @@ const ServiceDetailsPage = () => {
   } = useGetServiceByIdQuery(serviceId);
   const { image, title, cost, description, slotsPerDay, category } =
     service?.data || {};
+
+  //check if user already submitted a rating or not for the service
+  //if submitted ,then can not submit again
+  const { data: checkRating } = useCheckRatingGivenOrNotQuery({
+    serviceId,
+    profileId,
+  });
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -49,10 +57,14 @@ const ServiceDetailsPage = () => {
                 slotsPerDay={slotsPerDay}
                 category={category}
               />
-              <RatingStar
-                profileId={profileId}
-                serviceId={serviceId as string}
-              />
+              {!checkRating?.data?.ratingValue ? (
+                <RatingStar
+                  profileId={profileId}
+                  serviceId={serviceId as string}
+                />
+              ) : (
+                <p className="font-bold">Your rating: {checkRating?.data?.ratingValue}</p>
+              )}
             </div>
           </div>
         </div>

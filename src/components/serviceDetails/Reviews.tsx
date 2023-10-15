@@ -16,7 +16,7 @@ const Reviews = ({ serviceId }: { serviceId: string }) => {
     content = <NoContantFound message="No reviews" />;
   } else if (!isLoading && !isError && reviews?.data?.length > 0) {
     content = reviews?.data?.map((review: IReview) => (
-      <div className="chat chat-start">
+      <div key={review?.id} className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
             <img src={review.profile.profilePicture} />

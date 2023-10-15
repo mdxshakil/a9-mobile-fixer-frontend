@@ -11,6 +11,7 @@ type IProps = {
 
 const ReviewForm = ({ profileId, serviceId }: IProps) => {
   //check if user has purchased this service or not
+  //if purchased,then he can submit rating
   const { data } = useGetSingleBookingQuery({ profileId, serviceId });
   const [comment, setComment] = useState("");
   const [addReview, { isLoading, isError }] = useAddReviewMutation();
