@@ -1,17 +1,22 @@
+import toast from "react-hot-toast";
 import LoadingSpinner from "../components/Loader/LoadingSpinner";
 import PaginationButton from "../components/pagination/PaginationButton";
 import ErrorElement from "../components/shared/ErrorElement";
 import NoContantFound from "../components/shared/NoContantFound";
 import useGetUserFromStore from "../hooks/useGetUser";
 import { IBooking } from "../interface";
-import { useGetMyBookingsQuery } from "../redux/features/booking/bookingApi";
-import { useState } from "react";
+import {
+  useCancelBookingMutation,
+  useGetMyBookingsQuery,
+} from "../redux/features/booking/bookingApi";
+import { useState, useEffect } from "react";
 
 const MyOrdersPage = () => {
   const [page, setPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("desc");
   const [filter, setFilter] = useState("");
   const { profileId } = useGetUserFromStore();
+  const [cancelBooking, cancelState] = useCancelBookingMutation();
 
   const {
     data: myBookings,
@@ -28,6 +33,18 @@ const MyOrdersPage = () => {
 
   const isPreviousButtonDisabled = page === 1;
   const isNextButtonDisabled = page === myBookings?.data?.meta?.pageCount;
+
+  useEffect(() => {
+    if (cancelState.isError) {
+      toast.error(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (cancelState.error as any)?.data?.message || "Failed to cancel booking"
+      );
+    }
+    if (cancelState.isSuccess) {
+      toast.success("Booking Cancelled");
+    }
+  }, [cancelState]);
 
   let content;
   if (isLoading) {
@@ -89,6 +106,17 @@ const MyOrdersPage = () => {
                   >
                     {item.status}
                   </div>
+                  {item.status === "pending" && (
+                    <button
+                      className={`btn btn-xs btn-error ${
+                        cancelState.isLoading ? "loading-bars" : ""
+                      }`}
+                      disabled={cancelState.isLoading}
+                      onClick={() => cancelBooking(item.id)}
+                    >
+                      Cancel Booking
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

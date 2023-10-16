@@ -129,7 +129,7 @@ const MyCartPage = () => {
           Total service in cart: {myCart?.data?.data?.total}
         </p>
         <button className="btn btn-sm">
-          <Link to={"/my-orders"}>My Orders</Link>
+          <Link to={"/my-orders"}>My Bookings</Link>
         </button>
       </div>
       <div>

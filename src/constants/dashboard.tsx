@@ -3,7 +3,6 @@ import {
   AiFillFileAdd,
   AiFillQuestionCircle,
   AiFillTrophy,
-  AiOutlineHistory,
 } from "react-icons/ai";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaAddressBook } from "react-icons/fa";
@@ -89,17 +88,10 @@ export const SidebarLinks = (location: string, userRole: string) => {
     },
     {
       id: 2,
-      path: "/dashboard/achivements",
+      path: "/my-orders",
       icon: <AiFillTrophy className="text-sm md:text-xl" />,
-      label: "Achivements",
-      isActive: location === "/dashboard/achivements",
-    },
-    {
-      id: 3,
-      path: "/dashboard/reading-history",
-      icon: <AiOutlineHistory className="text-sm md:text-xl" />,
-      label: "Reading History",
-      isActive: location === "/dashboard/reading-history",
+      label: "My Bookings",
+      isActive: location === "/my-orders",
     },
   ];
   if (userRole === "admin") {

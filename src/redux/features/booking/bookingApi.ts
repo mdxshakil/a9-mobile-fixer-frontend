@@ -16,6 +16,13 @@ const bookingApi = api.injectEndpoints({
       }),
       invalidatesTags: ["cart", "bookings"],
     }),
+    cancelBooking: builder.mutation({
+      query: (bookingId) => ({
+        url: `/booking/cancel-booking/${bookingId}`,
+        method: "Delete",
+      }),
+      invalidatesTags: ["bookings"],
+    }),
     getMyBookings: builder.query({
       query: ({ profileId, page, limit, sortBy, sortOrder, filter }) => ({
         url: `/booking/my-bookings/${profileId}?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&filter=${filter}`,
@@ -50,6 +57,7 @@ const bookingApi = api.injectEndpoints({
 export const {
   useCheckRemainingSlotsQuery,
   useConfirmBookingMutation,
+  useCancelBookingMutation,
   useGetMyBookingsQuery,
   useGetAllBookingsQuery,
   useUpdateBookingStatusMutation,
