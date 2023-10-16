@@ -27,7 +27,7 @@ const UpcomingService = () => {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center py-12">
       <h1 className="text-4xl font-bold text-center mt-12">
         Upcoming services
       </h1>

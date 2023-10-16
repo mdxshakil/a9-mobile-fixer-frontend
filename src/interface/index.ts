@@ -99,3 +99,9 @@ export type INotification = {
   profileId: string;
   content: string;
 };
+
+export type IFeedback = {
+  id: string;
+  email: string;
+  message: string;
+};

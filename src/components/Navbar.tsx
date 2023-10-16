@@ -37,9 +37,6 @@ const Navbar = () => {
         <Link className="m-2" to="/blogs">
           Blogs
         </Link>
-        <Link className="m-2" to="#faq-section">
-          FAQ
-        </Link>
       </div>
       <div className="navbar-end">
         {!profilePicture ? (

@@ -56,7 +56,7 @@ const ManageBookingPage = () => {
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load bookings." />;
   } else if (!isLoading && !isError && bookings?.data?.data?.length === 0) {
-    content = <NoContantFound message="No blogs available" />;
+    content = <NoContantFound message="No bookings available" />;
   } else if (!isLoading && !isError && bookings?.data?.data?.length > 0) {
     content = (
       <table className="table">

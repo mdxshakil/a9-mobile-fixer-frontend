@@ -33,6 +33,7 @@ import MyOrdersPage from "../pages/MyOrdersPage";
 import ManageBookingPage from "../pages/Dashboard/admin/ManageBookingPage";
 import ServiceDetailsPage from "../pages/ServiceDetailsPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import ManageFeedbacksPage from "../pages/Dashboard/admin/ManageFeedbacksPage";
 
 const router = createBrowserRouter([
   {
@@ -226,6 +227,14 @@ const router = createBrowserRouter([
         element: (
           <RequireAdmin>
             <ManageBookingPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "manage-feedbacks",
+        element: (
+          <RequireAdmin>
+            <ManageFeedbacksPage />
           </RequireAdmin>
         ),
       },

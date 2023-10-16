@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import FeedBackSection from "../components/feedBackForm/FeedBack";
 import FaqSection from "../components/home/FaqSection";
@@ -13,6 +14,7 @@ const HomePage = () => {
       <UpcomingService />
       <FaqSection />
       <FeedBackSection />
+      <Footer />
     </div>
   );
 };
