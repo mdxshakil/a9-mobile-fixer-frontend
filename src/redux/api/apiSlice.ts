@@ -41,5 +41,7 @@ export const api = createApi({
     "all_bookings",
     "reviews",
     "check_rating",
+    "testimonials",
+    "approved_testimonials"
   ],
 });

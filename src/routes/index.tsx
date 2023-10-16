@@ -34,6 +34,7 @@ import ManageBookingPage from "../pages/Dashboard/admin/ManageBookingPage";
 import ServiceDetailsPage from "../pages/ServiceDetailsPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import ManageFeedbacksPage from "../pages/Dashboard/admin/ManageFeedbacksPage";
+import ManageTestimonialsPage from "../pages/Dashboard/admin/ManageTestimonialsPage";
 
 const router = createBrowserRouter([
   {
@@ -235,6 +236,14 @@ const router = createBrowserRouter([
         element: (
           <RequireAdmin>
             <ManageFeedbacksPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "manage-testimonials",
+        element: (
+          <RequireAdmin>
+            <ManageTestimonialsPage />
           </RequireAdmin>
         ),
       },

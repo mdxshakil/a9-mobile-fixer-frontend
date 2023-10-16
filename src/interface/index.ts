@@ -105,3 +105,12 @@ export type IFeedback = {
   email: string;
   message: string;
 };
+
+export type ITestimonial = {
+  id: string;
+  experience: "good" | "very_good" | "average";
+  message: string;
+  isApproved: boolean;
+  profileId: string;
+  profile: IProfile;
+};

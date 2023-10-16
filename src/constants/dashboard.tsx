@@ -4,6 +4,7 @@ import {
   AiFillQuestionCircle,
   AiFillTrophy,
   AiOutlineComment,
+  AiOutlineFolderView,
 } from "react-icons/ai";
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaAddressBook } from "react-icons/fa";
@@ -59,6 +60,13 @@ export const SidebarLinks = (location: string, userRole: string) => {
       icon: <AiOutlineComment className="text-sm md:text-xl" />,
       label: "Manage Feedbacks",
       isActive: location === "/dashboard/manage-feedbacks",
+    },
+    {
+      id: 7,
+      path: "/dashboard/manage-testimonials",
+      icon: <AiOutlineFolderView className="text-sm md:text-xl" />,
+      label: "Manage Testimonials",
+      isActive: location === "/dashboard/manage-testimonials",
     },
   ];
 

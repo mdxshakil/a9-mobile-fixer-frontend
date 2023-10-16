@@ -51,6 +51,12 @@ const bookingApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
+    checkServicePurchasedOrNot: builder.query({
+      query: (profileId) => ({
+        url: `/booking/check-service-purchase?profileId=${profileId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -62,4 +68,5 @@ export const {
   useGetAllBookingsQuery,
   useUpdateBookingStatusMutation,
   useGetSingleBookingQuery,
+  useCheckServicePurchasedOrNotQuery,
 } = bookingApi;
