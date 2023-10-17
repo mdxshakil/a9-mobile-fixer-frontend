@@ -9,6 +9,7 @@ import UpcomingService from "../components/home/UpcomingService";
 import LatestNewsSection from "../components/latestNews/LatestNewsSection";
 import OurLocationSection from "../components/location/OurLocationSection";
 import TestimonialSection from "../components/testimonial/TestimonialSection";
+import CountUpSection from "../components/countUp/CountUpSection";
 
 const HomePage = () => {
   return (
@@ -22,6 +23,7 @@ const HomePage = () => {
       <FaqSection />
       <OurLocationSection />
       <TestimonialSection />
+      <CountUpSection />
       <Footer />
     </div>
   );
