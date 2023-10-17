@@ -2,6 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { ISingupUser } from "../../interface";
 import LoadingSpinner from "../Loader/LoadingSpinner";
+import { emailValidationRegex, passwordValidationRegex } from "../../constants";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type IProps = {
@@ -20,7 +21,7 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
     watch,
     reset,
   } = useForm();
-  const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
 
   const handleSignup = async (data: FieldValues) => {
     const formData = new FormData();
@@ -127,11 +128,20 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
           className="input input-bordered"
           required
           {...register("email", {
-            required: true,
+            required: {
+              value: true,
+              message: "Email is required",
+            },
+            pattern: {
+              value: emailValidationRegex,
+              message: "Provide a valid email address",
+            },
           })}
         />
         {errors.email && (
-          <p className="text-[12px] text-red-500 ">This field is required</p>
+          <p className="text-[12px] text-red-500 ">
+            {errors.email.message as string}
+          </p>
         )}
       </div>
       {/* password */}
@@ -150,7 +160,7 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
               message: "Password is required",
             },
             pattern: {
-              value: passwordValidation,
+              value: passwordValidationRegex,
               message:
                 " Password must contain at least one uppercase, one lowercase, and be at least 6 characters long.",
             },

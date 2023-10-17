@@ -39,6 +39,16 @@ const Navbar = () => {
           Blogs
         </Link>
         </p>
+        <p className="hover:border-b-2 border-primary">
+        <Link className="m-2" to="/all-events">
+          Events
+        </Link>
+        </p>
+        <p className="hover:border-b-2 border-primary">
+        <Link className="m-2" to="/all-services">
+          Services
+        </Link>
+        </p>
       </div>
       <div className="navbar-end">
         {!profilePicture ? (
@@ -65,7 +75,7 @@ const Navbar = () => {
                 </Link>
               </button>
             )}
-            <div className="dropdown dropdown-end ml-3">
+            <div className="dropdown dropdown-end ml-3 z-50">
               <div className="flex gap-3 items-center">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
@@ -82,6 +92,12 @@ const Navbar = () => {
                 </li>
                 <li className="block md:hidden">
                   <Link to="/blogs">Blogs</Link>
+                </li>
+                <li className="block md:hidden">
+                  <Link to="/all-events">Events</Link>
+                </li>
+                <li className="block md:hidden">
+                  <Link to="/all-services">Services</Link>
                 </li>
                 <li>
                   <button onClick={handleLogout}>Logout</button>

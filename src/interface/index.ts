@@ -114,3 +114,12 @@ export type ITestimonial = {
   profileId: string;
   profile: IProfile;
 };
+
+export type IEvent = {
+  id: string;
+  venue: string;
+  title: string;
+  eventDate: Date;
+  banner: string;
+  status: string;
+};

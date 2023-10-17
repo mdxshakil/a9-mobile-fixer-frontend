@@ -1,7 +1,6 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useAddNewServiceMutation } from "../../../redux/features/service/serviceApi";
-import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
 import toast from "react-hot-toast";
 import { serviceCategories } from "../../../constants";
 
@@ -54,10 +53,6 @@ export const AddServicePage = () => {
       toast.error((error as any)?.data?.message || "An error occured");
     }
   }, [isError, isSuccess, error, reset]);
-
-  if (isLoading || loading) {
-    return <LoadingSpinner />;
-  }
 
   return (
     <div className="flex justify-center items-center h-screen mt-6">
@@ -204,7 +199,10 @@ export const AddServicePage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full`}
+              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full ${
+                loading || isLoading ? "loading-bars" : ""
+              }`}
+              disabled={loading || isLoading}
             >
               Submit
             </button>

@@ -31,7 +31,7 @@ const Notification = () => {
   }
 
   return (
-    <div className="dropdown-content w-72 right-0 md:right-[50%] bg-base-300 shadow-lg p-3 rounded-lg overflow-scroll max-h-56">
+    <div className="dropdown-content w-72 right-0 md:right-[50%] bg-base-300 shadow-lg p-3 rounded-lg overflow-scroll max-h-56 z-50">
       {content}
     </div>
   );

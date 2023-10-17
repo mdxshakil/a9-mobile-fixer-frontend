@@ -1,5 +1,6 @@
 import {
   AiFillBook,
+  AiFillEnvironment,
   AiFillFileAdd,
   AiFillQuestionCircle,
   AiFillTrophy,
@@ -55,18 +56,25 @@ export const SidebarLinks = (location: string, userRole: string) => {
       isActive: location === "/dashboard/manage-faqs",
     },
     {
-      id: 7,
+      id: 8,
       path: "/dashboard/manage-feedbacks",
       icon: <AiOutlineComment className="text-sm md:text-xl" />,
       label: "Manage Feedbacks",
       isActive: location === "/dashboard/manage-feedbacks",
     },
     {
-      id: 7,
+      id: 9,
       path: "/dashboard/manage-testimonials",
       icon: <AiOutlineFolderView className="text-sm md:text-xl" />,
       label: "Manage Testimonials",
       isActive: location === "/dashboard/manage-testimonials",
+    },
+    {
+      id: 10,
+      path: "/dashboard/manage-events",
+      icon: <AiFillEnvironment className="text-sm md:text-xl" />,
+      label: "Manage Events",
+      isActive: location === "/dashboard/manage-events",
     },
   ];
 

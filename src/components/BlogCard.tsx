@@ -6,7 +6,7 @@ const BlogCard = ({ blog }: { blog: IBlog }) => {
   const { firstName, lastName, profilePicture } = profile || {};
 
   return (
-    <div className="card bg-base-300 shadow-xl">
+    <div className="card shadow-md bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <p>{description.slice(0, 60)}....</p>

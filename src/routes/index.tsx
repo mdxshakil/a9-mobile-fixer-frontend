@@ -35,6 +35,9 @@ import ServiceDetailsPage from "../pages/ServiceDetailsPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import ManageFeedbacksPage from "../pages/Dashboard/admin/ManageFeedbacksPage";
 import ManageTestimonialsPage from "../pages/Dashboard/admin/ManageTestimonialsPage";
+import ManageEventsPage from "../pages/Dashboard/admin/ManageEventsPage";
+import { AddNewEventPage } from "../pages/Dashboard/admin/AddNewEventPage";
+import AllEventsPage from "../pages/AllEventsPage";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/all-services",
         element: <AllServicesPage />,
+      },
+      {
+        path: "/all-events",
+        element: <AllEventsPage />,
       },
       {
         path: "/service/:serviceId",
@@ -244,6 +251,22 @@ const router = createBrowserRouter([
         element: (
           <RequireAdmin>
             <ManageTestimonialsPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "manage-events",
+        element: (
+          <RequireAdmin>
+            <ManageEventsPage />
+          </RequireAdmin>
+        ),
+      },
+      {
+        path: "add-new-event",
+        element: (
+          <RequireAdmin>
+            <AddNewEventPage />
           </RequireAdmin>
         ),
       },

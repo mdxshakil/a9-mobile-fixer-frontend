@@ -10,6 +10,7 @@ import LatestNewsSection from "../components/latestNews/LatestNewsSection";
 import OurLocationSection from "../components/location/OurLocationSection";
 import TestimonialSection from "../components/testimonial/TestimonialSection";
 import CountUpSection from "../components/countUp/CountUpSection";
+import UpcomingEventSection from "../components/UpcomingEventSection";
 
 const HomePage = () => {
   return (
@@ -21,6 +22,7 @@ const HomePage = () => {
       <LatestNewsSection />
       <FeedBackSection />
       <FaqSection />
+      <UpcomingEventSection />
       <OurLocationSection />
       <TestimonialSection />
       <CountUpSection />

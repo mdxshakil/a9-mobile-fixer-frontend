@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import BlogCard from "../components/BlogCard";
 import LoadingSpinner from "../components/Loader/LoadingSpinner";
 import PaginationButton from "../components/pagination/PaginationButton";
@@ -48,30 +49,32 @@ export const AllBlogsPage = () => {
     );
   }
   return (
-    <div>
-      <div className="my-3 flex justify-center">
-        {/* sort users - createdAt*/}
-        <select
-          className="select"
-          onChange={(e) => handleSortByAndSortOrder(e)}
-          value={sortOrder}
-        >
-          <option defaultValue={sortOrder} value={"asc"}>
-            Oldest
-          </option>
-          <option value={"desc"}>Latest</option>
-        </select>
-      </div>
-      <p>Total blogs: {blogs?.data?.meta?.total}</p>
-      <div>{content}</div>
+    <Fade>
       <div>
-        <PaginationButton
-          setPage={setPage}
-          isPreviousButtonDisabled={isPreviousButtonDisabled}
-          isNextButtonDisabled={isNextButtonDisabled}
-          currentPage={page}
-        />
+        <div className="my-3 flex justify-center">
+          {/* sort users - createdAt*/}
+          <select
+            className="select"
+            onChange={(e) => handleSortByAndSortOrder(e)}
+            value={sortOrder}
+          >
+            <option defaultValue={sortOrder} value={"asc"}>
+              Oldest
+            </option>
+            <option value={"desc"}>Latest</option>
+          </select>
+        </div>
+        <p>Total blogs: {blogs?.data?.meta?.total}</p>
+        <div>{content}</div>
+        <div>
+          <PaginationButton
+            setPage={setPage}
+            isPreviousButtonDisabled={isPreviousButtonDisabled}
+            isNextButtonDisabled={isNextButtonDisabled}
+            currentPage={page}
+          />
+        </div>
       </div>
-    </div>
+    </Fade>
   );
 };

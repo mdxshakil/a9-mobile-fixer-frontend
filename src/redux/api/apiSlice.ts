@@ -44,5 +44,6 @@ export const api = createApi({
     "check_rating",
     "testimonials",
     "approved_testimonials",
+    "events",
   ],
 });
