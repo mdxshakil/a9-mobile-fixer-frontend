@@ -40,6 +40,7 @@ export const api = createApi({
     "cart",
     "bookings",
     "all_bookings",
+    "remaining_slots",
     "reviews",
     "check_rating",
     "testimonials",

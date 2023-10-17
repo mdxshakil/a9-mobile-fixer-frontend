@@ -14,12 +14,21 @@ const ConfirmBookingPage = () => {
   const { profileId, role } = useGetUserFromStore();
   const [bookingTime, setBookingTime] = useState("");
   const { cartItemId } = useParams();
+  //get the cart item data to dispaly on confirm booking page
   const { data: cartItem, isLoading: cartItemLoading } =
     useGetCartItemQuery(cartItemId);
-  const { data: slotData, isLoading } = useCheckRemainingSlotsQuery({
-    serviceId: cartItem?.data?.serviceId,
-    bookingTime,
-  });
+  //check remaining slots on the user selected day for that service
+  const {
+    data: slotData,
+    isLoading,
+    isError,
+  } = useCheckRemainingSlotsQuery(
+    {
+      serviceId: cartItem?.data?.service?.id,
+      bookingTime,
+    },
+    { skip: !bookingTime }
+  );
   const [confirmBooking, confirmState] = useConfirmBookingMutation();
 
   const today = new Date();
@@ -46,7 +55,10 @@ const ConfirmBookingPage = () => {
       toast.success("Booking confirmed");
       navigate("/my-orders");
     }
-  }, [confirmState, navigate, role]);
+    if (isError) {
+      toast.error(`No slots left on ${bookingTime}`);
+    }
+  }, [confirmState, navigate, role, isError, bookingTime]);
 
   if (isLoading || cartItemLoading || confirmState.isLoading) {
     return <LoadingSpinner />;
@@ -75,7 +87,8 @@ const ConfirmBookingPage = () => {
             </p>
             {bookingTime && (
               <p className="text-info mb-4 font-bold">
-                Slots left on {bookingTime}: {slotData?.data?.slotsLeft}
+                Slots left on {bookingTime}:{" "}
+                {!isError ? slotData?.data?.slotsLeft : 0}
               </p>
             )}
             <p className="text-gray-600 mb-6">
@@ -101,7 +114,7 @@ const ConfirmBookingPage = () => {
             <button
               className="btn btn-primary btn-sm md:btn-md"
               onClick={handleBooking}
-              disabled={!bookingTime || slotData?.data?.slotsLeft === 0}
+              disabled={!bookingTime || isError}
             >
               Confirm Booking
             </button>

@@ -7,6 +7,7 @@ const bookingApi = api.injectEndpoints({
         url: `/booking/check-remaining-slots?serviceId=${serviceId}&bookingTime=${bookingTime}`,
         method: "GET",
       }),
+      providesTags:["remaining_slots"]
     }),
     confirmBooking: builder.mutation({
       query: (bookingData) => ({
@@ -14,14 +15,14 @@ const bookingApi = api.injectEndpoints({
         method: "POST",
         body: bookingData,
       }),
-      invalidatesTags: ["cart", "bookings"],
+      invalidatesTags: ["cart", "bookings","remaining_slots"],
     }),
     cancelBooking: builder.mutation({
       query: (bookingId) => ({
         url: `/booking/cancel-booking/${bookingId}`,
         method: "Delete",
       }),
-      invalidatesTags: ["bookings"],
+      invalidatesTags: ["bookings","remaining_slots"],
     }),
     getMyBookings: builder.query({
       query: ({ profileId, page, limit, sortBy, sortOrder, filter }) => ({

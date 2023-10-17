@@ -1,4 +1,3 @@
-import React from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { FaNewspaper } from "react-icons/fa";
 import { Link } from "react-router-dom";

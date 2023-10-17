@@ -75,8 +75,8 @@ const AllServicesPage = () => {
             <option disabled selected>
               Category
             </option>
-            {serviceCategories.map((cat) => (
-              <option value={cat.value}>{cat.label}</option>
+            {serviceCategories.map((cat,index) => (
+              <option key={index} value={cat.value}>{cat.label}</option>
             ))}
           </select>
         </div>

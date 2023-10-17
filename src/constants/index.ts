@@ -46,10 +46,6 @@ export const serviceCategories = [
     value: "battery",
   },
   {
-    label: "Backshell",
-    value: "backshell",
-  },
-  {
     label: "Microphone",
     value: "microphone",
   },

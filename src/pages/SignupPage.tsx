@@ -24,18 +24,20 @@ function SignupPage() {
   }, [isError, isSuccess, error, navigate]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-12">
-      <h1 className="text-2xl font-bold">Signup</h1>
-      <SignupForm
-        role={USER_ROLE.user}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-        signup={signUp}
-      />
-      <BackToHome />
-      <Link to="/login">
-        <p className="p-3 text-sm">Already have an account?</p>
-      </Link>
+    <div className="min-h-screen p-12">
+      <h1 className="text-2xl font-bold text-center">Signup</h1>
+      <div className="flex flex-col items-center justify-center ">
+        <SignupForm
+          role={USER_ROLE.user}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+          signup={signUp}
+        />
+        <BackToHome />
+        <Link to="/login">
+          <p className="p-3 text-sm">Already have an account?</p>
+        </Link>
+      </div>
     </div>
   );
 }

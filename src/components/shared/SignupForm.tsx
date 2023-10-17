@@ -46,7 +46,7 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
       role,
     };
 
-    await signup(signupData as ISingupUser);
+     signup(signupData as ISingupUser);
   };
 
   useEffect(() => {
@@ -60,7 +60,7 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
   }
 
   return (
-    <form className="card-body" onSubmit={handleSubmit(handleSignup)}>
+    <form className="flex flex-col" onSubmit={handleSubmit(handleSignup)}>
       <div className="flex gap-3">
         {/* first name */}
         <div className="form-control">
@@ -70,7 +70,7 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
           <input
             type="text"
             placeholder="FirstName"
-            className="input input-bordered"
+            className="input input-bordered w-full"
             required
             {...register("firstName", {
               required: true,
@@ -88,7 +88,7 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
           <input
             type="text"
             placeholder="LastName"
-            className="input input-bordered"
+            className="input input-bordered w-full"
             required
             {...register("lastName", {
               required: true,

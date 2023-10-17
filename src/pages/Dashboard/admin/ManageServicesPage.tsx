@@ -62,7 +62,7 @@ const ManageServicesPage = () => {
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load faqs." />;
   } else if (!isLoading && !isError && services?.data?.data?.length === 0) {
-    content = <NoContantFound message="No faqs available" />;
+    content = <NoContantFound message="No services available" />;
   } else if (!isLoading && !isError && services?.data?.data?.length > 0) {
     content = (
       <div className="overflow-x-auto">

@@ -9,14 +9,14 @@ import {
   useEditProfileMutation,
   useGetProfileQuery,
 } from "../../../redux/features/profile/profileApi";
-import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
 import toast from "react-hot-toast";
 
 const EditProfilePage = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { register, handleSubmit, setValue } = useForm();
   const { profileId } = useGetUserFromStore();
-  const { data: profile, isLoading } = useGetProfileQuery(profileId);
+  const { data: profile } = useGetProfileQuery(profileId);
   const [editProfile, editProfileState] = useEditProfileMutation();
   // @ts-ignore
   const [defaultValues, setDefaultValues] = useState({
@@ -58,11 +58,13 @@ const EditProfilePage = () => {
         import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
       );
       formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+      setLoading(true);
       const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
         method: "post",
         body: formData,
       });
       const result = await res.json();
+      setLoading(false);
       payload = { ...data, profilePicture: result.url };
     } else {
       payload = { ...data, profilePicture: defaultValues.profilePicture };
@@ -83,10 +85,6 @@ const EditProfilePage = () => {
       );
     }
   }, [editProfileState, navigate]);
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-12">
@@ -141,8 +139,10 @@ const EditProfilePage = () => {
 
         <div className="form-control mt-6">
           <button
-            className={`btn btn-primary `}
-            disabled={editProfileState.isLoading}
+            className={`btn btn-primary ${
+              editProfileState.isLoading || loading ? "loading-bars" : ""
+            }`}
+            disabled={editProfileState.isLoading || loading}
           >
             Submit
           </button>

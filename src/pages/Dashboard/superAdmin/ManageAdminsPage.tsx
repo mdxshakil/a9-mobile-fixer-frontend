@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
 import ErrorElement from "../../../components/shared/ErrorElement";
