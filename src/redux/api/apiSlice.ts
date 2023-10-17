@@ -31,6 +31,7 @@ export const api = createApi({
     "all_users_profile",
     "blogs",
     "blog",
+    "latest_blogs",
     "faqs",
     "faq",
     "services",
@@ -42,6 +43,6 @@ export const api = createApi({
     "reviews",
     "check_rating",
     "testimonials",
-    "approved_testimonials"
+    "approved_testimonials",
   ],
 });

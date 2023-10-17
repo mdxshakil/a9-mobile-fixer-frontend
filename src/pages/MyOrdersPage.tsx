@@ -10,13 +10,15 @@ import {
   useGetMyBookingsQuery,
 } from "../redux/features/booking/bookingApi";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyOrdersPage = () => {
   const [page, setPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("desc");
   const [filter, setFilter] = useState("");
-  const { profileId } = useGetUserFromStore();
+  const { profileId, role } = useGetUserFromStore();
   const [cancelBooking, cancelState] = useCancelBookingMutation();
+  const navigate = useNavigate();
 
   const {
     data: myBookings,
@@ -44,7 +46,7 @@ const MyOrdersPage = () => {
     if (cancelState.isSuccess) {
       toast.success("Booking Cancelled");
     }
-  }, [cancelState]);
+  }, [cancelState, navigate, role]);
 
   let content;
   if (isLoading) {

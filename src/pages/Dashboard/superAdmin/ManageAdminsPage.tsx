@@ -1,16 +1,16 @@
 import React, { FormEvent, useState } from "react";
 import { FaTrash } from "react-icons/fa";
-import LoadingSpinner from "../../components/Loader/LoadingSpinner";
-import ErrorElement from "../../components/shared/ErrorElement";
-import NoContantFound from "../../components/shared/NoContantFound";
-import { IProfile } from "../../interface";
+import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
+import ErrorElement from "../../../components/shared/ErrorElement";
+import NoContantFound from "../../../components/shared/NoContantFound";
+import { IProfile } from "../../../interface";
 import {
   useChangeUserRoleMutation,
   useDeleteUserMutation,
   useGetUsersQuery,
-} from "../../redux/features/profile/profileApi";
-import { USER_ROLE, roleButtons } from "../../constants";
-import PaginationButton from "../../components/pagination/PaginationButton";
+} from "../../../redux/features/profile/profileApi";
+import { USER_ROLE, roleButtons } from "../../../constants";
+import PaginationButton from "../../../components/pagination/PaginationButton";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";

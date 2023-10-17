@@ -4,12 +4,12 @@
 import { useState, useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import useGetUserFromStore from "../../hooks/useGetUser";
+import useGetUserFromStore from "../../../hooks/useGetUser";
 import {
   useEditProfileMutation,
   useGetProfileQuery,
-} from "../../redux/features/profile/profileApi";
-import LoadingSpinner from "../../components/Loader/LoadingSpinner";
+} from "../../../redux/features/profile/profileApi";
+import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
 import toast from "react-hot-toast";
 
 const EditProfilePage = () => {

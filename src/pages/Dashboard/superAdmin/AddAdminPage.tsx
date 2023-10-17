@@ -1,6 +1,6 @@
-import { useSignupMutation } from "../../redux/features/auth/authApi";
-import SignupForm from "../../components/shared/SignupForm";
-import { USER_ROLE } from "../../constants";
+import { useSignupMutation } from "../../../redux/features/auth/authApi";
+import SignupForm from "../../../components/shared/SignupForm";
+import { USER_ROLE } from "../../../constants";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 

@@ -82,7 +82,9 @@ const LoginPage = () => {
             </div>
             <div className="form-control mt-6">
               <button
-                className="btn btn-primary"
+                className={`btn btn-primary ${
+                  loginState.isLoading ? "loading-bars" : ""
+                }`}
                 disabled={loginState.isLoading}
               >
                 Login

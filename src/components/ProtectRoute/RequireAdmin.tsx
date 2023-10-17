@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../Loader/LoadingSpinner";
 import { USER_ROLE } from "../../constants";
-import toast from "react-hot-toast";
 
 const RequireAdmin = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
@@ -28,7 +27,6 @@ const RequireAdmin = ({ children }: { children: ReactNode }) => {
     }
 
     if (role !== USER_ROLE.admin) {
-      toast.error("You are not allowed to view this page");
       setLoading(false);
       navigate(from, { replace: true, state: { from } });
     }

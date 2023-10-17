@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   useGetMyCartQuery,
   useRemoveFromCartMutation,
@@ -17,7 +17,8 @@ import PaginationButton from "../components/pagination/PaginationButton";
 const MyCartPage = () => {
   const [page, setPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("desc");
-  const { profileId } = useParams();
+  const { profileId, role } = useParams();
+  const navigate = useNavigate();
   const {
     data: myCart,
     isLoading,
@@ -52,7 +53,7 @@ const MyCartPage = () => {
     if (removeState.isSuccess) {
       toast.success("Removed from cart");
     }
-  }, [removeState]);
+  }, [removeState, navigate, role]);
 
   let content;
   if (isLoading) {

@@ -18,3 +18,9 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+.leaflet-container {
+  height: 450px;
+  z-index: -1;
+  border-radius: 10px;
+}

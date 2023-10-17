@@ -30,13 +30,15 @@ const Navbar = () => {
           </div>
         )}
         <Link to={"/"} className="btn btn-ghost normal-case text-xl">
-          mobileFix
+          iRepair
         </Link>
       </div>
-      <div className="navbar-center hidden md:block">
+      <div className="navbar-center hidden md:flex font-bold">
+        <p className="hover:border-b-2 border-primary">
         <Link className="m-2" to="/blogs">
           Blogs
         </Link>
+        </p>
       </div>
       <div className="navbar-end">
         {!profilePicture ? (

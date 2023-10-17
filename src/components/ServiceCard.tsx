@@ -32,7 +32,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
   }, [isError, isSuccess, error]);
 
   return (
-    <div className="card border bg-base-100 shadow-xl">
+    <div className="card border bg-base-100 shadow-xl hover:scale-105 transition-all hover:bg-base-200">
       <figure>
         <img
           src={image}
@@ -42,7 +42,11 @@ const ServiceCard = ({ service }: { service: IService }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title hover:underline">
-          <Link to={`/service/${id}`}>{title}</Link>
+          {status !== "upcoming" ? (
+            <Link to={`/service/${id}`}>{title}</Link>
+          ) : (
+            <span>{title}</span>
+          )}
         </h2>
         <div className="badge badge-primary badge-outline">{category}</div>
         <div>

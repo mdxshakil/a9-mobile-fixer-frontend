@@ -7,7 +7,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: ITestimonial }) => {
       <div className="mb-6 flex justify-center">
         <img
           src={profile.profilePicture}
-          className="w-32 rounded-full shadow-lg dark:shadow-black/20"
+          className="w-32 h-32 rounded-full object-cover shadow-lg dark:shadow-black/20"
           alt={profile.firstName}
         />
       </div>

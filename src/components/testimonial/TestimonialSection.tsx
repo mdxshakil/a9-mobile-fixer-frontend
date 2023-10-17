@@ -11,7 +11,6 @@ const TestimonialSection = () => {
     isLoading,
     isError,
   } = useGetApprovedTestimonialsQuery(undefined);
-  console.log(testimonials);
 
   let content;
   if (isLoading) {

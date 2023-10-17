@@ -8,7 +8,7 @@ const blogApi = api.injectEndpoints({
         method: "POST",
         body: payload,
       }),
-      invalidatesTags: ["blogs"],
+      invalidatesTags: ["blogs", "latest_blogs"],
     }),
     getAllBlogs: builder.query({
       query: ({ page, limit, sortBy, sortOrder }) => ({
@@ -17,12 +17,19 @@ const blogApi = api.injectEndpoints({
       }),
       providesTags: ["blogs"],
     }),
+    getLatestBlogs: builder.query({
+      query: () => ({
+        url: "/blog/get-latest-blogs",
+        method: "GET",
+      }),
+      providesTags: ["latest_blogs"],
+    }),
     deleteBlogById: builder.mutation({
       query: (blogId) => ({
         url: `/blog/${blogId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["blogs"],
+      invalidatesTags: ["blogs", "latest_blogs"],
     }),
     getBlogById: builder.query({
       query: (blogId) => ({
@@ -37,7 +44,7 @@ const blogApi = api.injectEndpoints({
         method: "PATCH",
         body: updatedData,
       }),
-      invalidatesTags: ["blogs", "blog"],
+      invalidatesTags: ["blogs", "blog", "latest_blogs"],
     }),
   }),
 });
@@ -48,4 +55,5 @@ export const {
   useDeleteBlogByIdMutation,
   useGetBlogByIdQuery,
   useEditBlogMutation,
+  useGetLatestBlogsQuery,
 } = blogApi;

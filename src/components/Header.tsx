@@ -24,7 +24,7 @@ const Header = () => {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="max-w-4xl mx-auto mb-4 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight">
-            The best mobile service provider in town
+            The best mobile service provider is here
           </p>
           <h1 className="max-w-2xl mx-auto px-6 text-lg text-gray-600 font-inter">
             Offering unparalleled mobile services that set new standards in
@@ -37,8 +37,8 @@ const Header = () => {
               <form className="relative" onSubmit={handleSubmit}>
                 <input
                   type="text"
-                  placeholder="Search..."
-                  className="w-full py-3 px-6 pr-16 text-lg text-gray-900 font-bold bg-white border-2 border-gray-300 rounded-full outline-none"
+                  placeholder="Display repair...."
+                  className="w-full py-3 px-6 pr-16 text-gray-900 bg-white border-2 border-gray-300 rounded-full outline-none"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                 />
@@ -49,7 +49,9 @@ const Header = () => {
                   Search
                 </button>
               </form>
-              {errorMessage && <p className="text-error text-sm">{errorMessage}</p>}
+              {errorMessage && (
+                <p className="text-error text-sm">{errorMessage}</p>
+              )}
             </div>
           </div>
         </div>

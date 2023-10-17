@@ -3,7 +3,7 @@ import AccordionImg from "../../assets/accordion-image.jpg";
 
 const FaqSection = () => {
   return (
-    <div className="flex items-center justify-center py-12">
+    <div className="flex items-center justify-center py-12" id="faq-section">
       <div className="mt-12">
         <h1 className="text-center text-2xl md:text-3xl font-bold mb-12">
           Frequently asked questions
