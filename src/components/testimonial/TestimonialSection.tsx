@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import { ITestimonial } from "../../interface";
 import { useGetApprovedTestimonialsQuery } from "../../redux/features/testimonial/testimonialApi";
 import LoadingSpinner from "../Loader/LoadingSpinner";
@@ -26,12 +27,16 @@ const TestimonialSection = () => {
   }
 
   return (
-    <div className="container my-12 mx-auto px-3 md:px-6">
-      <section className="mb-32 text-center">
-        <h2 className="mb-12 text-3xl font-bold">Testimonials</h2>
-        <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">{content}</div>
-      </section>
-    </div>
+    <Fade>
+      <div className="container my-12 mx-auto px-3 md:px-6">
+        <section className="mb-32 text-center">
+          <h2 className="mb-12 text-3xl font-bold">Testimonials</h2>
+          <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
+            {content}
+          </div>
+        </section>
+      </div>
+    </Fade>
   );
 };
 

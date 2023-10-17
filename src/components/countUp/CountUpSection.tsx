@@ -8,7 +8,7 @@ const CountUpSection = () => {
   const [counterOn, setCounterOn] = useState(false);
   const { data: stats } = useGetStatsQuery(undefined);
 
-  const { userCount, orderCount, serviceCount } = stats.data;
+  const { userCount, orderCount, serviceCount } = stats?.data || {};
 
   return (
     // @ts-ignore

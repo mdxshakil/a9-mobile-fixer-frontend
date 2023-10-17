@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import MarkerIcon from "../../assets/marker.png";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+import { Fade } from "react-awesome-reveal";
 
 const OurLocationSection = () => {
   const markers = [
@@ -27,7 +28,8 @@ const OurLocationSection = () => {
     iconSize: [38, 38],
   });
   return (
-    <div className="container my-12 mx-auto px-3 md:px-6">
+    <Fade>
+      <div className="container my-12 mx-auto px-3 md:px-6">
       <section className="mb-32 text-center">
         <h2 className="mb-12 text-3xl font-bold">Visit our branches</h2>
         <div className="grid grid-cols-1">
@@ -51,6 +53,7 @@ const OurLocationSection = () => {
         </div>
       </section>
     </div>
+    </Fade>
   );
 };
 

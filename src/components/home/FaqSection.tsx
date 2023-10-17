@@ -1,5 +1,6 @@
 import Accordion from "./Accordion";
 import AccordionImg from "../../assets/accordion-image.jpg";
+import { Fade } from "react-awesome-reveal";
 
 const FaqSection = () => {
   return (
@@ -9,16 +10,20 @@ const FaqSection = () => {
           Frequently asked questions
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0 place-items-center">
-          <div className="">
-            <img
-              src={AccordionImg}
-              alt="accordion_img"
-              className="w-4/5 rounded-lg mx-auto"
-            />
-          </div>
-          <div>
-            <Accordion />
-          </div>
+          <Fade direction="left">
+            <div className="">
+              <img
+                src={AccordionImg}
+                alt="accordion_img"
+                className="w-4/5 rounded-lg mx-auto"
+              />
+            </div>
+          </Fade>
+          <Fade direction="right">
+            <div>
+              <Accordion />
+            </div>
+          </Fade>
         </div>
       </div>
     </div>

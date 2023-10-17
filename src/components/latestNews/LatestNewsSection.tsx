@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import { IBlog } from "../../interface";
 import { useGetLatestBlogsQuery } from "../../redux/features/blog/blogApi";
 import LoadingSpinner from "../Loader/LoadingSpinner";
@@ -30,12 +31,14 @@ const LatestNewsSection = () => {
   }
 
   return (
-    <div className="container my-12 mx-auto px-3 md:px-6">
-      <section className="mb-32 text-center">
-        <h2 className="mb-12 text-3xl font-bold">Latest News</h2>
-        {content}
-      </section>
-    </div>
+    <Fade direction="right">
+      <div className="container my-12 mx-auto px-3 md:px-6">
+        <section className="mb-32 text-center">
+          <h2 className="mb-12 text-3xl font-bold">Latest News</h2>
+          {content}
+        </section>
+      </div>
+    </Fade>
   );
 };
 

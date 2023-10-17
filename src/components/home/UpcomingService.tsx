@@ -5,6 +5,7 @@ import LoadingSpinner from "../Loader/LoadingSpinner";
 import ServiceCard from "../ServiceCard";
 import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
+import { Fade } from "react-awesome-reveal";
 
 const UpcomingService = () => {
   const {
@@ -27,17 +28,19 @@ const UpcomingService = () => {
   }
 
   return (
-    <div className="text-center py-12">
-      <h1 className="text-4xl font-bold text-center mt-12">
-        Upcoming services
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
-        {content}
+    <Fade direction="left">
+      <div className="text-center py-12">
+        <h1 className="text-4xl font-bold text-center mt-12">
+          Upcoming services
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
+          {content}
+        </div>
+        <Link to={"/all-services"}>
+          <button className="btn btn-sm mt-3">Browse available services</button>
+        </Link>
       </div>
-      <Link to={"/all-services"}>
-        <button className="btn btn-sm mt-3">Browse available services</button>
-      </Link>
-    </div>
+    </Fade>
   );
 };
 
