@@ -41,17 +41,17 @@ const EventCard = ({ event }: { event: IEvent }) => {
         <img src={banner} alt="Shoes" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">
+        <h2 className="card-title text-[14px] md:text-[20px]">
           <span>{title}</span>
           <span
-            className={`badge ${
+            className={`badge badge-sm md:badge-md ${
               status === "upcoming" ? "badge-info" : "badge-error"
             }`}
           >
             {status}
           </span>
         </h2>
-        <p className="text-sm">
+        <p className=" text-xs md:text-sm">
           Dont miss the opportunity. Participate in this event to gather
           valuable knowledge
         </p>
