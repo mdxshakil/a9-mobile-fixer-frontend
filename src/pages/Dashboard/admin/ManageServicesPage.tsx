@@ -117,7 +117,7 @@ const ManageServicesPage = () => {
 
   return (
     <div>
-      <div className="py-3 px-2">
+      <div className="p-3">
         <Link to="/dashboard/add-service">
           <button className="btn btn-sm btn-primary ">
             Add New Service <FaPlus />

@@ -8,7 +8,7 @@ const ratingApi = api.injectEndpoints({
         method: "POST",
         body: payload,
       }),
-      invalidatesTags: ["check_rating"],
+      invalidatesTags: ["check_rating", "service_rating"],
     }),
     checkRatingGivenOrNot: builder.query({
       query: ({ serviceId, profileId }) => ({
@@ -17,8 +17,18 @@ const ratingApi = api.injectEndpoints({
       }),
       providesTags: ["check_rating"],
     }),
+    getRatingOfService: builder.query({
+      query: (serviceId) => ({
+        url: `/rating/get-service-rating/${serviceId}`,
+        method: "GET",
+      }),
+      providesTags: ["service_rating"],
+    }),
   }),
 });
 
-export const { useAddRatingMutation, useCheckRatingGivenOrNotQuery } =
-  ratingApi;
+export const {
+  useAddRatingMutation,
+  useCheckRatingGivenOrNotQuery,
+  useGetRatingOfServiceQuery,
+} = ratingApi;

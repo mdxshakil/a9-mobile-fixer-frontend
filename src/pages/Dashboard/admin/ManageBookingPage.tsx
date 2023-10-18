@@ -114,7 +114,7 @@ const ManageBookingPage = () => {
   }
 
   return (
-    <div>
+    <div className="px-3">
       <div>
         <div className="my-3 flex justify-center">
           {/* sort users - createdAt*/}

@@ -78,7 +78,7 @@ export const AddNewEventPage = () => {
 
           <div className="mb-4">
             <div className="flex items-center gap-3">
-              <div className="mb-4">
+              <div className="mb-4 w-1/2">
                 <label htmlFor="title" className="text-primary-text">
                   Venue
                 </label>
@@ -93,7 +93,7 @@ export const AddNewEventPage = () => {
                   <p className="text-[12px] text-red-500 ">Venue is required</p>
                 )}
               </div>
-              <div>
+              <div className="w-1/2">
                 <input
                   className="select select-bordered w-full"
                   type="datetime-local"

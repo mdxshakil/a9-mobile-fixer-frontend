@@ -43,6 +43,7 @@ export const api = createApi({
     "remaining_slots",
     "reviews",
     "check_rating",
+    "service_rating",
     "testimonials",
     "approved_testimonials",
     "events",

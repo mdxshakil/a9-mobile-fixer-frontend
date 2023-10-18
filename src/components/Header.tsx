@@ -28,7 +28,7 @@ const Header = () => {
             <p className="max-w-4xl mx-auto mb-4 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight">
               The best mobile service provider is here
             </p>
-            <h1 className="max-w-2xl mx-auto px-6 text-lg text-gray-600 font-inter">
+            <h1 className="max-w-2xl mx-auto px-3 md:px-6 text-sm md:text-lg text-gray-600 font-inter">
               Offering unparalleled mobile services that set new standards in
               reliability, speed, and customer satisfaction. Experience the
               excellence in mobile service.
@@ -62,7 +62,7 @@ const Header = () => {
           <div className="relative mx-auto mt-4 md:mt-8">
             <div className="lg:max-w-full lg:mx-auto">
               <img
-                className="px-4 md:px-8 h-96 object-cover w-full"
+                className="px-4 md:px-8 h-52 md:h-96 object-cover w-full"
                 src={HeroImage}
               />
             </div>

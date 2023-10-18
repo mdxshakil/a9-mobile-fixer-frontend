@@ -65,28 +65,32 @@ const ConfirmBookingPage = () => {
   }
   return (
     <div className="p-6">
-      <div className="bg-base-200 w-1/2 mx-auto py-3 rounded-lg shadow-xl">
+      <div className="bg-base-200 w-full md:w-1/2 mx-auto py-3 rounded-lg shadow-xl">
         <h1 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
           Confirm Your Booking for
         </h1>
-        <h1 className="text-xl font-semibold mb-4 text-center text-primary">
+        <h1 className="text-xl font-semibold mb-4 text-center">
           {cartItem?.data?.service?.title}
         </h1>
         <div>
           <img
             src={cartItem?.data?.service?.image}
             alt={cartItem?.data?.service?.title}
-            className="h-32 object-cover mx-auto my-2"
+            className="h-52 px-3 rounded-lg w-full object-cover mx-auto my-2"
           />
         </div>
 
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-3">
           <div>
-            <p className="mb-4 font-bold text-info">
+            <p className="mb-4 font-bold badge badge-info">
               Slots per day: {cartItem?.data?.service?.slotsPerDay}
             </p>
             {bookingTime && (
-              <p className="text-info mb-4 font-bold">
+              <p
+                className={`mb-4 ml-2 font-bold badge badge-info ${
+                  isError ? "badge-error" : ""
+                }`}
+              >
                 Slots left on {bookingTime}:{" "}
                 {!isError ? slotData?.data?.slotsLeft : 0}
               </p>

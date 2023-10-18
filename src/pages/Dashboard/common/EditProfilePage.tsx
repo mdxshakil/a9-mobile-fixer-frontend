@@ -87,9 +87,9 @@ const EditProfilePage = () => {
   }, [editProfileState, navigate]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-12">
+    <div className="flex flex-col items-center justify-center min-h-screen p-2">
       <h1 className="text-2xl font-bold">Edit Profile info</h1>
-      <form className="card-body" onSubmit={handleSubmit(handleEditProfile)}>
+      <form className="flex-felx-col" onSubmit={handleSubmit(handleEditProfile)}>
         <div className="flex gap-3">
           <div className="form-control">
             <label className="label">
@@ -98,7 +98,7 @@ const EditProfilePage = () => {
             <input
               type="text"
               placeholder="FirstName"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               {...register("firstName")}
             />
           </div>
@@ -109,7 +109,7 @@ const EditProfilePage = () => {
             <input
               type="text"
               placeholder="LastName"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               {...register("lastName")}
             />
           </div>
@@ -121,7 +121,7 @@ const EditProfilePage = () => {
           <input
             type="text"
             placeholder="ContactNo"
-            className="input input-bordered"
+            className="input input-bordered w-full"
             {...register("contactNo")}
           />
         </div>

@@ -16,16 +16,16 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="py-12 grid place-items-center shadow-lg rounded-lg min-h-[90vh] bg-base-200">
+    <div className="py-12 px-6 grid place-items-center shadow-lg rounded-lg min-h-[90vh] bg-base-200">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-3 place-items-center w-full md:w-1/2 p-6">
         <div>
           <img
             src={profilePicture}
             alt={firstName}
-            className="rounded-full object-cover w-52 h-52 ring-4 ring-teal-500"
+            className="rounded-full object-cover w-36 md:w-52 h-36 md:h-52 ring-4 ring-teal-500"
           />
         </div>
-        <div>
+        <div className="grid place-items-center md:place-items-start">
           <div className="flex gap-12 mb-6">
             <div>
               <p>First Name:</p>

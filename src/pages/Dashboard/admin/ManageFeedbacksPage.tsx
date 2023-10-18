@@ -58,7 +58,7 @@ const ManageFeedbacksPage = () => {
   }
 
   return (
-    <div>
+    <div className="p-3">
       <div>
         <div className="my-3 flex justify-center">
           {/* sort feedbacks - createdAt*/}

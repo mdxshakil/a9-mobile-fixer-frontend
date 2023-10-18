@@ -71,7 +71,7 @@ const ManageFaqsPage = () => {
 
   return (
     <div>
-      <div className="py-3 px-2">
+      <div className="py-3 px-3">
         <Link to="/dashboard/add-new-faq">
           <button className="btn btn-sm btn-primary ">
             Add New FAQ <FaPlus />

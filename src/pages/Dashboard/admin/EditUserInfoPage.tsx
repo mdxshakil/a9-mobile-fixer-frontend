@@ -92,7 +92,7 @@ const EditUserInfoPage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-12">
       <h1 className="text-2xl font-bold">Edit User's Profile info</h1>
-      <form className="card-body" onSubmit={handleSubmit(handleEditProfile)}>
+      <form className="flex flex-col" onSubmit={handleSubmit(handleEditProfile)}>
         <div className="flex gap-3">
           <div className="form-control">
             <label className="label">
@@ -101,7 +101,7 @@ const EditUserInfoPage = () => {
             <input
               type="text"
               placeholder="FirstName"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               {...register("firstName")}
             />
           </div>
@@ -112,7 +112,7 @@ const EditUserInfoPage = () => {
             <input
               type="text"
               placeholder="LastName"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               {...register("lastName")}
             />
           </div>
@@ -124,7 +124,7 @@ const EditUserInfoPage = () => {
           <input
             type="text"
             placeholder="ContactNo"
-            className="input input-bordered"
+            className="input input-bordered w-full"
             {...register("contactNo")}
           />
         </div>

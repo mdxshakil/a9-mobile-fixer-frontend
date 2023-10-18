@@ -157,7 +157,7 @@ const ManageAdminsPage = () => {
     );
   }
   return (
-    <div>
+    <div className="p-3">
       <div className="my-3 flex justify-center">
         {/* filter users */}
         <select
