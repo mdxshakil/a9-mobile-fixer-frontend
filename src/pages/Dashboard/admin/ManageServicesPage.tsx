@@ -48,7 +48,10 @@ const ManageServicesPage = () => {
       toast.success("Action succed!");
     }
     if (deleteState.isError) {
-      toast.error("Action failed.Try again");
+      toast.error(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (deleteState.error as any)?.data?.message || "An error occured"
+      );
     }
   }, [deleteState]);
 

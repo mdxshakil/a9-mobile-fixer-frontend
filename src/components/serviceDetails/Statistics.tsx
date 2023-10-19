@@ -10,6 +10,7 @@ type IProps = {
 const Statistics = ({ cost, slotsPerDay, category }: IProps) => {
   const { serviceId } = useParams();
   const { data: rating, isLoading } = useGetRatingOfServiceQuery(serviceId);
+console.log(rating?.data);
 
   return (
     <div>
@@ -33,7 +34,7 @@ const Statistics = ({ cost, slotsPerDay, category }: IProps) => {
               isLoading ? "loading-infinity" : ""
             }`}
           >
-            {rating?.data}*
+            {rating?.data ? rating?.data : 0}*
           </span>
         </div>
         <div className="mr-4">

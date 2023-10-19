@@ -10,7 +10,7 @@ import {
   useGetMyBookingsQuery,
 } from "../redux/features/booking/bookingApi";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyOrdersPage = () => {
   const [page, setPage] = useState(1);
@@ -82,7 +82,9 @@ const MyOrdersPage = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{item.service.title}</div>
+                      <Link to={`/service/${item.service.id}`}>
+                        <div className="font-bold">{item.service.title}</div>
+                      </Link>
                     </div>
                   </div>
                 </td>
