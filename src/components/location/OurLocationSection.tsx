@@ -29,8 +29,8 @@ const OurLocationSection = () => {
   });
   return (
     <Fade>
-      <div className="container my-12 mx-auto px-3 md:px-6">
-      <section className="mb-32 text-center">
+      <div className="container py-12 mx-auto px-3 md:px-6 min-h-screen">
+      <section className="text-center">
         <h2 className="mb-12 text-3xl font-bold">Visit our branches</h2>
         <div className="grid grid-cols-1">
           <MapContainer center={[23.8041, 90.4152]} zoom={12}>

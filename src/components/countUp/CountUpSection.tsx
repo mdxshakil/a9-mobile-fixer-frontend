@@ -17,7 +17,7 @@ const CountUpSection = () => {
       onExit={() => setCounterOn(false)}
     >
       <div>
-        <div className="stats stats-vertical lg:stats-horizontal shadow w-full text-center">
+        <div className="stats stats-vertical lg:stats-horizontal shadow w-full text-center mt-12">
           <div className="stat">
             <div className="stat-title">Total Services</div>
             <div className="stat-value">

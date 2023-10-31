@@ -5,8 +5,8 @@ import { Fade, Zoom } from "react-awesome-reveal";
 
 const WhyChooseUs = () => {
   return (
-    <div className="container my-12 mx-auto px-3 md:px-6">
-      <section className="mb-32">
+    <div className="container py-12 mx-auto px-3 md:px-6">
+      <section>
         <Fade>
           <h2 className="mb-12 text-3xl font-bold text-center">
             Why Choose Us

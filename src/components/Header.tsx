@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <Fade>
-      <section className="pt-12 bg-gray-50 sm:pt-16">
+      <section className="py-12 bg-gray-50 sm:pt-16">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="max-w-4xl mx-auto mb-4 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight">
