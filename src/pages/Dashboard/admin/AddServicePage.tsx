@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAddNewServiceMutation } from "../../../redux/features/service/serviceApi";
 import toast from "react-hot-toast";
 import { serviceCategories } from "../../../constants";
+import { uploadImageToCloudinary } from "../../../utils/imageUploader";
 
 export const AddServicePage = () => {
   const [loading, setLoading] = useState(false);
@@ -17,20 +18,8 @@ export const AddServicePage = () => {
   } = useForm();
 
   const handleAddService = async (data: FieldValues) => {
-    const formData = new FormData();
-    formData.append("file", data.image[0]);
-    formData.append(
-      "upload_preset",
-      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-    );
-    formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
-
     setLoading(true);
-    const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
-      method: "post",
-      body: formData,
-    });
-    const result = await res.json();
+    const result = await uploadImageToCloudinary(data.image[0]);
     setLoading(false);
 
     const newServiceData = {

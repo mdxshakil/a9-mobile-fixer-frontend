@@ -2,6 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useCreateEventMutation } from "../../../redux/features/event/eventApi";
+import { uploadImageToCloudinary } from "../../../utils/imageUploader";
 
 export const AddNewEventPage = () => {
   const [loading, setLoading] = useState(false);
@@ -16,20 +17,8 @@ export const AddNewEventPage = () => {
   } = useForm();
 
   const handleAddNewEvent = async (data: FieldValues) => {
-    const formData = new FormData();
-    formData.append("file", data.banner[0]);
-    formData.append(
-      "upload_preset",
-      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-    );
-    formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
-
     setLoading(true);
-    const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
-      method: "post",
-      body: formData,
-    });
-    const result = await res.json();
+    const result = await uploadImageToCloudinary(data.banner[0]);
     setLoading(false);
 
     const eventDate = new Date(data.eventDate);

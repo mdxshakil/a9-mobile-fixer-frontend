@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
 import toast from "react-hot-toast";
+import { uploadImageToCloudinary } from "../../../utils/imageUploader";
 
 const EditUserInfoPage = () => {
   const navigate = useNavigate();
@@ -52,18 +53,7 @@ const EditUserInfoPage = () => {
 
     //if profile picture is being changed
     if (data?.profilePicture[0]) {
-      const formData = new FormData();
-      formData.append("file", data.profilePicture[0]);
-      formData.append(
-        "upload_preset",
-        import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-      );
-      formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
-      const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
-        method: "post",
-        body: formData,
-      });
-      const result = await res.json();
+      const result = await uploadImageToCloudinary(data.profilePicture[0]);
       payload = { ...data, profilePicture: result.url };
     } else {
       payload = { ...data, profilePicture: defaultValues.profilePicture };
@@ -92,7 +82,10 @@ const EditUserInfoPage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-12">
       <h1 className="text-2xl font-bold">Edit User's Profile info</h1>
-      <form className="flex flex-col" onSubmit={handleSubmit(handleEditProfile)}>
+      <form
+        className="flex flex-col"
+        onSubmit={handleSubmit(handleEditProfile)}
+      >
         <div className="flex gap-3">
           <div className="form-control">
             <label className="label">

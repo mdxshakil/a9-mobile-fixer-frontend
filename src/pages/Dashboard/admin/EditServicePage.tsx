@@ -9,9 +9,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
+import { uploadImageToCloudinary } from "../../../utils/imageUploader";
 
 export const EditServicePage = () => {
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { serviceId } = useParams();
   const navigate = useNavigate();
   const { data: service, isLoading } = useGetServiceByIdQuery(serviceId);
@@ -24,20 +25,10 @@ export const EditServicePage = () => {
     let payload;
 
     if (data.image[0]) {
-      setloading(true);
-      const formData = new FormData();
-      formData.append("file", data.image[0]);
-      formData.append(
-        "upload_preset",
-        import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-      );
-      formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
-      const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
-        method: "post",
-        body: formData,
-      });
-      const result = await res.json();
-      setloading(false);
+      setLoading(true);
+      const result = await uploadImageToCloudinary(data.image[0]);
+      setLoading(false);
+
       payload = {
         ...data,
         image: result.url,

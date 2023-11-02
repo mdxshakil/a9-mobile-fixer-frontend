@@ -10,6 +10,7 @@ import {
   useGetProfileQuery,
 } from "../../../redux/features/profile/profileApi";
 import toast from "react-hot-toast";
+import { uploadImageToCloudinary } from "../../../utils/imageUploader";
 
 const EditProfilePage = () => {
   const [loading, setLoading] = useState(false);
@@ -51,19 +52,8 @@ const EditProfilePage = () => {
     let payload;
 
     if (data?.profilePicture[0]) {
-      const formData = new FormData();
-      formData.append("file", data.profilePicture[0]);
-      formData.append(
-        "upload_preset",
-        import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-      );
-      formData.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
       setLoading(true);
-      const res = await fetch(import.meta.env.VITE_CLOUDINARY_URL, {
-        method: "post",
-        body: formData,
-      });
-      const result = await res.json();
+      const result = await uploadImageToCloudinary(data.profilePicture[0]);
       setLoading(false);
       payload = { ...data, profilePicture: result.url };
     } else {
@@ -89,7 +79,10 @@ const EditProfilePage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-2">
       <h1 className="text-2xl font-bold">Edit Profile info</h1>
-      <form className="flex-felx-col" onSubmit={handleSubmit(handleEditProfile)}>
+      <form
+        className="flex-felx-col"
+        onSubmit={handleSubmit(handleEditProfile)}
+      >
         <div className="flex gap-3">
           <div className="form-control">
             <label className="label">
