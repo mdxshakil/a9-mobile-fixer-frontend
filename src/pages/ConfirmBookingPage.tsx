@@ -82,7 +82,7 @@ const ConfirmBookingPage = () => {
 
         <div className="flex items-center justify-center mt-3">
           <div>
-            <p className="mb-4 font-bold badge badge-info">
+            <p className="mb-4 font-bold badge badge-primary">
               Slots per day: {cartItem?.data?.service?.slotsPerDay}
             </p>
             {bookingTime && (
@@ -116,7 +116,7 @@ const ConfirmBookingPage = () => {
               )}
             </div>
             <button
-              className="btn btn-primary btn-sm md:btn-md"
+              className="btn btn-primary btn-sm md:btn-md w-full"
               onClick={handleBooking}
               disabled={!bookingTime || isError}
             >

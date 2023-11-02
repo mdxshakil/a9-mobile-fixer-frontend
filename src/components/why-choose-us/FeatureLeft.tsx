@@ -27,7 +27,7 @@ const FeatureLeft = ({ title, description, iconAlignment }: IProps) => {
           </p>
         </div>
         <div>
-          <div className="bg-sky-600 p-2 rounded-full bg-opacity-50">
+          <div className="bg-primary p-2 rounded-full">
             <AiFillMobile size={40} />
           </div>
         </div>

@@ -8,7 +8,7 @@ const AccordionItem = ({ faq }: { faq: IFaq }) => {
         {faq.question}
       </div>
       <div className="collapse-content">
-        <p>{faq.answer}</p>
+        <p className="text-primary">{faq.answer}</p>
       </div>
     </div>
   );

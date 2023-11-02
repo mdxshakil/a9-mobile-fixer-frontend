@@ -8,7 +8,7 @@ import ScrollToTop from "./components/buttons/ScrollToTop";
 function App() {
   const { isLoading } = usePersistLogin();
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto font-primary">
       {isLoading ? (
         <LoadingSpinner />
       ) : (

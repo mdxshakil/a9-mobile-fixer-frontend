@@ -45,7 +45,7 @@ const EventCard = ({ event }: { event: IEvent }) => {
           <span>{title}</span>
           <span
             className={`badge badge-sm md:badge-md ${
-              status === "upcoming" ? "badge-info" : "badge-error"
+              status === "upcoming" ? "badge-primary" : "badge-error"
             }`}
           >
             {status}
@@ -72,7 +72,7 @@ const EventCard = ({ event }: { event: IEvent }) => {
                 </button>
               ) : (
                 <button
-                  className="btn btn-xs btn-success"
+                  className="btn btn-xs"
                   onClick={() => handleStatusChange(id, "upcoming")}
                   disabled={changeState.isLoading}
                 >

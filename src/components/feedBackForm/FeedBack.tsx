@@ -4,11 +4,11 @@ import FeedbackForm from "./FeedbackForm";
 const FeedBackSection = () => {
   return (
     <section>
-      <div className="py-12">
+      <div className="py-12 md:py-24">
         <Fade>
           <div className="container mx-auto flex flex-col items-center md:flex-row my-6 md:my-24">
             <div className="flex flex-col w-full lg:w-1/2 p-8">
-              <div className="w-full h-4 bg-red-500"></div>
+              <div className="w-full h-4 rounded-md bg-primary"></div>
               <p className="text-3xl md:text-5xl my-4 leading-relaxed md:leading-snug">
                 Any questions? Don't hesitate to contact us!
               </p>

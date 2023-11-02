@@ -16,7 +16,7 @@ const LatestNewsCard = ({ blog }: { blog: IBlog }) => {
       </p>
       <Link
         to={`/blog/${id}`}
-        className="inline-flex items-center text-blue-600 hover:underline"
+        className="inline-flex items-center text-primary hover:underline"
       >
         Read full news
         <AiOutlineLink />

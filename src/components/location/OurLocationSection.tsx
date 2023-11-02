@@ -29,30 +29,35 @@ const OurLocationSection = () => {
   });
   return (
     <Fade>
-      <div className="container py-12 mx-auto px-3 md:px-6 min-h-screen">
-      <section className="text-center">
-        <h2 className="mb-12 text-3xl font-bold">Visit our branches</h2>
-        <div className="grid grid-cols-1">
-          <MapContainer center={[23.8041, 90.4152]} zoom={12}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <MarkerClusterGroup>
-              {markers.map((marker) => (
-                <Marker
-                  key={marker.id}
-                  position={marker.geocode as [number, number]}
-                  icon={customIcon}
-                >
-                  <Popup>{marker.popup}</Popup>
-                </Marker>
-              ))}
-            </MarkerClusterGroup>
-          </MapContainer>
-        </div>
-      </section>
-    </div>
+      <div className="container py-12 md:py-24 mx-auto px-3 md:px-6 min-h-screen">
+        <section className="text-center">
+          <div className="mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold text-center">
+              Visit Our Branches
+            </h1>
+            <p>We have multiple outlets around the city</p>
+          </div>
+          <div className="grid grid-cols-1">
+            <MapContainer center={[23.8041, 90.4152]} zoom={12}>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <MarkerClusterGroup>
+                {markers.map((marker) => (
+                  <Marker
+                    key={marker.id}
+                    position={marker.geocode as [number, number]}
+                    icon={customIcon}
+                  >
+                    <Popup>{marker.popup}</Popup>
+                  </Marker>
+                ))}
+              </MarkerClusterGroup>
+            </MapContainer>
+          </div>
+        </section>
+      </div>
     </Fade>
   );
 };

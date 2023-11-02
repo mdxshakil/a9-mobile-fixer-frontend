@@ -16,8 +16,8 @@ const FeedbackForm = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Feedback submitted");
-      setEmail("")
-      setMessage("")
+      setEmail("");
+      setMessage("");
     }
     if (isError) {
       toast.error("An error occured");
@@ -69,7 +69,7 @@ bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
       <div className="text-center mt-6">
         <button
           id="feedbackBtn"
-          className={`bg-yellow-300 text-black text-center mx-auto active:bg-yellow-400 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ${
+          className={`btn-primary text-black text-center mx-auto  text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ${
             isLoading ? "loading-bars" : ""
           }`}
           type="submit"

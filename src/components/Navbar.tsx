@@ -35,19 +35,19 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden md:flex font-bold">
         <p className="hover:border-b-2 border-primary">
-        <Link className="m-2" to="/blogs">
-          Blogs
-        </Link>
+          <Link className="m-2" to="/blogs">
+            Blogs
+          </Link>
         </p>
         <p className="hover:border-b-2 border-primary">
-        <Link className="m-2" to="/all-events">
-          Events
-        </Link>
+          <Link className="m-2" to="/all-events">
+            Events
+          </Link>
         </p>
         <p className="hover:border-b-2 border-primary">
-        <Link className="m-2" to="/all-services">
-          Services
-        </Link>
+          <Link className="m-2" to="/all-services">
+            Services
+          </Link>
         </p>
       </div>
       <div className="navbar-end">

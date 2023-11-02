@@ -35,7 +35,7 @@ const ActionButtons = ({ profileId, serviceId }: IProps) => {
     <div className="flex -mx-2 mb-4">
       <div className="w-full px-2">
         <button
-          className={`w-full bg-gray-400 text-gray-800 py-2 px-4 rounded-full font-bold hover:bg-gray-300 ${
+          className={`w-full btn-primary py-2 px-4 rounded-full font-bold ${
             isLoading ? "loading-ball" : ""
           }`}
           disabled={isLoading}

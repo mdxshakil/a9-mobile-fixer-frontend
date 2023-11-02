@@ -13,7 +13,6 @@ const UpcomingEventSection = () => {
     isLoading,
     isError,
   } = useGetUpcomingEventsQuery(undefined);
-  
 
   let content;
   if (isLoading) {
@@ -29,10 +28,13 @@ const UpcomingEventSection = () => {
   }
   return (
     <Fade direction="left">
-      <div className="text-center py-12">
-        <h1 className="text-4xl font-bold text-center mt-12">
-          Upcoming Events
-        </h1>
+      <div className="text-center py-12 md:py-24">
+        <div className="mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-center">
+            Upcoming Events
+          </h1>
+          <p className="mt-2">Stay updated about our upcoming events</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
           {content}
         </div>

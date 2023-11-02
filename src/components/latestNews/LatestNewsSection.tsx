@@ -32,9 +32,14 @@ const LatestNewsSection = () => {
 
   return (
     <Fade direction="right">
-      <div className="container py-12 mx-auto px-3 md:px-6">
-        <section className="mb-32 text-center">
-          <h2 className="mb-12 text-3xl font-bold">Latest News</h2>
+      <div className="container py-12 md:py-24 mx-auto px-3 md:px-6">
+        <section className="text-center">
+          <div className="mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold text-center">
+              Latest News
+            </h1>
+            <p>Stay updated about new tech and gadgets</p>
+          </div>
           {content}
         </section>
       </div>

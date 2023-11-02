@@ -28,9 +28,14 @@ const TestimonialSection = () => {
 
   return (
     <Fade>
-      <div className="container py-12 mx-auto px-3 md:px-6 min-h-screen">
-        <section className="mb-32 text-center">
-          <h2 className="mb-12 text-3xl font-bold">Testimonials</h2>
+      <div className="container py-12 md:p-24 mx-auto px-3 md:px-6 min-h-screen">
+        <section className="text-center">
+          <div className="mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold text-center">
+              Testimonials
+            </h1>
+            <p>Some tesimonials of our beloved customers</p>
+          </div>
           <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
             {content}
           </div>

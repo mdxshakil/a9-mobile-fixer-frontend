@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="lg:grid lg:grid-cols-2">
           <div className="border-b border-gray-100 py-8 lg:order-last lg:border-b-0 lg:border-s lg:py-16 lg:ps-16">
             <div className="block text-teal-600 lg:hidden">
-              <button className="btn btn-ghost text-2xl font-mono">
+              <button className="btn btn-ghost text-2xl text-primary font-mono ">
                 iRepair
               </button>
             </div>
@@ -16,7 +16,7 @@ const Footer = () => {
 
           <div className="py-8 lg:py-16 lg:pe-16">
             <div className="hidden text-teal-600 lg:block">
-              <button className="btn btn-ghost text-2xl font-mono">
+              <button className="btn btn-ghost text-primary text-2xl font-mono">
                 irepair
               </button>
             </div>

@@ -45,10 +45,12 @@ const ServiceDetailsPage = () => {
           <div className="flex flex-col md:flex-row -mx-4 items-center">
             <div className="md:flex-1 px-4">
               <ServiceImage image={image} />
-              <ActionButtons
-                profileId={profileId}
-                serviceId={serviceId as string}
-              />
+              {role === "user" && (
+                <ActionButtons
+                  profileId={profileId}
+                  serviceId={serviceId as string}
+                />
+              )}
             </div>
             <div className="md:flex-1 px-4">
               <Header title={title} description={description} />
@@ -63,7 +65,9 @@ const ServiceDetailsPage = () => {
                   serviceId={serviceId as string}
                 />
               ) : (
-                <p className="font-bold">Your rating: {checkRating?.data?.ratingValue}</p>
+                <p className="font-bold">
+                  Your rating: {checkRating?.data?.ratingValue}
+                </p>
               )}
             </div>
           </div>

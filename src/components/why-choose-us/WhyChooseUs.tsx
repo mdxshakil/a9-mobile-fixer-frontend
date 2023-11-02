@@ -5,12 +5,17 @@ import { Fade, Zoom } from "react-awesome-reveal";
 
 const WhyChooseUs = () => {
   return (
-    <div className="container py-12 mx-auto px-3 md:px-6">
+    <div className="container py-12 md:py-24 mx-auto px-3 md:px-6">
       <section>
         <Fade>
-          <h2 className="mb-12 text-3xl font-bold text-center">
-            Why Choose Us
-          </h2>
+          <div className="mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold text-center">
+              Why choose us
+            </h1>
+            <p className="text-center">
+              Thousands of options but why choose us?
+            </p>
+          </div>
         </Fade>
         <div className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-3 place-items-center gap-12 md:gap-6">

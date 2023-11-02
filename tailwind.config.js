@@ -7,9 +7,22 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      primary: ["Raleway", "sans-serif"]
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light"],
+    themes: [{
+      myTheme: {
+        "primary": "#FF8551",
+        "secondary": "#f6d860",
+        "accent": "#37cdbe",
+        "neutral": "#3d4451",
+        "base-100": "#ffffff",
+      }
+    }],
   },
+
+
 }

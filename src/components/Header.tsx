@@ -22,17 +22,16 @@ const Header = () => {
 
   return (
     <Fade>
-      <section className="py-12 bg-gray-50 sm:pt-16">
+      <section className="pb-12 md:pb-24 bg-gray-50 sm:pt-16">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="max-w-4xl mx-auto mb-4 text-4xl font-bold leading-tight text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight">
+            <h1 className="max-w-4xl mx-auto mb-4 text-4xl font-semibold text-gray-900 sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight">
               The best mobile service provider is here
-            </p>
-            <h1 className="max-w-2xl mx-auto px-3 md:px-6 text-sm md:text-lg text-gray-600 font-inter">
-              Offering unparalleled mobile services that set new standards in
-              reliability, speed, and customer satisfaction. Experience the
-              excellence in mobile service.
             </h1>
+            <p className="max-w-2xl mx-auto px-3 md:px-6 text-sm md:text-base font-inter">
+              Offering unparalleled mobile services that set new standards in
+              reliability, speed, and customer satisfaction.
+            </p>
 
             <div className="px-8 sm:items-start sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-9">
               <div className="relative w-full sm:w-1/2">
@@ -46,7 +45,7 @@ const Header = () => {
                   />
                   <button
                     type="submit"
-                    className="absolute top-0 right-0 h-full px-4 md:px-8 bg-gray-900 text-white rounded-full hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                    className="absolute btn-primary top-0 right-0 h-full px-4 md:px-8 font-bold text-white rounded-full focus:outline-none"
                   >
                     Search
                   </button>
