@@ -7,6 +7,21 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { IoNotificationsSharp } from "react-icons/io5";
 import Notification from "./notification/Notification";
 
+const links = [
+  {
+    label: "Blogs",
+    path: "/blogs",
+  },
+  {
+    label: "Events",
+    path: "/all-events",
+  },
+  {
+    label: "Services",
+    path: "/all-services",
+  },
+];
+
 const Navbar = () => {
   const { profilePicture, profileId, role } = useGetUserFromStore();
   const dispatch = useAppDispatch();
@@ -20,7 +35,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-300 rounded-lg">
+    <div className="navbar bg-base-300 rounded-lg sticky top-0 z-50">
       <div className="navbar-start">
         {pathname.includes("dashboard") && (
           <div className="dropdown">
@@ -33,22 +48,14 @@ const Navbar = () => {
           iRepair
         </Link>
       </div>
-      <div className="navbar-center hidden md:flex font-bold">
-        <p className="hover:border-b-2 border-primary">
-          <Link className="m-2" to="/blogs">
-            Blogs
-          </Link>
-        </p>
-        <p className="hover:border-b-2 border-primary">
-          <Link className="m-2" to="/all-events">
-            Events
-          </Link>
-        </p>
-        <p className="hover:border-b-2 border-primary">
-          <Link className="m-2" to="/all-services">
-            Services
-          </Link>
-        </p>
+      <div className="navbar-center hidden md:flex gap-6 font-bold">
+        {links.map((link, i) => (
+          <p key={i} className="hover:border-b-2 border-primary">
+            <Link className="m-2" to={link.path}>
+              {link.label}
+            </Link>
+          </p>
+        ))}
       </div>
       <div className="navbar-end">
         {!profilePicture ? (
@@ -90,15 +97,11 @@ const Navbar = () => {
                 <li>
                   <Link to={"/dashboard"}>Dashboard</Link>
                 </li>
-                <li className="block md:hidden">
-                  <Link to="/blogs">Blogs</Link>
-                </li>
-                <li className="block md:hidden">
-                  <Link to="/all-events">Events</Link>
-                </li>
-                <li className="block md:hidden">
-                  <Link to="/all-services">Services</Link>
-                </li>
+                {links.map((link, i) => (
+                  <li key={i} className="block md:hidden">
+                    <Link to={link.path}>{link.label}</Link>
+                  </li>
+                ))}
                 <li>
                   <button onClick={handleLogout}>Logout</button>
                 </li>

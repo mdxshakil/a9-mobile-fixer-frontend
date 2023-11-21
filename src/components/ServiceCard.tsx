@@ -59,7 +59,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
           <p className="text-start">Slots per day: {slotsPerDay}</p>
           {(!role || role === "user") && status !== "upcoming" && (
             <button
-              className={`btn btn-primary btn-sm rounded-full ${
+              className={`btn btn-primary btn-xs md:btn-sm rounded-full ${
                 isLoading ? "loading-ball" : ""
               }`}
               onClick={handleAddToCart}

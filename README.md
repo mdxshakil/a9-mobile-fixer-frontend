@@ -9,9 +9,13 @@ This project is a web application for providing mobile phone repairing services.
  ### Tech stack:
  - React
  - Redux
+ - Tailwind
  - Prisma
  - Postgresql
 
+
+#### Admin Email: admin@gmail.com
+#### Pass: Qw1111
 
 #### Super Admin Email: superadmin@gmail.com
 #### Pass: Qw1111
@@ -35,7 +39,6 @@ This project is a web application for providing mobile phone repairing services.
 ## User
 
 - Can register with a valid email address.
-
 - Users must log in to access their accounts.
 - Users can create and manage their profiles.
 - Users can view and edit their profiles easily.
