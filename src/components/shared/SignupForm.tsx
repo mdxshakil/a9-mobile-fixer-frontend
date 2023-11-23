@@ -48,8 +48,8 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
   }
 
   return (
-    <form className="flex flex-col" onSubmit={handleSubmit(handleSignup)}>
-      <div className="flex gap-3">
+    <form className="flex flex-col w-full md:w-1/2" onSubmit={handleSubmit(handleSignup)}>
+      <div className="grid grid-cols-2 gap-3">
         {/* first name */}
         <div className="form-control">
           <label className="label">
@@ -133,60 +133,62 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
         )}
       </div>
       {/* password */}
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Password</span>
-        </label>
-        <input
-          type="password"
-          placeholder="password"
-          className="input input-bordered"
-          required
-          {...register("password", {
-            required: {
-              value: true,
-              message: "Password is required",
-            },
-            pattern: {
-              value: passwordValidationRegex,
-              message:
-                " Password must contain at least one uppercase, one lowercase, and be at least 6 characters long.",
-            },
-          })}
-        />
-        {errors.password && (
-          <p className="text-[12px] text-red-500 ">
-            {errors.password.message as string}
-          </p>
-        )}
-      </div>
-      {/* confirm password */}
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Confirm Password</span>
-        </label>
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          className="input input-bordered"
-          required
-          {...register("confirmPassword", {
-            required: {
-              value: true,
-              message: "This field is required",
-            },
-            validate: (val: string) => {
-              if (watch("password") != val) {
-                return "Password dont match";
-              }
-            },
-          })}
-        />
-        {errors.confirmPassword && (
-          <p className="text-[12px] text-red-500 ">
-            {errors.confirmPassword.message as string}
-          </p>
-        )}
+      <div className="grid grid-cols-2 gap-3">
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Password</span>
+          </label>
+          <input
+            type="password"
+            placeholder="password"
+            className="input input-bordered"
+            required
+            {...register("password", {
+              required: {
+                value: true,
+                message: "Password is required",
+              },
+              pattern: {
+                value: passwordValidationRegex,
+                message:
+                  " Password must contain at least one uppercase, one lowercase, and be at least 6 characters long.",
+              },
+            })}
+          />
+          {errors.password && (
+            <p className="text-[12px] text-red-500 ">
+              {errors.password.message as string}
+            </p>
+          )}
+        </div>
+        {/* confirm password */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Confirm Password</span>
+          </label>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            className="input input-bordered"
+            required
+            {...register("confirmPassword", {
+              required: {
+                value: true,
+                message: "This field is required",
+              },
+              validate: (val: string) => {
+                if (watch("password") != val) {
+                  return "Password dont match";
+                }
+              },
+            })}
+          />
+          {errors.confirmPassword && (
+            <p className="text-[12px] text-red-500 ">
+              {errors.confirmPassword.message as string}
+            </p>
+          )}
+        </div>
       </div>
       {/* profile pic */}
       <div className="form-control">
@@ -209,7 +211,7 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
       {/* submit btn */}
       <div className="form-control mt-6">
         <button
-          className={`btn btn-primary ${isLoading ? "loading-infinity" : ""}`}
+          className={`btn btn-primary text-white ${isLoading ? "loading-infinity" : ""}`}
           disabled={isLoading}
         >
           Submit

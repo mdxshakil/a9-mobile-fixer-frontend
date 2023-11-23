@@ -69,7 +69,7 @@ bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
       <div className="text-center mt-6">
         <button
           id="feedbackBtn"
-          className={`btn-primary text-black text-center mx-auto  text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ${
+          className={`btn-primary text-center mx-auto  text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full text-white ${
             isLoading ? "loading-bars" : ""
           }`}
           type="submit"

@@ -60,7 +60,7 @@ const Navbar = () => {
       <div className="navbar-end">
         {!profilePicture ? (
           <Link to={"/login"}>
-            <button className="btn btn-sm rounded-full btn-primary">
+            <button className="btn btn-sm rounded-full btn-primary text-white">
               Login
             </button>
           </Link>

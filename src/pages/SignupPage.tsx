@@ -25,15 +25,17 @@ function SignupPage() {
 
   return (
     <div className="min-h-screen p-12">
-      <h1 className="text-2xl font-bold text-center">Signup</h1>
-      <div className="flex flex-col items-center justify-center ">
+      <h1 className="text-2xl font-bold text-center">Create a new account</h1>
+      <div className="flex flex-col items-center justify-center">
         <SignupForm
           role={USER_ROLE.user}
           isLoading={isLoading}
           isSuccess={isSuccess}
           signup={signUp}
         />
-        <BackToHome />
+        <div className="mt-6">
+          <BackToHome />
+        </div>
         <Link to="/login">
           <p className="p-3 text-sm">Already have an account?</p>
         </Link>

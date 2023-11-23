@@ -31,7 +31,7 @@ const LatestNewsSection = () => {
   }
 
   return (
-    <Fade direction="right">
+    <Fade>
       <div className="container py-12 md:py-24 mx-auto px-3 md:px-6">
         <section className="text-center">
           <div className="mb-12">

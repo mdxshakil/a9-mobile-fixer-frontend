@@ -33,7 +33,7 @@ const LoginPage = () => {
   }, [loginState, navigate]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-12 ">
+    <div className="flex items-center justify-center min-h-screen p-12">
       <div className="hero-content gap-6 md:gap-12 flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
@@ -42,7 +42,7 @@ const LoginPage = () => {
             features of mobile fix.
           </p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-full max-w-sm bg-base-100">
           <form className="card-body" onSubmit={handleSubmit(handleLogin)}>
             <div className="form-control">
               <label className="label">
@@ -82,7 +82,7 @@ const LoginPage = () => {
             </div>
             <div className="form-control mt-6">
               <button
-                className={`btn btn-primary ${
+                className={`btn btn-primary text-white ${
                   loginState.isLoading ? "loading-bars" : ""
                 }`}
                 disabled={loginState.isLoading}

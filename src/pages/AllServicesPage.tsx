@@ -47,7 +47,7 @@ const AllServicesPage = () => {
         </h1>
         <input
           type="text"
-          placeholder="Search here..."
+          placeholder="Display repair..."
           value={searchTerm}
           className="input input-bordered input-sm w-full max-w-xs"
           onChange={(e) => setSearchTerm(e.target.value)}
