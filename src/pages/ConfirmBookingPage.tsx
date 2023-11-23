@@ -82,15 +82,11 @@ const ConfirmBookingPage = () => {
 
         <div className="flex items-center justify-center mt-3">
           <div>
-            <p className="mb-4 font-bold badge badge-primary">
+            <p className="mb-4 font-bold ">
               Slots per day: {cartItem?.data?.service?.slotsPerDay}
             </p>
             {bookingTime && (
-              <p
-                className={`mb-4 ml-2 font-bold badge badge-info ${
-                  isError ? "badge-error" : ""
-                }`}
-              >
+              <p className={`mb-4 font-bold  ${isError ? "badge-error" : ""}`}>
                 Slots left on {bookingTime}:{" "}
                 {!isError ? slotData?.data?.slotsLeft : 0}
               </p>
@@ -116,7 +112,7 @@ const ConfirmBookingPage = () => {
               )}
             </div>
             <button
-              className="btn btn-primary btn-sm md:btn-md w-full"
+              className="btn btn-primary btn-sm md:btn-md w-full text-white"
               onClick={handleBooking}
               disabled={!bookingTime || isError}
             >

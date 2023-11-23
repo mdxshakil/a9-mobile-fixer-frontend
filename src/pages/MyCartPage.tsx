@@ -37,7 +37,7 @@ const MyCartPage = () => {
 
   const handleRemoveFromCart = (itemId: string) => {
     deleteConfirmationModal(
-      "Are you sure?",
+      "Are you sure to remove this item?",
       "You wont be able to revert this",
       () => removeFromCart(itemId)
     );
@@ -94,7 +94,7 @@ const MyCartPage = () => {
                   </div>
                 </td>
                 <td>
-                  <div className="badge badge-info">
+                  <div className="badge badge-primary">
                     {item.service.cost} bdt
                   </div>
                 </td>
@@ -129,7 +129,7 @@ const MyCartPage = () => {
         <p className="text-center">
           Total service in cart: {myCart?.data?.data?.total}
         </p>
-        <button className="btn btn-sm">
+        <button className="btn btn-sm btn-primary text-white">
           <Link to={"/my-orders"}>My Bookings</Link>
         </button>
       </div>

@@ -65,7 +65,7 @@ const Navbar = () => {
             </button>
           </Link>
         ) : (
-          <div>
+          <div className="flex items-center gap-6">
             {role === "user" && (
               <div className="dropdown">
                 <button className="btn btn-ghost btn-circle">

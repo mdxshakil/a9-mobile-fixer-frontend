@@ -10,7 +10,7 @@ export const deleteConfirmationModal = (
     text: text,
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
+    confirmButtonColor: "#FF8551",
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes",
   }).then((result) => {

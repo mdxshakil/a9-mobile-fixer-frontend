@@ -60,7 +60,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
           {(!role || role === "user") && status !== "upcoming" && (
             <button
               className={`btn btn-primary btn-xs md:btn-sm rounded-full text-white ${
-                isLoading ? "loading-ball" : ""
+                isLoading ? "loading-bars" : ""
               }`}
               onClick={handleAddToCart}
               disabled={isLoading}
