@@ -55,7 +55,7 @@ export const AddNewEventPage = () => {
             </label>
             <input
               type="text"
-              className="w-full p-2 rounded-lg focus:outline-none input  input-primary"
+              className="w-full p-2 rounded-lg focus:outline-none input input-bordered"
               {...register("title", {
                 required: true,
               })}
@@ -73,7 +73,7 @@ export const AddNewEventPage = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
+                  className="w-full p-2 rounded-lg focus:outline-none input input-bordered"
                   {...register("venue", {
                     required: true,
                   })}
@@ -120,7 +120,7 @@ export const AddNewEventPage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full ${
+              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full text-white${
                 loading || isLoading ? "loading-bars" : ""
               }`}
               disabled={loading || isLoading}

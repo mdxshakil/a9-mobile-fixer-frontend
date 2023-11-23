@@ -108,7 +108,7 @@ const ManageBlogsPage = () => {
     <div>
       <div className="py-3 px-3">
         <Link to="/dashboard/add-new-blog">
-          <button className="btn btn-sm btn-primary ">
+          <button className="btn btn-sm btn-primary text-white">
             Add New Blog <FaPlus />{" "}
           </button>
         </Link>

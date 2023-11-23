@@ -79,7 +79,7 @@ export const EditServicePage = () => {
             </label>
             <input
               type="text"
-              className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
+              className="w-full p-2 rounded-lg focus:outline-none input input-bordered"
               {...register("title")}
               defaultValue={title}
             />
@@ -90,7 +90,7 @@ export const EditServicePage = () => {
               Description
             </label>
             <textarea
-              className="w-full p-2 rounded-lg textarea textarea-primary focus:outline-none"
+              className="w-full p-2 rounded-lg textarea textarea-bordered focus:outline-none"
               rows={3}
               {...register("description")}
               defaultValue={description}
@@ -103,7 +103,7 @@ export const EditServicePage = () => {
                 </label>
                 <input
                   type="number"
-                  className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
+                  className="w-full p-2 rounded-lg focus:outline-none input input-bordered"
                   {...register("cost")}
                   defaultValue={cost}
                 />
@@ -174,7 +174,7 @@ export const EditServicePage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full`}
+              className={`btn btn-primary px-4 py-2 rounded-lg w-full text-white`}
             >
               Submit
             </button>

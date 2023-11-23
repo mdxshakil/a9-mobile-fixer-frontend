@@ -98,7 +98,9 @@ const ManageServicesPage = () => {
                   <div className="badge badge-outline">{service.category}</div>
                 </td>
                 <td>
-                  <div className="badge badge-primary">{service.status}</div>
+                  <div className="badge badge-primary text-white">
+                    {service.status}
+                  </div>
                 </td>
                 <td className="flex gap-2">
                   <Link to={`/dashboard/edit-service/${service.id}`}>
@@ -122,7 +124,7 @@ const ManageServicesPage = () => {
     <div>
       <div className="p-3">
         <Link to="/dashboard/add-service">
-          <button className="btn btn-sm btn-primary ">
+          <button className="btn btn-sm btn-primary text-white">
             Add New Service <FaPlus />
           </button>
         </Link>

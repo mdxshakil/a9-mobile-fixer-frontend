@@ -45,7 +45,7 @@ const ProfilePage = () => {
                 <p>Phone: {contactNo}</p>
               </div>
               <Link to={"/dashboard/edit-profile"}>
-                <button className="btn btn-sm btn-primary my-2">
+                <button className="btn btn-sm btn-primary text-white my-2">
                   Edit Profile <AiFillEdit />
                 </button>
               </Link>

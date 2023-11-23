@@ -135,7 +135,7 @@ const EditUserInfoPage = () => {
 
         <div className="form-control mt-6">
           <button
-            className={`btn btn-primary `}
+            className={`btn btn-primary text-white`}
             disabled={editProfileState.isLoading}
           >
             Submit

@@ -129,7 +129,7 @@ const ManageUsersPage = () => {
     <div>
       <div className="py-3 px-3">
         <Link to="/dashboard/add-user">
-          <button className="btn btn-sm btn-primary ">
+          <button className="btn btn-sm btn-primary text-white ">
             Add New User <FaPlus />
           </button>
         </Link>
