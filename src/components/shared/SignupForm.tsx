@@ -211,7 +211,7 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
       {/* submit btn */}
       <div className="form-control mt-6">
         <button
-          className={`btn btn-primary text-white ${isLoading ? "loading-infinity" : ""}`}
+          className={`btn btn-primary text-white ${isLoading ? "loading-ring" : ""}`}
           disabled={isLoading}
         >
           Submit

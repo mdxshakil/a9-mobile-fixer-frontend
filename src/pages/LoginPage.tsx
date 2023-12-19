@@ -4,10 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import BackToHome from "../components/shared/BackToHome";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Credentials from "../components/Credentials";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [showUserCredentials, setShowUserCredentials] = useState(false);
+  const [showAdminCredentials, setShowAdminCredentials] = useState(false);
   const {
     register,
     handleSubmit,
@@ -83,12 +86,38 @@ const LoginPage = () => {
             <div className="form-control mt-6">
               <button
                 className={`btn btn-primary text-white ${
-                  loginState.isLoading ? "loading-bars" : ""
+                  loginState.isLoading ? "loading-ring" : ""
                 }`}
                 disabled={loginState.isLoading}
               >
                 Login
               </button>
+            </div>
+            <div className="grid gap-y-3">
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowUserCredentials(!showUserCredentials)}
+                  className="btn btn-xs"
+                  type="button"
+                >
+                  User
+                </button>
+                <button
+                  onClick={() => setShowAdminCredentials(!showAdminCredentials)}
+                  className="btn btn-xs"
+                  type="button"
+                >
+                  Admin
+                </button>
+              </div>
+              {showUserCredentials && (
+                <div className="flex flex-col gap-y-2">
+                  <Credentials email="shakil@gmail.com" password="Qw1111" />
+                </div>
+              )}
+              {showAdminCredentials && (
+                <Credentials email="admin@gmail.com" password="Qw1111" />
+              )}
             </div>
           </form>
           <BackToHome />

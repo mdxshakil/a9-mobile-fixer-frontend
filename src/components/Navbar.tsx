@@ -44,7 +44,7 @@ const Navbar = () => {
             </label>
           </div>
         )}
-        <Link to={"/"} className="btn btn-ghost normal-case text-xl">
+        <Link to={"/"} className="btn btn-ghost border border-primary normal-case text-xl">
           iRepair
         </Link>
       </div>
