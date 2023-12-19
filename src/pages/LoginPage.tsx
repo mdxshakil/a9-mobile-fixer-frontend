@@ -96,14 +96,20 @@ const LoginPage = () => {
             <div className="grid gap-y-3">
               <div className="flex gap-3">
                 <button
-                  onClick={() => setShowUserCredentials(!showUserCredentials)}
+                  onClick={() => {
+                    setShowUserCredentials(!showUserCredentials);
+                    setShowAdminCredentials(false);
+                  }}
                   className="btn btn-xs"
                   type="button"
                 >
                   User
                 </button>
                 <button
-                  onClick={() => setShowAdminCredentials(!showAdminCredentials)}
+                  onClick={() => {
+                    setShowAdminCredentials(!showAdminCredentials);
+                    setShowUserCredentials(false);
+                  }}
                   className="btn btn-xs"
                   type="button"
                 >

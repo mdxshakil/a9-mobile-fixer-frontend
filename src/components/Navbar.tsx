@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-300 rounded-lg sticky top-0 z-50">
-      <div className="navbar-start">
+      <div className="navbar-start gap-2">
         {pathname.includes("dashboard") && (
           <div className="dropdown">
             <label htmlFor="my-drawer" className="btn drawer-button">
