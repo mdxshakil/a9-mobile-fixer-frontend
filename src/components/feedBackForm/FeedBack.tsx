@@ -4,7 +4,7 @@ import FeedbackForm from "./FeedbackForm";
 const FeedBackSection = () => {
   return (
     <section>
-      <div className="py-12 md:py-24">
+      <div className="py-12 md:py-18">
         <Fade>
           <div className="container mx-auto flex flex-col items-center md:flex-row my-6 md:my-24">
             <div className="flex flex-col w-full lg:w-1/2 p-8">

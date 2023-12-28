@@ -29,7 +29,7 @@ const OurLocationSection = () => {
   });
   return (
     <Fade>
-      <div className="container py-12 md:py-24 mx-auto px-3 md:px-6 min-h-screen">
+      <div className="container py-12 md:py-18 mx-auto px-3 md:px-6 min-h-screen">
         <section className="text-center">
           <div className="mb-12">
             <h1 className="text-3xl md:text-4xl font-bold text-center">

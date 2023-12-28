@@ -28,7 +28,7 @@ const UpcomingEventSection = () => {
   }
   return (
     <Fade>
-      <div className="text-center py-12 md:py-24">
+      <div className="text-center py-12 md:py-18">
         <div className="mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-center">
             Upcoming Events

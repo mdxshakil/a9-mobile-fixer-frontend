@@ -6,11 +6,14 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import Credentials from "../components/Credentials";
+import CredentialButton from "../components/CredentialButton";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [showUserCredentials, setShowUserCredentials] = useState(false);
   const [showAdminCredentials, setShowAdminCredentials] = useState(false);
+  const [showSuperAdminCredentials, setShowSuperAdminCredentials] =
+    useState(false);
   const {
     register,
     handleSubmit,
@@ -95,26 +98,33 @@ const LoginPage = () => {
             </div>
             <div className="grid gap-y-3">
               <div className="flex gap-3">
-                <button
+                <CredentialButton
                   onClick={() => {
                     setShowUserCredentials(!showUserCredentials);
                     setShowAdminCredentials(false);
+                    setShowSuperAdminCredentials(false);
                   }}
-                  className="btn btn-xs"
-                  type="button"
-                >
-                  User
-                </button>
-                <button
+                  label="User"
+                  isActive={showUserCredentials}
+                />
+                <CredentialButton
                   onClick={() => {
                     setShowAdminCredentials(!showAdminCredentials);
                     setShowUserCredentials(false);
+                    setShowSuperAdminCredentials(false);
                   }}
-                  className="btn btn-xs"
-                  type="button"
-                >
-                  Admin
-                </button>
+                  label="Admin"
+                  isActive={showAdminCredentials}
+                />
+                <CredentialButton
+                  onClick={() => {
+                    setShowSuperAdminCredentials(!showSuperAdminCredentials);
+                    setShowUserCredentials(false);
+                    setShowAdminCredentials(false);
+                  }}
+                  label="Super Admin"
+                  isActive={showSuperAdminCredentials}
+                />
               </div>
               {showUserCredentials && (
                 <div className="flex flex-col gap-y-2">
@@ -123,6 +133,9 @@ const LoginPage = () => {
               )}
               {showAdminCredentials && (
                 <Credentials email="admin@gmail.com" password="Qw1111" />
+              )}
+              {showSuperAdminCredentials && (
+                <Credentials email="superadmin@gmail.com" password="Qw1111" />
               )}
             </div>
           </form>

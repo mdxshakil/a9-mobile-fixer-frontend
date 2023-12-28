@@ -3,7 +3,6 @@ import WhyChooseUs from "../components/why-choose-us/WhyChooseUs";
 import FeedBackSection from "../components/feedBackForm/FeedBack";
 import Footer from "../components/footer/Footer";
 import FaqSection from "../components/home/FaqSection";
-
 import OurServices from "../components/home/OurServices";
 import UpcomingService from "../components/home/UpcomingService";
 import LatestNewsSection from "../components/latestNews/LatestNewsSection";

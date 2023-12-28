@@ -5,7 +5,7 @@ import { Fade } from "react-awesome-reveal";
 const FaqSection = () => {
   return (
     <div
-      className="flex items-center justify-center py-12 min-h-screen"
+      className="flex items-center justify-center min-h-screen"
       id="faq-section"
     >
       <div className="mt-12">
