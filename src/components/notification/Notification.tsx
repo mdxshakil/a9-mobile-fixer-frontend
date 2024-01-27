@@ -24,7 +24,7 @@ const Notification = () => {
     content = <NoContantFound message="No notifiction available" />;
   } else if (!isLoading && !isError && notifications?.data?.length > 0) {
     content = notifications?.data?.map((notification: INotification) => (
-      <p key={notification.id} className="p-2 font-bold text-sm border-b text-accent">
+      <p key={notification.id} className="p-2 font-bold text-sm border-b text-gray-900">
         {notification.content}
       </p>
     ));

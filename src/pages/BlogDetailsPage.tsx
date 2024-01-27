@@ -15,7 +15,7 @@ export const BlogDetailsPage = () => {
       <div className="w-full bg-white border border-gray-200 rounded-lg shadow p:6 md:p-12 mt-6">
         <div>
           <div className=" p-4 bg-white rounded-lg md:p-8">
-            <h2 className="mb-3 text-2xl md:text-3xl font-extrabold text-accent">
+            <h2 className="mb-3 text-2xl md:text-3xl font-extrabold text-gray-900">
               {blog?.data?.title}
             </h2>
             <div className="flex items-center gap-3 pb-3">

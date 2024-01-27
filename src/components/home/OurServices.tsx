@@ -6,6 +6,7 @@ import ServiceCard from "../ServiceCard";
 import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import { Fade } from "react-awesome-reveal";
+import SectionTitle from "../SectionTitle";
 
 const OurServices = () => {
   const {
@@ -30,12 +31,10 @@ const OurServices = () => {
   return (
     <Fade>
       <div className="text-center py-12 md:py-18">
-        <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-center">
-            Our services
-          </h1>
-          <p>Browse through our varieties of services</p>
-        </div>
+        <SectionTitle
+          title="Our services"
+          subTitle="Browse through our varieties of services"
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
           {content}
         </div>

@@ -40,7 +40,7 @@ const TestimonialForm = () => {
     <div className="mt-8 space-y-4 lg:mt-0">
       <span className=" h-1 w-full rounded bg-primary block"></span>
       <div>
-        <h2 className="text-2xl font-medium text-accent">
+        <h2 className="text-2xl font-medium text-gray-900">
           Tell something about our service
         </h2>
 

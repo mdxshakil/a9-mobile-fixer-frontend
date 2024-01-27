@@ -35,7 +35,7 @@ const MobileNavDropDown = ({ children }: { children: ReactElement }) => {
   };
 
   return (
-    <div className="dropdown dropdown-end ml-3 z-50">
+    <div className="dropdown dropdown-end ml-3 z-50 md:hidden">
       <div className="flex gap-3 items-center">
         <label
           tabIndex={0}
@@ -46,7 +46,7 @@ const MobileNavDropDown = ({ children }: { children: ReactElement }) => {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-primary rounded-box w-52 font-semibold text-accent"
+        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-primary rounded-box w-52 font-semibold text-gray-900"
       >
         <li>
           <Link to={"/dashboard"}>Dashboard</Link>

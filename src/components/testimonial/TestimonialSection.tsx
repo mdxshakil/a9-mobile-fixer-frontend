@@ -5,6 +5,7 @@ import LoadingSpinner from "../Loader/LoadingSpinner";
 import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import TestimonialCard from "./TestimonialCard";
+import SectionTitle from "../SectionTitle";
 
 const TestimonialSection = () => {
   const {
@@ -30,12 +31,10 @@ const TestimonialSection = () => {
     <Fade>
       <div className="container py-12 md:py-18 mx-auto px-3 md:px-6 min-h-screen">
         <section className="text-center">
-          <div className="mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-center">
-              Testimonials
-            </h1>
-            <p>Some tesimonials of our beloved customers</p>
-          </div>
+          <SectionTitle
+            title="Testimonials"
+            subTitle="Some feedbacks of our beloved customers"
+          />
           <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
             {content}
           </div>

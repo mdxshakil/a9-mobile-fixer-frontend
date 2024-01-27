@@ -5,6 +5,7 @@ import LoadingSpinner from "../Loader/LoadingSpinner";
 import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import LatestNewsCard from "./LatestNewsCard";
+import SectionTitle from "../SectionTitle";
 
 const LatestNewsSection = () => {
   const {
@@ -35,11 +36,12 @@ const LatestNewsSection = () => {
       <div className="container py-12 md:py-18 mx-auto px-3 md:px-6">
         <section className="text-center">
           <div className="mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-center">
-              Latest News
-            </h1>
-            <p>Stay updated about new tech and gadgets</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-center"></h1>
           </div>
+          <SectionTitle
+            title="Latest News"
+            subTitle="Stay updated about new tech and gadgets"
+          />
           {content}
         </section>
       </div>

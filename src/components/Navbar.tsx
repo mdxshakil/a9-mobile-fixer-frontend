@@ -63,7 +63,7 @@ const Navbar = () => {
           <div className="navbar-end">
             {!role ? (
               <Link to={"/login"}>
-                <button className="btn btn-sm rounded-full btn-primary text-accent font-bold">
+                <button className="btn btn-sm rounded-full btn-primary text-gray-900 font-bold">
                   Login
                 </button>
               </Link>

@@ -13,7 +13,7 @@ import UpcomingEventSection from "../components/UpcomingEventSection";
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Header />
       <OurServices />
       <UpcomingService />
@@ -26,7 +26,7 @@ const HomePage = () => {
       <TestimonialSection />
       <CountUpSection />
       <Footer />
-    </div>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import MarkerIcon from "../../assets/marker.png";
 import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { Fade } from "react-awesome-reveal";
+import SectionTitle from "../SectionTitle";
 
 const OurLocationSection = () => {
   const markers = [
@@ -31,12 +32,10 @@ const OurLocationSection = () => {
     <Fade>
       <div className="container py-12 md:py-18 mx-auto px-3 md:px-6 min-h-screen">
         <section className="text-center">
-          <div className="mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-center">
-              Visit Our Branches
-            </h1>
-            <p>We have multiple outlets around the city</p>
-          </div>
+          <SectionTitle
+            title="Visit Our Branches"
+            subTitle="We have multiple outlets around the city"
+          />
           <div className="grid grid-cols-1">
             <MapContainer center={[23.8041, 90.4152]} zoom={12}>
               <TileLayer

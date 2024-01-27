@@ -8,7 +8,7 @@ type IProps = {
 
 const NavigationLink = ({ link }: IProps) => {
   return (
-    <p className="hover:border-b-2 border-primary text-accent">
+    <p className="hover:border-b-2 border-primary text-gray-900">
       <NavLink
         className={({ isActive }) =>
           isActive ? "border-b-2 border-primary font-bold" : ""
