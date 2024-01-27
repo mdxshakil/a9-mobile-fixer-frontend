@@ -55,7 +55,7 @@ export type IService = {
   slotsPerDay: number;
   status: "live" | "upcoming";
   reviews?: IReview;
-  ratings?: IRating;
+  ratings?: IRating[];
   createdAt: Date;
   updatedAt: Date;
   category: string;

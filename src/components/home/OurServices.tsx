@@ -15,6 +15,9 @@ const OurServices = () => {
     isError,
   } = useGetHomePageServicesQuery(undefined);
 
+  console.log(services);
+  
+
   let content;
   if (isLoading) {
     return <LoadingSpinner />;
@@ -30,12 +33,12 @@ const OurServices = () => {
 
   return (
     <Fade>
-      <div className="text-center py-12 md:py-18">
+      <div className="py-12 md:py-18">
         <SectionTitle
           title="Our services"
           subTitle="Browse through our varieties of services"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 place-items-center py-6 px-3 items-stretch">
           {content}
         </div>
         <Link to={"/all-services"}>

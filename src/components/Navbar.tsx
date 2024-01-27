@@ -8,6 +8,8 @@ import NavLogo from "../assets/nav-logo.svg";
 import NavigationLink from "./NavigationLink";
 import MobileNavDropDown from "./MobileNavDropdown";
 import Container from "./Container";
+import NavAnnouncement from "./NavAnnouncement";
+import { useEffect, useState } from "react";
 
 const links = [
   {
@@ -31,9 +33,25 @@ const links = [
 const Navbar = () => {
   const { profilePicture, profileId, role } = useGetUserFromStore();
   const { pathname } = useLocation();
+  const [announcementVisible, setAnnouncementVisible] = useState(true);
+
+  useEffect(() => {
+    const isAnnouncementClosed = localStorage.getItem("isAnnouncementClosed");
+    if (isAnnouncementClosed === "true") {
+      setAnnouncementVisible(false);
+    }
+  }, []);
+
+  const handleAnnouncementClose = () => {
+    setAnnouncementVisible(false);
+    localStorage.setItem("isAnnouncementClosed", "true");
+  };
 
   return (
     <div className="w-full bg-base-300/30 backdrop-blur-lg sticky top-0 z-50 ">
+      {announcementVisible && (
+        <NavAnnouncement onClose={handleAnnouncementClose} />
+      )}
       <Container>
         <div className="navbar rounded-lg">
           <div className="navbar-start">

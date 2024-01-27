@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useNavigate } from "react-router-dom";
 import useGetUserFromStore from "../hooks/useGetUser";
-import { IService } from "../interface";
+import { IRating, IService } from "../interface";
 import { useAddToCartMutation } from "../redux/features/cart/cartApi";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { FaStar } from "react-icons/fa";
+import { BsCart2 } from "react-icons/bs";
+import { calculateAvgRating } from "../utils/calculateAvgRating";
 
 const ServiceCard = ({ service }: { service: IService }) => {
-  const { id, title, image, cost, category, status, slotsPerDay } =
-    service || {};
+  const { id, title, image, cost, category, status, ratings } = service || {};
   const { role, profileId } = useGetUserFromStore();
   const navigate = useNavigate();
   const [addToCart, { isLoading, isError, isSuccess, error }] =
@@ -27,44 +29,52 @@ const ServiceCard = ({ service }: { service: IService }) => {
       toast.error((error as any)?.data?.message || "An error occured");
     }
     if (isSuccess) {
-      toast.success("Successfully added to cart");
+      toast.success("Service added to cart");
     }
   }, [isError, isSuccess, error]);
 
+  const rating = calculateAvgRating(ratings as [IRating]);
+
   return (
-    <div className="card border bg-base-100 hover:scale-105 transition-all hover:bg-base-200">
-      <figure>
-        <img
-          src={image}
-          alt="Shoes"
-          className="w-96 h-56 object-cover p-2 rounded-2xl"
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title hover:underline">
+    <div className="relative w-full max-w-xs overflow-hidden rounded-lg bg-white">
+      <img
+        className="h-32 w-full rounded-t-lg object-cover"
+        src={image}
+        alt="product image"
+      />
+      {status === "upcoming" && (
+        <span className="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-primary text-center text-sm text-white">
+          {status}
+        </span>
+      )}
+      <div className="px-4 mt-2 pb-2">
+        <h2 className="card-title hover:underline hover:text-primary text-xl font-semibold tracking-tight text-accent">
           {status !== "upcoming" ? (
             <Link to={`/service/${id}`}>{title}</Link>
           ) : (
             <span>{title}</span>
           )}
         </h2>
-        <div className="badge badge-primary badge-outline">{category}</div>
-        <div>
-          <p className="text-start mt-3">
-            <span className="mr-1">{cost}</span>
-            <span>bdt</span>
-          </p>
+        <div className="mt-2.5 mb-5 flex items-center justify-between">
+          <div className="flex">
+            <span className="mr-2 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">
+              {rating}.0
+            </span>
+            {Array.from({ length: rating }).map((_rating, i) => (
+              <FaStar key={i} className="text-yellow-300" />
+            ))}
+          </div>
+          <p className="badge badge-outline badge-primary">{category}</p>
         </div>
-        <div className="flex items-center justify-between mt-1">
-          <p className="text-start">Slots per day: {slotsPerDay}</p>
+        <div className="flex items-center justify-between">
+          <p className="text-2xl font-bold text-accent">&#2547;{cost}</p>
           {(!role || role === "user") && status !== "upcoming" && (
             <button
-              className={`btn btn-primary btn-xs md:btn-sm rounded-full text-white ${
-                isLoading ? "loading-bars" : ""
-              }`}
+              className="btn btn-ghost text-primary flex items-center gap-1 rounded-md hover:bg-transparent hover:text-accent disabled:bg-transparent"
               onClick={handleAddToCart}
               disabled={isLoading}
             >
+              <BsCart2 />
               Add to cart
             </button>
           )}
