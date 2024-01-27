@@ -1,13 +1,19 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useGetUserFromStore from "../hooks/useGetUser";
-import { useAppDispatch } from "../redux/hooks";
-import { userLoggedOut } from "../redux/features/auth/authSlice";
 import { FaCartArrowDown } from "react-icons/fa";
 import { IoNotificationsSharp } from "react-icons/io5";
 import Notification from "./notification/Notification";
+import NavLogo from "../assets/nav-logo.svg";
+import NavigationLink from "./NavigationLink";
+import MobileNavDropDown from "./MobileNavDropdown";
+import Container from "./Container";
 
 const links = [
+  {
+    label: "Home",
+    path: "/",
+  },
   {
     label: "Blogs",
     path: "/blogs",
@@ -24,92 +30,79 @@ const links = [
 
 const Navbar = () => {
   const { profilePicture, profileId, role } = useGetUserFromStore();
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const handleLogout = () => {
-    localStorage.removeItem("auth");
-    dispatch(userLoggedOut());
-    navigate("/");
-  };
-
   return (
-    <div className="navbar bg-base-300 rounded-lg sticky top-0 z-50">
-      <div className="navbar-start gap-2">
-        {pathname.includes("dashboard") && (
-          <div className="dropdown">
-            <label htmlFor="my-drawer" className="btn drawer-button">
-              <GiHamburgerMenu />
-            </label>
-          </div>
-        )}
-        <Link to={"/"} className="btn btn-ghost border border-primary normal-case text-xl">
-          iRepair
-        </Link>
-      </div>
-      <div className="navbar-center hidden md:flex gap-6 font-bold">
-        {links.map((link, i) => (
-          <p key={i} className="hover:border-b-2 border-primary">
-            <Link className="m-2" to={link.path}>
-              {link.label}
-            </Link>
-          </p>
-        ))}
-      </div>
-      <div className="navbar-end">
-        {!profilePicture ? (
-          <Link to={"/login"}>
-            <button className="btn btn-sm rounded-full btn-primary text-white">
-              Login
-            </button>
-          </Link>
-        ) : (
-          <div className="flex items-center gap-6">
-            {role === "user" && (
+    <div className="w-full bg-base-300/30 backdrop-blur-lg sticky top-0 z-50 ">
+      <Container>
+        <div className="navbar rounded-lg">
+          <div className="navbar-start">
+            {/* dashboard sidebar links */}
+            {pathname.includes("dashboard") && (
               <div className="dropdown">
-                <button className="btn btn-ghost btn-circle">
-                  <IoNotificationsSharp size={20} />
-                </button>
-                <Notification />
-              </div>
-            )}
-
-            {role === "user" && (
-              <button>
-                <Link to={`/my-cart/${profileId}`}>
-                  <FaCartArrowDown size={25} />
-                </Link>
-              </button>
-            )}
-            <div className="dropdown dropdown-end ml-3 z-50">
-              <div className="flex gap-3 items-center">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    <img src={profilePicture} />
-                  </div>
+                <label htmlFor="my-drawer" className="btn drawer-button">
+                  <GiHamburgerMenu />
                 </label>
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <Link to={"/dashboard"}>Dashboard</Link>
-                </li>
-                {links.map((link, i) => (
-                  <li key={i} className="block md:hidden">
-                    <Link to={link.path}>{link.label}</Link>
-                  </li>
-                ))}
-                <li>
-                  <button onClick={handleLogout}>Logout</button>
-                </li>
-              </ul>
-            </div>
+            )}
+            {/* dashboard sidebar links end */}
+            {/* logo start */}
+            <Link to="/">
+              <img src={NavLogo} alt="" className="w-2/3 md:w-1/2 p-2" />
+            </Link>
+            {/* logo end */}
           </div>
-        )}
-      </div>
+          {/* desktop nav links */}
+          <div className="navbar-center hidden md:flex gap-6 font-semibold">
+            {links.map((link, i) => (
+              <NavigationLink key={i} link={link} />
+            ))}
+          </div>
+          {/* desktop nav links end */}
+          {/* login, profile and mobile nav button */}
+          <div className="navbar-end">
+            {!role ? (
+              <Link to={"/login"}>
+                <button className="btn btn-sm rounded-full btn-primary text-accent font-bold">
+                  Login
+                </button>
+              </Link>
+            ) : (
+              <div className="flex items-center">
+                {role === "user" && (
+                  <>
+                    <div className="dropdown">
+                      <button className="btn btn-ghost btn-circle">
+                        <IoNotificationsSharp size={20} color="#111827" />
+                      </button>
+                      <Notification />
+                    </div>
+                    <button className="btn btn-ghost btn-circle">
+                      <Link to={`/my-cart/${profileId}`}>
+                        <FaCartArrowDown size={20} color="#111827" />
+                      </Link>
+                    </button>
+                  </>
+                )}
+
+                <MobileNavDropDown>
+                  <img
+                    src={profilePicture}
+                    className="w-10 h-10 object-cover rounded-full border-2 border-primary"
+                  />
+                </MobileNavDropDown>
+              </div>
+            )}
+            {/* mobile nav */}
+            {!role && (
+              <MobileNavDropDown>
+                <GiHamburgerMenu size={30} />
+              </MobileNavDropDown>
+              // mobile nav end
+            )}
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };

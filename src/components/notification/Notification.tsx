@@ -24,14 +24,14 @@ const Notification = () => {
     content = <NoContantFound message="No notifiction available" />;
   } else if (!isLoading && !isError && notifications?.data?.length > 0) {
     content = notifications?.data?.map((notification: INotification) => (
-      <p key={notification.id} className="p-2 font-bold text-sm border">
+      <p key={notification.id} className="p-2 font-bold text-sm border-b text-accent">
         {notification.content}
       </p>
     ));
   }
 
   return (
-    <div className="dropdown-content w-72 right-0 md:right-[50%] bg-base-300 shadow-lg p-3 rounded-lg overflow-scroll max-h-56 z-50">
+    <div className="dropdown-content w-72 right-0 md:right-[50%] bg-primary shadow-lg p-3 rounded-lg overflow-scroll max-h-56 z-50">
       {content}
     </div>
   );

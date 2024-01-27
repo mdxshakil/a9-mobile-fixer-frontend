@@ -22,10 +22,10 @@ const Header = () => {
 
   return (
     <Fade>
-      <section className="pb-12 md:pb-18 bg-gray-50 sm:pt-16">
+      <section className="pb-12 md:pb-18 sm:pt-16">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="max-w-4xl mx-auto mb-4 text-3xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-4xl mx-auto mb-4 text-3xl font-bold text-accent sm:text-5xl lg:text-6xl">
               The best mobile service provider is here
             </h1>
             <p className="max-w-2xl mx-auto px-3 md:px-6 text-sm md:text-base font-inter">
@@ -39,7 +39,7 @@ const Header = () => {
                   <input
                     type="text"
                     placeholder="Display repair...."
-                    className="w-full py-1 md:py-2 px-6 pr-16 text-gray-900 bg-white border-2 border-gray-300 rounded-full outline-none"
+                    className="w-full py-1 md:py-2 px-6 pr-16 text-accent bg-white border-2 border-gray-300 rounded-full outline-none"
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
                   />
