@@ -13,12 +13,11 @@ const RatingStar = ({ profileId, serviceId }: IProps) => {
   // Check if the user has purchased this service or not
   // If purchased, then they can submit a rating
   const { data } = useGetSingleBookingQuery({ profileId, serviceId });
-
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-
   const [addrating, { isSuccess, isError, isLoading }] = useAddRatingMutation();
 
+  
   const handleRatingSubmit = () => {
     addrating({ serviceId, profileId, ratingValue: rating });
   };
@@ -35,9 +34,9 @@ const RatingStar = ({ profileId, serviceId }: IProps) => {
   return (
     <div>
       {data?.data ? (
-        <div className="mb-4">
-          <span className="font-bold text-gray-700">Submit rating</span>
-          <div className="flex items-center mt-2">
+        <div className="flex items-center gap-x-2">
+          <span className="font-semibold text-accent">Submit rating:</span>
+          <div className="flex items-center">
             <div className="flex">
               {[...Array(5)].map((_, index) => {
                 const currentRating = index + 1;
@@ -51,13 +50,11 @@ const RatingStar = ({ profileId, serviceId }: IProps) => {
                       onClick={() => setRating(currentRating)}
                     />
                     <FaStar
-                      className="cursor-pointer"
-                      size={25}
-                      color={
+                      className={`cursor-pointer ${
                         currentRating <= (hover || rating)
-                          ? "#ffc107"
-                          : "#9CA3AF"
-                      }
+                          ? "text-yellow-300"
+                          : "text-gray-300"
+                      }`}
                       onMouseEnter={() => setHover(currentRating)}
                       onMouseLeave={() => setHover(0)}
                     />
@@ -68,12 +65,10 @@ const RatingStar = ({ profileId, serviceId }: IProps) => {
           </div>
           <button
             onClick={handleRatingSubmit}
-            className={`btn btn-xs btn-warning my-2 ${
-              isLoading ? "loading-ball" : ""
-            }`}
-            disabled={rating === 0}
+            className="btn btn-xs btn-outline btn-primary my-2 rounded-full"
+            disabled={rating === 0 || isLoading}
           >
-            Submit Rating
+            {isLoading ? "Submitting..." : "Submit"}
           </button>
         </div>
       ) : null}

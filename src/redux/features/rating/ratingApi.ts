@@ -8,7 +8,7 @@ const ratingApi = api.injectEndpoints({
         method: "POST",
         body: payload,
       }),
-      invalidatesTags: ["check_rating", "service_rating"],
+      invalidatesTags: ["check_rating", "service_rating","service"],
     }),
     checkRatingGivenOrNot: builder.query({
       query: ({ serviceId, profileId }) => ({

@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useAddFeedbackMutation } from "../../redux/features/feedback/feedbackApi";
 import toast from "react-hot-toast";
+import { BsSend } from "react-icons/bs";
 
 const FeedbackForm = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ const FeedbackForm = () => {
     <form id="feedbackForm" onSubmit={handleFeedbackSubmit}>
       <div className="relative w-full mb-3">
         <label
-          className="block uppercase text-gray-700 text-xs font-bold mb-2"
+          className="block uppercase text-accent text-xs font-bold mb-2"
           htmlFor="email"
         >
           Email
@@ -48,7 +49,7 @@ bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
       </div>
       <div className="relative w-full mb-3">
         <label
-          className="block uppercase text-gray-700 text-xs font-bold mb-2"
+          className="block uppercase text-accent text-xs font-bold mb-2"
           htmlFor="message"
         >
           Message
@@ -69,14 +70,13 @@ bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
       <div className="text-center mt-6">
         <button
           id="feedbackBtn"
-          className={`btn-primary text-center mx-auto  text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full text-white ${
-            isLoading ? "loading-bars" : ""
-          }`}
+          className="btn-primary text-sm font-bold px-6 py-3 rounded w-full text-accent flex items-center gap-3 justify-center"
           type="submit"
           style={{ transition: "all 0.15s ease 0s" }}
           disabled={isLoading}
         >
-          Submit
+          {isLoading ? "Please wait..." : "Send"}
+          <BsSend size={18} />
         </button>
       </div>
     </form>

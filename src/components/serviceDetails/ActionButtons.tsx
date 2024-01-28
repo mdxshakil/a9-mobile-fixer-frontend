@@ -35,13 +35,11 @@ const ActionButtons = ({ profileId, serviceId }: IProps) => {
     <div className="flex -mx-2 mb-4">
       <div className="w-full px-2">
         <button
-          className={`w-full btn-primary py-2 px-4 rounded-full font-bold text-white${
-            isLoading ? "loading-bars" : ""
-          }`}
+          className="btn btn-primary btn-sm rounded-full text-accent font-bold"
           disabled={isLoading}
           onClick={handleAddToCart}
         >
-          Add to Cart
+          {isLoading ? "Please wait..." : "Add to Cart"}
         </button>
       </div>
     </div>

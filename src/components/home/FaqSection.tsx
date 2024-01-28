@@ -6,7 +6,7 @@ import SectionTitle from "../SectionTitle";
 const FaqSection = () => {
   return (
     <div
-      className="flex items-center justify-center min-h-screen"
+      className="flex items-center justify-center pb-12 md:pb-18"
       id="faq-section"
     >
       <div className="mt-12">

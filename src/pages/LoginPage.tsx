@@ -1,25 +1,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useForm, FieldValues } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import BackToHome from "../components/shared/BackToHome";
+import LoginImage from "../assets/login-image.gif";
+import CredentialButton from "../components/CredentialButton";
+import { useEffect, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import toast from "react-hot-toast";
-import { useEffect, useState } from "react";
-import Credentials from "../components/Credentials";
-import CredentialButton from "../components/CredentialButton";
+
+type RoleCredentials = {
+  [key: string]: { email: string; password: string };
+};
+
+const roleCredentials: RoleCredentials = {
+  user: { email: "shakil@gmail.com", password: "Qw1111" },
+  admin: { email: "admin@gmail.com", password: "Qw1111" },
+  superAdmin: { email: "superadmin@gmail.com", password: "Qw1111" },
+};
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [showUserCredentials, setShowUserCredentials] = useState(false);
-  const [showAdminCredentials, setShowAdminCredentials] = useState(false);
-  const [showSuperAdminCredentials, setShowSuperAdminCredentials] =
-    useState(false);
+  const [activeRole, setActiveRole] = useState("");
+  const [defaultValues, setDefaultValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [login, loginState] = useLoginMutation();
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm();
-  const [login, loginState] = useLoginMutation();
+  } = useForm({
+    defaultValues: defaultValues,
+  });
 
   const handleLogin = async (data: FieldValues) => {
     await login(data);
@@ -38,114 +51,118 @@ const LoginPage = () => {
     }
   }, [loginState, navigate]);
 
+  //set active role and default values
+  const handleCredentiaClick = (role: string) => {
+    const credentials = roleCredentials[role];
+    setDefaultValues({
+      ...defaultValues,
+      ...credentials,
+    });
+    setActiveRole(role);
+  };
+
+  //re-render when defaultValues changer so that input fields a re populated with default values
+  useEffect(() => {
+    setValue("email", defaultValues.email);
+    setValue("password", defaultValues.password);
+  }, [defaultValues, setValue]);
+
   return (
-    <div className="flex items-center justify-center min-h-screen p-12">
-      <div className="hero-content gap-6 md:gap-12 flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provide your credentials and login to your account to enjoy the full
-            features of mobile fix.
-          </p>
-        </div>
-        <div className="card flex-shrink-0 w-full max-w-sm bg-base-100">
-          <form className="card-body" onSubmit={handleSubmit(handleLogin)}>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="email"
-                className="input input-bordered"
-                {...register("email", {
-                  required: true,
-                })}
-              />
-              {errors.email && (
-                <p className="text-[12px] text-red-500 ">
-                  This field is required
-                </p>
-              )}
+    <>
+      <section className="min-h-screen">
+        <div className="container h-full px-6 py-24">
+          <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+            {/* Left column  */}
+            <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
+              <img src={LoginImage} className="w-full" alt="Login image" />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered"
-                {...register("password", {
-                  required: true,
-                })}
-              />
-              {errors.password && (
-                <p className="text-[12px] text-red-500 ">
-                  This field is required
-                </p>
-              )}
-            </div>
-            <div className="form-control mt-6">
-              <button
-                className={`btn btn-primary text-white ${
-                  loginState.isLoading ? "loading-ring" : ""
-                }`}
-                disabled={loginState.isLoading}
-              >
-                Login
-              </button>
-            </div>
-            <div className="grid gap-y-3">
-              <div className="flex gap-3">
-                <CredentialButton
-                  onClick={() => {
-                    setShowUserCredentials(!showUserCredentials);
-                    setShowAdminCredentials(false);
-                    setShowSuperAdminCredentials(false);
-                  }}
-                  label="User"
-                  isActive={showUserCredentials}
-                />
-                <CredentialButton
-                  onClick={() => {
-                    setShowAdminCredentials(!showAdminCredentials);
-                    setShowUserCredentials(false);
-                    setShowSuperAdminCredentials(false);
-                  }}
-                  label="Admin"
-                  isActive={showAdminCredentials}
-                />
-                <CredentialButton
-                  onClick={() => {
-                    setShowSuperAdminCredentials(!showSuperAdminCredentials);
-                    setShowUserCredentials(false);
-                    setShowAdminCredentials(false);
-                  }}
-                  label="Super Admin"
-                  isActive={showSuperAdminCredentials}
-                />
+
+            {/*  Right column */}
+            <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
+              <div className="mb-6">
+                <h2 className="text-accent font-bold text-lg md:text-3xl tracking-wider">
+                  Sign in to unlock the best of{" "}
+                  <span className="text-primary">iRepair</span>
+                </h2>
               </div>
-              {showUserCredentials && (
-                <div className="flex flex-col gap-y-2">
-                  <Credentials email="shakil@gmail.com" password="Qw1111" />
+              <form onSubmit={handleSubmit(handleLogin)}>
+                {/* <!-- Email input --> */}
+                <div className="mb-6" data-te-input-wrapper-init>
+                  <label className="">Email address</label>
+                  <input
+                    type="email"
+                    className="block min-h-[auto] w-full border rounded-lg bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none"
+                    {...register("email", {
+                      required: "Email is required",
+                    })}
+                  />
+                  {errors.email && (
+                    <p className="text-xs ml-3 text-red-500 ">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
-              )}
-              {showAdminCredentials && (
-                <Credentials email="admin@gmail.com" password="Qw1111" />
-              )}
-              {showSuperAdminCredentials && (
-                <Credentials email="superadmin@gmail.com" password="Qw1111" />
-              )}
+
+                {/* <!-- Password input --> */}
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <label className="">Password</label>
+                  <input
+                    type="password"
+                    className="block min-h-[auto] w-full bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none border rounded-lg"
+                    {...register("password", {
+                      required: "Password is required",
+                    })}
+                  />
+                  {errors.password && (
+                    <p className="text-xs ml-3 text-red-500 ">
+                      {errors.password.message}
+                    </p>
+                  )}
+                  <div className="mt-2">
+                    <Link to="/signup">
+                      <p className="text-accent ml-3 text-sm">
+                        Don't have an account?
+                      </p>
+                    </Link>
+                  </div>
+                  {/* credentials button */}
+                  <div className="mt-3">
+                    <CredentialButton
+                      onClick={() => handleCredentiaClick("user")}
+                      label="User"
+                      isActive={activeRole === "user"}
+                    />
+                    <CredentialButton
+                      onClick={() => handleCredentiaClick("admin")}
+                      label="Admin"
+                      isActive={activeRole === "admin"}
+                    />
+                    <CredentialButton
+                      onClick={() => handleCredentiaClick("superAdmin")}
+                      label="Super Admin"
+                      isActive={activeRole === "superAdmin"}
+                    />
+                  </div>
+                </div>
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  className="inline-block btn w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-accent transition duration-150 ease-in-out"
+                >
+                  {loginState.isLoading ? "Please wait..." : "Sign in"}
+                </button>
+                <Link to="/">
+                  <p className="text-primary mr-3 mt-3 text-sm font-bold">
+                    Go Home
+                  </p>
+                </Link>
+              </form>
             </div>
-          </form>
-          <BackToHome />
-          <Link to="/signup">
-            <p className="p-3 text-sm text-center">Don't have an account?</p>
-          </Link>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 

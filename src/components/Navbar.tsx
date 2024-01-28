@@ -58,7 +58,10 @@ const Navbar = () => {
             {/* dashboard sidebar links */}
             {pathname.includes("dashboard") && (
               <div className="dropdown">
-                <label htmlFor="my-drawer" className="btn drawer-button">
+                <label
+                  htmlFor="my-drawer"
+                  className="btn btn-ghost drawer-button rounded-full"
+                >
                   <GiHamburgerMenu />
                 </label>
               </div>
@@ -66,7 +69,7 @@ const Navbar = () => {
             {/* dashboard sidebar links end */}
             {/* logo start */}
             <Link to="/">
-              <img src={NavLogo} alt="" className="w-2/3 md:w-1/2 p-2" />
+              <img src={NavLogo} alt="Logo" className="w-2/3 md:w-1/2 p-2" />
             </Link>
             {/* logo end */}
           </div>
@@ -103,12 +106,14 @@ const Navbar = () => {
                   </>
                 )}
 
-                <MobileNavDropDown>
-                  <img
-                    src={profilePicture}
-                    className="w-10 h-10 object-cover rounded-full border-2 border-primary"
-                  />
-                </MobileNavDropDown>
+                {role && (
+                  <MobileNavDropDown>
+                    <img
+                      src={profilePicture}
+                      className="w-10 h-10 object-cover rounded-full border-2 border-primary"
+                    />
+                  </MobileNavDropDown>
+                )}
               </div>
             )}
             {/* mobile nav */}
@@ -116,8 +121,8 @@ const Navbar = () => {
               <MobileNavDropDown>
                 <GiHamburgerMenu size={30} />
               </MobileNavDropDown>
-              // mobile nav end
             )}
+            {/* mobile nav end */}
           </div>
         </div>
       </Container>

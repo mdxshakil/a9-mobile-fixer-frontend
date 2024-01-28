@@ -29,7 +29,7 @@ const AllEventsPage = () => {
   return (
     <Fade>
       <div>
-        <div className="p-2">{content}</div>
+        <div className="mt-3">{content}</div>
       </div>
     </Fade>
   );

@@ -12,14 +12,14 @@ const FeatureLeft = ({ title, description, iconAlignment }: IProps) => {
       >
         <div>
           <h2
-            className={`text-center md:text-${
+            className={`text-center text-accent md:text-${
               iconAlignment === "start" ? "left" : "right"
             } font-bold text-xl`}
           >
             {title}
           </h2>
           <p
-            className={`text-center md:text-${
+            className={`text-center text-sm md:text-${
               iconAlignment === "start" ? "left" : "right"
             }`}
           >

@@ -1,3 +1,4 @@
+import moment from "moment";
 import { IReview } from "../../interface";
 import { useGetAllReviewQuery } from "../../redux/features/review/reviewApi";
 import LoadingSpinner from "../Loader/LoadingSpinner";
@@ -18,26 +19,23 @@ const Reviews = ({ serviceId }: { serviceId: string }) => {
     content = reviews?.data?.map((review: IReview) => (
       <div key={review?.id} className="chat chat-start">
         <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
+          <div className="w-8 rounded-full">
             <img src={review.profile.profilePicture} />
           </div>
         </div>
-        <div className="chat-header">{review.profile.firstName}</div>
-        <div className="chat-bubble bg-gray-300 text-gray-600">
-          {review.comment}
+        <div className="chat-header text-xs">
+          <span className="text-accent/50"> {review.profile.firstName}</span>
+          <span className="ml-6 text-primary">
+            {moment(review?.createdAt).startOf("hour").fromNow()}
+          </span>
         </div>
-        <div className="chat-footer opacity-50 text-xs">
-          {review.createdAt.toLocaleString()}
+        <div className="chat-bubble bg-white border text-accent text-sm">
+          {review.comment}
         </div>
       </div>
     ));
   }
-  return (
-    <>
-      <p className="text-xl font-bold">Reviews</p>
-      {content}
-    </>
-  );
+  return <div className="mt-3">{content}</div>;
 };
 
 export default Reviews;

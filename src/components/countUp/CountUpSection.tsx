@@ -16,25 +16,25 @@ const CountUpSection = () => {
       onEnter={() => setCounterOn(true)}
       onExit={() => setCounterOn(false)}
     >
-      <div>
-        <div className="stats stats-vertical lg:stats-horizontal shadow w-full text-center mt-12">
+      <div className="px-4 md:px-8">
+        <div className="stats stats-vertical lg:stats-horizontal shadow w-full text-center">
           <div className="stat">
             <div className="stat-title">Total Services</div>
-            <div className="stat-value text-primary">
+            <div className="stat-value text-accent">
               {counterOn && <CountUp start={100} end={serviceCount} />}
             </div>
           </div>
 
           <div className="stat">
             <div className="stat-title">Trusted Clients</div>
-            <div className="stat-value text-primary">
+            <div className="stat-value text-accent">
               {counterOn && <CountUp start={100} end={userCount} />}
             </div>
           </div>
 
           <div className="stat">
             <div className="stat-title">Completed Orders</div>
-            <div className="stat-value text-primary">
+            <div className="stat-value text-accent">
               {counterOn && <CountUp start={100} end={orderCount} />}
             </div>
           </div>

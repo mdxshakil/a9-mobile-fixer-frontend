@@ -3,6 +3,7 @@ import HeroImage from "../assets/hero-image.jpg";
 import { useState, FormEvent } from "react";
 import { Fade } from "react-awesome-reveal";
 import { FaSearch } from "react-icons/fa";
+import CountUpSection from "./countUp/CountUpSection";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
@@ -27,9 +28,15 @@ const Header = () => {
         <div className="w-[200px] md:w-[400px] h-[100px] md:h-[150px] rounded-full bg-primary absolute -z-10 top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[90px] opacity-75"></div>
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="max-w-4xl mx-auto mb-4 text-3xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
-              The best <span className="text-primary">mobile </span>
-              service provider in town
+            <h1 className="max-w-4xl mx-auto mb-4 text-3xl font-bold text-gray-900 sm:text-5xl lg:text-6xl tracking-wide">
+              The best{" "}
+              <span className="text-primary border border-primary rounded-lg shadow-md">
+                mobile{" "}
+              </span>
+              repair service provider in{" "}
+              <span className="border border-primary text-primary rounded-lg shadow-md">
+                town
+              </span>
             </h1>
             <p className="max-w-2xl mx-auto px-3 md:px-6 text-sm md:text-base font-inter">
               Offering unparalleled mobile services that set new standards in
@@ -72,6 +79,9 @@ const Header = () => {
               />
             </div>
           </div>
+        </div>
+        <div className="-mt-10 z-30 w-full px-8">
+          <CountUpSection />
         </div>
       </section>
     </Fade>

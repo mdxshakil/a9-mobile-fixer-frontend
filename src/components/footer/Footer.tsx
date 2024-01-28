@@ -1,4 +1,6 @@
 import TestimonialForm from "./TestimonialForm";
+import Logo from "../../assets/nav-logo.svg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,18 +9,18 @@ const Footer = () => {
         <div className="lg:grid lg:grid-cols-2">
           <div className="border-b border-gray-100 py-8 lg:order-last lg:border-b-0 lg:border-s lg:py-16 lg:ps-16">
             <div className="block text-teal-600 lg:hidden">
-              <button className="btn btn-ghost text-2xl text-primary font-mono ">
-                iRepair
-              </button>
+              <Link to="/">
+                <img src={Logo} alt="Logo" className="w-1/3" />
+              </Link>
             </div>
             <TestimonialForm />
           </div>
 
           <div className="py-8 lg:py-16 lg:pe-16">
             <div className="hidden text-teal-600 lg:block">
-              <button className="btn btn-ghost text-primary text-2xl font-mono">
-                irepair
-              </button>
+              <Link to="/">
+                <img src={Logo} alt="Logo" className="w-1/3" />
+              </Link>
             </div>
 
             <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">

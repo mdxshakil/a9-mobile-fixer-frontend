@@ -30,7 +30,7 @@ const OurLocationSection = () => {
   });
   return (
     <Fade>
-      <div className="container py-12 md:py-18 mx-auto px-3 md:px-6 min-h-screen">
+      <div className="container py-12 md:py-18 mx-auto md:min-h-screen">
         <section className="text-center">
           <SectionTitle
             title="Visit Our Branches"

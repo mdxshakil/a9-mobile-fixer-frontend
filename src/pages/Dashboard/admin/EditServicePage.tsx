@@ -8,7 +8,6 @@ import { serviceCategories } from "../../../constants";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
-import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
 import { uploadImageToCloudinary } from "../../../utils/imageUploader";
 
 export const EditServicePage = () => {
@@ -62,10 +61,6 @@ export const EditServicePage = () => {
     }
   }, [editState, navigate]);
 
-  if (isLoading || editState.isLoading || loading) {
-    return <LoadingSpinner />;
-  }
-
   return (
     <div className="flex justify-center items-center h-screen mt-6">
       <div className="bg-primary-100 rounded-lg p-8 shadow-lg w-full md:w-1/2">
@@ -74,7 +69,7 @@ export const EditServicePage = () => {
         </h1>
         <form onSubmit={handleSubmit(handleServiceEdit)}>
           <div className="mb-4">
-            <label htmlFor="title" className="text-primary-text">
+            <label htmlFor="title" className="text-accent">
               Title
             </label>
             <input
@@ -86,7 +81,7 @@ export const EditServicePage = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="description" className="text-primary-text">
+            <label htmlFor="description" className="text-accent">
               Description
             </label>
             <textarea
@@ -98,7 +93,7 @@ export const EditServicePage = () => {
 
             <div className="flex items-center gap-3">
               <div className="mb-4">
-                <label htmlFor="title" className="text-primary-text">
+                <label htmlFor="title" className="text-accent">
                   Cost
                 </label>
                 <input
@@ -160,7 +155,7 @@ export const EditServicePage = () => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Service Image</span>
+                <span className="label-text text-accent">Service Image</span>
               </label>
               <input
                 type="file"
@@ -175,8 +170,11 @@ export const EditServicePage = () => {
             <button
               type="submit"
               className={`btn btn-primary px-4 py-2 rounded-lg w-full text-white`}
+              disabled={isLoading || editState.isLoading || loading}
             >
-              Submit
+              {isLoading || editState.isLoading || loading
+                ? "Please wait...."
+                : "Submit"}
             </button>
           </div>
         </form>

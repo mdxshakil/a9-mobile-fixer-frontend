@@ -6,11 +6,13 @@ import ErrorElement from "../components/shared/ErrorElement";
 import useGetUserFromStore from "../hooks/useGetUser";
 import ReviewForm from "../components/serviceDetails/ReviewForm";
 import Reviews from "../components/serviceDetails/Reviews";
-import ActionButtons from "../components/serviceDetails/ActionButtons";
-import Statistics from "../components/serviceDetails/Statistics";
 import ServiceImage from "../components/serviceDetails/ServiceImage";
 import Header from "../components/serviceDetails/Header";
 import { useCheckRatingGivenOrNotQuery } from "../redux/features/rating/ratingApi";
+import { calculateAvgRating } from "../utils/calculateAvgRating";
+import { IRating } from "../interface";
+import { FaStar } from "react-icons/fa";
+import ActionButtons from "../components/serviceDetails/ActionButtons";
 
 const ServiceDetailsPage = () => {
   const { serviceId } = useParams();
@@ -21,7 +23,7 @@ const ServiceDetailsPage = () => {
     isLoading,
     isError,
   } = useGetServiceByIdQuery(serviceId);
-  const { image, title, cost, description, slotsPerDay, category } =
+  const { image, title, cost, description, slotsPerDay, category, ratings } =
     service?.data || {};
 
   //check if user already submitted a rating or not for the service
@@ -38,6 +40,8 @@ const ServiceDetailsPage = () => {
     return <ErrorElement message="Failed to retrive service info" />;
   }
 
+  const rating = calculateAvgRating(ratings as [IRating]);
+
   return (
     <div>
       <div className="bg-gray-100 py-8">
@@ -45,30 +49,60 @@ const ServiceDetailsPage = () => {
           <div className="flex flex-col md:flex-row -mx-4 items-center">
             <div className="md:flex-1 px-4">
               <ServiceImage image={image} />
-              {role === "user" && (
-                <ActionButtons
-                  profileId={profileId}
-                  serviceId={serviceId as string}
-                />
-              )}
             </div>
             <div className="md:flex-1 px-4">
-              <Header title={title} description={description} />
-              <Statistics
-                cost={cost}
-                slotsPerDay={slotsPerDay}
-                category={category}
-              />
-              {!checkRating?.data?.ratingValue ? (
-                <RatingStar
-                  profileId={profileId}
-                  serviceId={serviceId as string}
-                />
-              ) : (
-                <p className="font-bold">
-                  Your rating: {checkRating?.data?.ratingValue}
-                </p>
-              )}
+              <div className="flex justify-between flex-col gap-3">
+                <span className="badge badge-outline badge-primary badge-lg">
+                  {category}
+                </span>
+                <Header title={title} description={description} />
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center">
+                    {Array.from({ length: rating }).map((_rating, i) => (
+                      <FaStar key={i} className="text-yellow-300" />
+                    ))}
+                    {rating === 0 &&
+                      Array.from({ length: 5 }).map((_rating, i) => (
+                        <FaStar key={i} className="text-gray-300" />
+                      ))}
+                  </div>
+                  <p>
+                    <span className="text-primary">{rating}</span>
+                    {"  "}
+                    <span className="text-sm">
+                      ({ratings?.length}{" "}
+                      {ratings?.length > 1 ? "reviews" : "review"})
+                    </span>
+                  </p>
+                </div>
+                {!checkRating?.data?.ratingValue ? (
+                  <RatingStar
+                    profileId={profileId}
+                    serviceId={serviceId as string}
+                  />
+                ) : (
+                  <p className="font-bold text-accent flex items-center">
+                    My rating: {checkRating?.data?.ratingValue}
+                    <FaStar className="text-yellow-300" />
+                  </p>
+                )}
+                {/* footer */}
+                <div className="flex items-center justify-between mt-6">
+                  <p className="text-primary font-bold text-3xl">
+                    Slots: {slotsPerDay}
+                  </p>
+                  <p className="text-primary font-bold text-3xl">
+                    &#2547;{cost}
+                  </p>
+                  {role === "user" && (
+                    <ActionButtons
+                      profileId={profileId}
+                      serviceId={serviceId as string}
+                    />
+                  )}
+                </div>
+                {/* footer end */}
+              </div>
             </div>
           </div>
         </div>

@@ -35,20 +35,23 @@ const EventCard = ({ event }: { event: IEvent }) => {
       toast.error("Action failed.Try again");
     }
   }, [deleteEventState, changeState]);
+
   return (
-    <div className="card bg-base-100 shadow-xl image-full">
+    <div className="card image-full">
       <figure>
-        <img src={banner} alt="Shoes" />
+        <img src={banner} alt="Event" />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-[14px] md:text-[20px]">
           <span>{title}</span>
           <span
-            className={`badge badge-sm md:badge-md ${
+            className={`badge badge-sm md:badge-md text-accent ${
               status === "upcoming" ? "badge-primary" : "badge-error"
             }`}
           >
-            {status}
+            {new Date().getTime() < new Date(eventDate).getTime()
+              ? status
+              : "Ended"}
           </span>
         </h2>
         <p className=" text-xs md:text-sm">

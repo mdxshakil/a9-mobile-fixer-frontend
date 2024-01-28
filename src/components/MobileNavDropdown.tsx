@@ -35,7 +35,9 @@ const MobileNavDropDown = ({ children }: { children: ReactElement }) => {
   };
 
   return (
-    <div className="dropdown dropdown-end ml-3 z-50 md:hidden">
+    <div
+      className={`dropdown dropdown-end ml-3 z-50 ${!role ? "md:hidden" : ""}`}
+    >
       <div className="flex gap-3 items-center">
         <label
           tabIndex={0}

@@ -19,7 +19,7 @@ const AllServicesPage = () => {
 
   const { data: services, isLoading } = useGetAllServiceQuery({
     page,
-    limit: 6,
+    limit: 8,
     sortBy: "cost",
     sortOrder,
     searchTerm: debouncedSearchTerm,
@@ -81,7 +81,7 @@ const AllServicesPage = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center py-6 px-3 items-stretch">
         {services?.data?.data?.map((service: IService) => (
           <ServiceCard key={service.id} service={service} />
         ))}

@@ -1,5 +1,4 @@
 import { Fade } from "react-awesome-reveal";
-import BlogCard from "../components/BlogCard";
 import LoadingSpinner from "../components/Loader/LoadingSpinner";
 import PaginationButton from "../components/pagination/PaginationButton";
 import ErrorElement from "../components/shared/ErrorElement";
@@ -7,6 +6,7 @@ import NoContantFound from "../components/shared/NoContantFound";
 import { IBlog } from "../interface";
 import { useGetAllBlogsQuery } from "../redux/features/blog/blogApi";
 import { useState, FormEvent } from "react";
+import LatestNewsCard from "../components/latestNews/LatestNewsCard";
 
 export const AllBlogsPage = () => {
   const [page, setPage] = useState(1);
@@ -43,14 +43,15 @@ export const AllBlogsPage = () => {
     content = (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {blogs?.data?.data.map((blog: IBlog) => (
-          <BlogCard key={blog.id} blog={blog} />
+          // <BlogCard key={blog.id} blog={blog} />
+          <LatestNewsCard key={blog.id} blog={blog} />
         ))}
       </div>
     );
   }
   return (
     <Fade>
-      <div>
+      <div className="px-3">
         <div className="my-3 flex justify-center">
           {/* sort users - createdAt*/}
           <select
@@ -64,7 +65,9 @@ export const AllBlogsPage = () => {
             <option value={"desc"}>Latest</option>
           </select>
         </div>
-        <p>Total blogs: {blogs?.data?.meta?.total}</p>
+        <p className="text-accent font-semibold">
+          Total blogs: {blogs?.data?.meta?.total}
+        </p>
         <div>{content}</div>
         <div>
           <PaginationButton

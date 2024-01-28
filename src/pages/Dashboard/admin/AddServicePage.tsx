@@ -51,12 +51,12 @@ export const AddServicePage = () => {
         </h1>
         <form onSubmit={handleSubmit(handleAddService)}>
           <div className="mb-4">
-            <label htmlFor="title" className="text-primary-text">
+            <label htmlFor="title" className="text-accent">
               Title
             </label>
             <input
               type="text"
-              className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
+              className="w-full p-2 rounded-lg focus:outline-none input input-bordered"
               {...register("title", {
                 required: true,
               })}
@@ -67,11 +67,11 @@ export const AddServicePage = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="description" className="text-primary-text">
+            <label htmlFor="description" className="text-accent">
               Description
             </label>
             <textarea
-              className="w-full p-2 rounded-lg textarea textarea-primary focus:outline-none"
+              className="w-full p-2 rounded-lg textarea textarea-bordered focus:outline-none"
               rows={3}
               {...register("description", {
                 required: true,
@@ -85,12 +85,12 @@ export const AddServicePage = () => {
 
             <div className="flex items-center gap-3">
               <div className="mb-4">
-                <label htmlFor="title" className="text-primary-text">
+                <label htmlFor="title" className="text-accent">
                   Cost
                 </label>
                 <input
                   type="number"
-                  className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
+                  className="w-full p-2 rounded-lg focus:outline-none input input-bordered"
                   {...register("cost", {
                     required: true,
                   })}
@@ -168,7 +168,7 @@ export const AddServicePage = () => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Service Image</span>
+                <span className="label-text text-accent">Service Image</span>
               </label>
               <input
                 type="file"
@@ -188,12 +188,10 @@ export const AddServicePage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full ${
-                loading || isLoading ? "loading-bars" : ""
-              }`}
+              className="btn btn-primary text-accent font-bold px-4 py-2 rounded-lg w-full"
               disabled={loading || isLoading}
             >
-              Submit
+              {loading || isLoading ? "Please wait...." : "Submit"}
             </button>
           </div>
         </form>

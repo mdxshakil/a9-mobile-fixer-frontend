@@ -6,7 +6,7 @@ import SectionTitle from "../SectionTitle";
 
 const WhyChooseUs = () => {
   return (
-    <div className="container py-12 md:py-18 mx-auto px-3 md:px-6">
+    <div className="container py-12 md:py-18 mx-auto md:px-6">
       <section>
         <Fade>
           <SectionTitle
