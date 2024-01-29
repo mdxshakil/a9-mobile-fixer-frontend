@@ -7,6 +7,8 @@ import { IService } from "../interface";
 import { useGetAllServiceQuery } from "../redux/features/service/serviceApi";
 import { useState, useEffect } from "react";
 import { useDebounce } from "../hooks/useDebounce";
+import ErrorElement from "../components/shared/ErrorElement";
+import NoContantFound from "../components/shared/NoContantFound";
 
 const AllServicesPage = () => {
   const [page, setPage] = useState(1);
@@ -17,7 +19,11 @@ const AllServicesPage = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("searchText");
 
-  const { data: services, isLoading } = useGetAllServiceQuery({
+  const {
+    data: services,
+    isLoading,
+    isError,
+  } = useGetAllServiceQuery({
     page,
     limit: 8,
     sortBy: "cost",
@@ -35,8 +41,21 @@ const AllServicesPage = () => {
   const isPreviousButtonDisabled = page === 1;
   const isNextButtonDisabled = page === services?.data?.meta?.pageCount;
 
+  let content;
   if (isLoading) {
     return <LoadingSpinner />;
+  } else if (!isLoading && isError) {
+    content = <ErrorElement message="Failed to load services." />;
+  } else if (!isLoading && !isError && services?.data?.data?.length === 0) {
+    content = <NoContantFound message="No services available" />;
+  } else if (!isLoading && !isError && services?.data?.data?.length > 0) {
+    content = (
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center py-6 px-3 items-stretch">
+        {services?.data?.data?.map((service: IService) => (
+          <ServiceCard key={service.id} service={service} />
+        ))}
+      </div>
+    );
   }
 
   return (
@@ -75,17 +94,15 @@ const AllServicesPage = () => {
             <option disabled selected>
               Category
             </option>
-            {serviceCategories.map((cat,index) => (
-              <option key={index} value={cat.value}>{cat.label}</option>
+            {serviceCategories.map((cat, index) => (
+              <option key={index} value={cat.value}>
+                {cat.label}
+              </option>
             ))}
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center py-6 px-3 items-stretch">
-        {services?.data?.data?.map((service: IService) => (
-          <ServiceCard key={service.id} service={service} />
-        ))}
-      </div>
+      {content}
       <PaginationButton
         setPage={setPage}
         isPreviousButtonDisabled={isPreviousButtonDisabled}

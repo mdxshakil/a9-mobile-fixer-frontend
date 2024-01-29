@@ -41,7 +41,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
         {/* header start */}
         <div>
           <img
-            className="h-32 w-full rounded-t-lg object-cover"
+            className="h-24 md:h-32 w-full rounded-t-lg object-cover"
             src={image}
             alt="product image"
           />
@@ -51,33 +51,39 @@ const ServiceCard = ({ service }: { service: IService }) => {
             </span>
           )}
           <div className="mt-2 pb-2 px-3">
-            <h2 className="card-title hover:underline hover:text-primary text-xl font-semibold tracking-tight text-accent">
+            <h2 className="card-title hover:underline hover:text-primary text-xs  md:text-xl font-semibold tracking-tight text-accent">
               {status !== "upcoming" ? (
                 <Link to={`/service/${id}`}>{title}</Link>
               ) : (
                 <span>{title}</span>
               )}
             </h2>
-            <div className="mt-2.5 mb-5 flex items-center justify-between">
-              <div className="flex">
-                <span className="mr-2 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">
+            <div className="mt-2.5 mb-0 md:mb-5 flex items-center justify-between gap-2">
+              <div className="flex items-start md:items-center md:flex-row flex-col">
+                <span className="mr-2 rounded bg-yellow-200 px-1 md:px-2.5 text-xs font-semibold">
                   {rating || 0}.0
                 </span>
-                {Array.from({ length: rating }).map((_rating, i) => (
-                  <FaStar key={i} className="text-yellow-300" />
-                ))}
+                <div className="flex">
+                  {Array.from({ length: rating }).map((_rating, i) => (
+                    <FaStar key={i} className="text-yellow-300 md:text-lg text-[10px]" />
+                  ))}
+                </div>
               </div>
-              <p className="badge badge-outline badge-primary">{category}</p>
+              <p className="badge badge-outline badge-primary md:badge-md badge-xs text-[10px] md:text-[14px] md:py-0 py-2">
+                {category}
+              </p>
             </div>
           </div>
         </div>
         {/* header end */}
         {/* footer */}
         <div className="flex items-center justify-between px-3">
-          <p className="text-2xl font-bold text-accent">&#2547;{cost}</p>
+          <p className="text-xs md:text-2xl font-bold text-accent">
+            &#2547;{cost}
+          </p>
           {(!role || role === "user") && status !== "upcoming" && (
             <button
-              className="btn btn-ghost text-primary flex items-center gap-1 rounded-md hover:bg-transparent hover:text-accent disabled:bg-transparent"
+              className="btn btn-ghost text-primary flex items-center gap-1 rounded-md hover:bg-transparent hover:text-accent disabled:bg-transparent btn-xs text-[8px] md:text-sm"
               onClick={handleAddToCart}
               disabled={isLoading}
             >

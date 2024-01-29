@@ -22,7 +22,7 @@ const FeedBackSection = () => {
               <div className="container w-full px-4">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-2/3 px-4">
-                    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-base-200">
+                    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg bg-base-200">
                       <div className="flex-auto p-5 lg:p-10">
                         <h4 className="text-2xl mb-4 text-accent font-semibold">
                           Have a Question or suggestion?

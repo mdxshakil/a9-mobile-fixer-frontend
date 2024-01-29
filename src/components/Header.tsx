@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <Fade>
-      <section className="pb-2 md:pb-18 sm:pt-16 min-h-[80vh] md:min-h-screen flex flex-col items-center justify-center relative">
+      <section className="pb-2 md:pb-18 sm:pt-16 min-h-screen flex flex-col items-center justify-center relative sm:mt-6">
         <div className="w-[200px] md:w-[400px] h-[100px] md:h-[150px] rounded-full bg-primary absolute -z-10 top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[90px] opacity-75"></div>
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
