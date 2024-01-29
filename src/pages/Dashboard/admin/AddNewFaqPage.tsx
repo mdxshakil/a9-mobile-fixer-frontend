@@ -27,9 +27,9 @@ const AddNewFaqPage = () => {
   }, [isError, isSuccess, error, navigate]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="rounded-lg p-8 shadow-lg w-full md:w-1/3">
-        <h1 className="text-3xl font-bold text-center text-primary-text mb-4">
+    <div className="flex justify-center items-center">
+      <div className="rounded-lg p-8 w-full md:w-1/3">
+        <h1 className="text-3xl font-bold text-center text-accent mb-4">
           Add new FAQ
         </h1>
         <form onSubmit={handleAddNewFaq}>
@@ -66,10 +66,10 @@ const AddNewFaqPage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full text-white ${isLoading && "loading-bars"}`}
+              className="btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full text-accent"
               disabled={isLoading}
             >
-              Submit
+              {isLoading ? "Please wait..." : "Submit"}
             </button>
           </div>
         </form>

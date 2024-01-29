@@ -12,6 +12,7 @@ import PaginationButton from "../../../components/pagination/PaginationButton";
 import { IBlog } from "../../../interface";
 import toast from "react-hot-toast";
 import { deleteConfirmationModal } from "../../../utils/deleteConfirmationModal";
+import SectionTitle from "../../../components/SectionTitle";
 
 const ManageBlogsPage = () => {
   const [page, setPage] = useState(1);
@@ -43,16 +44,12 @@ const ManageBlogsPage = () => {
 
   useEffect(() => {
     if (deleteBlogState.isSuccess) {
-      toast.success("Action succed!");
+      toast.success("Blog deleted!");
     }
     if (deleteBlogState.isError) {
-      toast.error("Action failed.Try again");
+      toast.error("Failed to delete blog");
     }
   }, [deleteBlogState]);
-
-  if (deleteBlogState.isLoading) {
-    return <LoadingSpinner />;
-  }
 
   let content;
   if (isLoading) {
@@ -89,7 +86,9 @@ const ManageBlogsPage = () => {
                       </button>
                     </Link>
                     <button
-                      className="btn btn-xs btn-ghost btn-error"
+                      className={`btn btn-xs btn-ghost ${
+                        deleteBlogState.isLoading && "loading"
+                      }`}
                       onClick={() => handleBlogDelete(blog.id)}
                     >
                       <FaTrash size={20} />
@@ -105,17 +104,19 @@ const ManageBlogsPage = () => {
   }
 
   return (
-    <div>
-      <div className="py-3 px-3">
+    <div className="p-3">
+      <SectionTitle title="Manage Blogs" titleClasses="text-xl" />
+
+      <div className="mb-3">
         <Link to="/dashboard/add-new-blog">
-          <button className="btn btn-sm btn-primary text-white">
-            Add New Blog <FaPlus />{" "}
+          <button className="btn btn-xs md:btn-sm btn-primary text-accent">
+            Add Blog <FaPlus />{" "}
           </button>
         </Link>
       </div>
 
       <div>
-        <div className="my-3 flex justify-center">
+        <div>
           {/* sort users - createdAt*/}
           <select
             className="select"

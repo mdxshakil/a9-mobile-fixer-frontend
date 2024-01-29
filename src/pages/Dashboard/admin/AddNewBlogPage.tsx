@@ -3,7 +3,7 @@ import { useAddNewBlogMutation } from "../../../redux/features/blog/blogApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useGetUserFromStore from "../../../hooks/useGetUser";
-import LoadingSpinner from "../../../components/Loader/LoadingSpinner";
+
 export const AddNewBlogPage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -29,13 +29,9 @@ export const AddNewBlogPage = () => {
     }
   }, [isError, isSuccess, error, navigate]);
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="rounded-lg p-8 shadow-lg w-full md:w-1/3">
+    <div className="flex justify-center items-center mt-3">
+      <div className="rounded-lg px-3 w-full md:w-1/3">
         <h1 className="text-3xl font-bold text-center text-primary-text mb-4">
           Add new blog
         </h1>
@@ -73,12 +69,10 @@ export const AddNewBlogPage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full text-white ${
-                isLoading ? "loading-infinity" : ""
-              }`}
+              className="btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full text-accent"
               disabled={isLoading}
             >
-              Submit
+              {isLoading ? "Please wait..." : "Submit"}
             </button>
           </div>
         </form>

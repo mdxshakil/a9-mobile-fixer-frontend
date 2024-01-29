@@ -7,7 +7,7 @@ function greetingTime() {
   } else if (currentHour >= 12 && currentHour < 17) {
     return "Good afternoon ☀️";
   } else {
-    return "Good evening 🌃";
+    return "Good evening 🌙";
   }
 }
 export default greetingTime;

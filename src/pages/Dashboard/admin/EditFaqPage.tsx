@@ -48,9 +48,9 @@ const EditFaqPage = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="bg-primary-100 rounded-lg p-8 shadow-lg w-full md:w-1/3 bg-base-300">
-        <h1 className="text-3xl font-bold text-center text-primary-text mb-4">
+    <div className="flex justify-center items-center">
+      <div className="rounded-lg p-8 w-full md:w-1/3">
+        <h1 className="text-3xl font-bold text-center text-accent mb-4">
           Edit Faq
         </h1>
         <form onSubmit={handleEditFaq}>
@@ -63,7 +63,7 @@ const EditFaqPage = () => {
               id="title"
               name="title"
               value={question}
-              className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
+              className="w-full p-2 rounded-lg focus:outline-none input input-bordered"
               required
               onChange={(e) => setQuestion(e.target.value)}
             />
@@ -76,7 +76,7 @@ const EditFaqPage = () => {
             <textarea
               id="description"
               name="description"
-              className="w-full p-2 rounded-lg textarea textarea-primary focus:outline-none"
+              className="w-full p-2 rounded-lg textarea textarea-bordered focus:outline-none"
               rows={4}
               required
               value={answer}
@@ -87,12 +87,10 @@ const EditFaqPage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full ${
-                editState.isLoading ? "loading-infinity" : ""
-              }`}
+              className="btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full"
               disabled={editState.isLoading}
             >
-              Submit
+              {editState.isLoading ? "Please wait..." : "Submit"}
             </button>
           </div>
         </form>

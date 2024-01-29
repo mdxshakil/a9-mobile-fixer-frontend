@@ -169,7 +169,7 @@ export const EditServicePage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg w-full text-white`}
+              className={`btn btn-primary px-4 py-2 rounded-lg w-full text-accent`}
               disabled={isLoading || editState.isLoading || loading}
             >
               {isLoading || editState.isLoading || loading

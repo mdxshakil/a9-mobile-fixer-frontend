@@ -19,19 +19,19 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="py-12 px-6 grid place-items-center shadow-lg rounded-lg bg-base-200">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 shadow-lg place-items-center">
+    <div className="py-12 px-6 grid place-items-center rounded-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 place-items-center">
         <div>
           <img
             src={profilePicture}
             alt={firstName}
-            className="h-[50vh] md:h-screen object-cover p-3"
+            className="h-[50vh] object-cover rounded-lg"
           />
         </div>
         <div className="p-3 md:p-0">
           <div>
             <p>Hello,</p>
-            <h1 className="sm:text-4xl md:text-6xl font-bold">
+            <h1 className="sm:text-4xl md:text-6xl font-bold text-accent">
               {firstName + " " + lastName}
             </h1>
             <p className="tracking-widest font-semibold">{greetingTime()}</p>
@@ -45,7 +45,7 @@ const ProfilePage = () => {
                 <p>Phone: {contactNo}</p>
               </div>
               <Link to={"/dashboard/edit-profile"}>
-                <button className="btn btn-sm btn-primary text-white my-2">
+                <button className="btn btn-sm btn-primary text-accent my-2">
                   Edit Profile <AiFillEdit />
                 </button>
               </Link>

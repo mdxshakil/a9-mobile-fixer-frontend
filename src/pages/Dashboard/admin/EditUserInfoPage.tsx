@@ -80,7 +80,7 @@ const EditUserInfoPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-12">
+    <div className="flex flex-col items-center justify-center mt-3">
       <h1 className="text-2xl font-bold">Edit User's Profile info</h1>
       <form
         className="flex flex-col"
@@ -135,10 +135,10 @@ const EditUserInfoPage = () => {
 
         <div className="form-control mt-6">
           <button
-            className={`btn btn-primary text-white`}
+            className={`btn btn-primary text-accent`}
             disabled={editProfileState.isLoading}
           >
-            Submit
+            {editProfileState.isLoading ? "Please wait..." : "Submit"}
           </button>
         </div>
       </form>

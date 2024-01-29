@@ -87,10 +87,10 @@ const TestimonialForm = () => {
           />
           <button
             type="submit"
-            className={`btn btn-ghost p-0 hover:bg-transparent ${
-              role !== "user" || !isPurchased ? "cursor-not-allowed" : ""
-            } ${isLoading ? "loading-bars" : ""}`}
-            disabled={isLoading}
+            className={`btn btn-ghost p-0 hover:bg-transparent disabled:bg-transparent ${
+              isLoading ? "loading" : ""
+            }`}
+            disabled={isLoading || role !== "user" || !isPurchased}
           >
             <AiOutlineSend className="text-accent text-3xl hover:text-primary" />
           </button>

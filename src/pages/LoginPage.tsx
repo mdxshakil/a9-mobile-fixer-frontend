@@ -69,9 +69,9 @@ const LoginPage = () => {
 
   return (
     <>
-      <section className="min-h-screen">
-        <div className="container h-full px-6 py-24">
-          <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+      <section className="flex items-center justify-center min-h-screen">
+        <div className="container h-full px-6">
+          <div className="flex h-full flex-wrap items-center justify-center lg:justify-between">
             {/* Left column  */}
             <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
               <img src={LoginImage} className="w-full" alt="Login image" />
@@ -80,7 +80,7 @@ const LoginPage = () => {
             {/*  Right column */}
             <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
               <div className="mb-6">
-                <h2 className="text-accent font-bold text-lg md:text-3xl tracking-wider">
+                <h2 className="text-accent font-bold text-lg md:text-3xl tracking-wide md:tracking-wider">
                   Sign in to unlock the best of{" "}
                   <span className="text-primary">iRepair</span>
                 </h2>

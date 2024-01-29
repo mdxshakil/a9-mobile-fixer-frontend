@@ -141,7 +141,7 @@ const ConfirmBookingPage = () => {
                 scheduled.
               </p>
               <button
-                className="btn btn-primary btn-sm md:btn-md w-full text-white"
+                className="btn btn-primary btn-sm md:btn-md w-full text-accent"
                 onClick={handleBooking}
                 disabled={
                   !bookingTime || isError || isLoading || confirmState.isLoading

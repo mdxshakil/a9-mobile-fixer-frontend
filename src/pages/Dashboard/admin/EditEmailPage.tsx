@@ -49,9 +49,9 @@ export const EditEmailPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-12">
-      <h1 className="text-2xl font-bold">Edit User's Email address</h1>
-      <form className="card-body" onSubmit={handleEmailEdit}>
+    <div className="flex flex-col items-center justify-center mt-3 px-3">
+      <h1 className="text-lg md:text-2xl font-bold text-center">Edit User's Email address</h1>
+      <form className="mt-3" onSubmit={handleEmailEdit}>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -79,14 +79,12 @@ export const EditEmailPage = () => {
         </div>
         <div className="form-control mt-6">
           <button
-            className={`btn btn-primary text-white ${
-              editEmailStatus.isLoading ? "loading-infinity" : ""
-            }`}
+            className="btn btn-primary text-accent"
             disabled={
               editEmailStatus.isLoading || emailValidationMessage.length > 0
             }
           >
-            Submit
+            {editEmailStatus.isLoading ? "Please wait..." : "Submit"}
           </button>
         </div>
       </form>

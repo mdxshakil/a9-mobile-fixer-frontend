@@ -11,6 +11,7 @@ import {
 } from "../../../redux/features/testimonial/testimonialApi";
 import { deleteConfirmationModal } from "../../../utils/deleteConfirmationModal";
 import toast from "react-hot-toast";
+import SectionTitle from "../../../components/SectionTitle";
 
 const ManageTestimonialsPage = () => {
   const [page, setPage] = useState(1);
@@ -93,7 +94,7 @@ const ManageTestimonialsPage = () => {
                     {!testimonial.isApproved ? (
                       <button
                         className={`btn btn-xs btn-success ${
-                          approveState.isLoading ? "loading-bars" : ""
+                          approveState.isLoading ? "loading" : ""
                         }`}
                         onClick={() =>
                           handleApproveTestimonial(testimonial.id, "approve")
@@ -105,7 +106,7 @@ const ManageTestimonialsPage = () => {
                     ) : (
                       <button
                         className={`btn btn-xs btn-warning ${
-                          approveState.isLoading ? "loading-bars" : ""
+                          approveState.isLoading ? "loading" : ""
                         }`}
                         onClick={() =>
                           handleApproveTestimonial(testimonial.id, "un_approve")
@@ -133,8 +134,9 @@ const ManageTestimonialsPage = () => {
 
   return (
     <div className="p-3">
+      <SectionTitle title="Manage Testimonials" titleClasses="text-xl" />
       <div>
-        <div className="my-3 flex justify-center">
+        <div>
           {/* sort feedbacks - createdAt*/}
           <select
             className="select"
@@ -147,7 +149,9 @@ const ManageTestimonialsPage = () => {
             <option value={"desc"}>Added last</option>
           </select>
         </div>
-        <p>Total testimonials: {testimonials?.data?.meta?.total}</p>
+        <p className="text-primary text-sm md:text-lg">
+          Total testimonials: {testimonials?.data?.meta?.total}
+        </p>
         <div className="overflow-x-auto">{content}</div>
         <div>
           <PaginationButton

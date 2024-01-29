@@ -77,8 +77,8 @@ const EditProfilePage = () => {
   }, [editProfileState, navigate]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-2">
-      <h1 className="text-2xl font-bold">Edit Profile info</h1>
+    <div className="flex flex-col items-center justify-center px-3 mt-6 md:mt-12">
+      <h1 className="text-2xl text-accent font-bold mb-3">Edit Profile info</h1>
       <form
         className="flex-felx-col"
         onSubmit={handleSubmit(handleEditProfile)}
@@ -132,12 +132,10 @@ const EditProfilePage = () => {
 
         <div className="form-control mt-6">
           <button
-            className={`btn btn-primary text-white${
-              editProfileState.isLoading || loading ? "loading-bars" : ""
-            }`}
+            className="btn btn-primary text-accent"
             disabled={editProfileState.isLoading || loading}
           >
-            Submit
+            {loading || editProfileState.isLoading ? "Please wait" : " Submit"}
           </button>
         </div>
       </form>

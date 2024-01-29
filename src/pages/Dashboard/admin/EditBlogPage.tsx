@@ -48,35 +48,31 @@ export const EditBlogPage = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="bg-primary-100 rounded-lg p-8 shadow-lg w-full md:w-1/3 bg-base-300">
+    <div className="flex justify-center items-center mt-3">
+      <div className="rounded-lg px-3 w-full md:w-1/3">
         <h1 className="text-3xl font-bold text-center text-primary-text mb-4">
-          edit blog
+          Edit blog
         </h1>
         <form onSubmit={handleEditBlog}>
           <div className="mb-4">
-            <label htmlFor="title" className="text-primary-text">
-              Title
-            </label>
+            <label htmlFor="title">Title</label>
             <input
               type="text"
               id="title"
               name="title"
               value={title}
-              className="w-full p-2 rounded-lg focus:outline-none input input-bordered input-primary"
+              className="w-full p-2 rounded-lg focus:outline-none input input-bordered"
               required
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="description" className="text-primary-text">
-              Description
-            </label>
+            <label htmlFor="description">Description</label>
             <textarea
               id="description"
               name="description"
-              className="w-full p-2 rounded-lg textarea textarea-primary focus:outline-none"
+              className="w-full p-2 rounded-lg textarea textarea-bordered focus:outline-none"
               rows={4}
               required
               value={description}
@@ -87,12 +83,10 @@ export const EditBlogPage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className={`btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full ${
-                editState.isLoading ? "loading-infinity" : ""
-              }`}
+              className="btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full text-accent"
               disabled={editState.isLoading}
             >
-              Submit
+              {editState.isLoading ? "Please wait..." : "Submit"}
             </button>
           </div>
         </form>

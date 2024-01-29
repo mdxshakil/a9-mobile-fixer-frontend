@@ -4,6 +4,7 @@ import { ISingupUser } from "../../interface";
 import LoadingSpinner from "../Loader/LoadingSpinner";
 import { emailValidationRegex, passwordValidationRegex } from "../../constants";
 import { uploadImageToCloudinary } from "../../utils/imageUploader";
+import { Link } from "react-router-dom";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type IProps = {
@@ -48,7 +49,10 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
   }
 
   return (
-    <form className="flex flex-col w-full md:w-1/2" onSubmit={handleSubmit(handleSignup)}>
+    <form
+      className="flex flex-col w-full md:w-1/2"
+      onSubmit={handleSubmit(handleSignup)}
+    >
       <div className="grid grid-cols-2 gap-3">
         {/* first name */}
         <div className="form-control">
@@ -208,14 +212,19 @@ function SignupForm({ role, isLoading, isSuccess, signup }: IProps) {
           <p className="text-[12px] text-red-500 ">This field is required</p>
         )}
       </div>
+      <Link to="/login">
+        <p className="mt-3 text-sm">Already have an account?</p>
+      </Link>
       {/* submit btn */}
-      <div className="form-control mt-6">
-        <button
-          className={`btn btn-primary text-white ${isLoading ? "loading-ring" : ""}`}
-          disabled={isLoading}
-        >
-          Submit
+      <div className="form-control mt-3">
+        <button className="btn btn-primary text-accent" disabled={isLoading}>
+          {isLoading ? "Please wait..." : "Submit"}
         </button>
+        <Link to="/">
+          <p className="text-primary text-start mr-3 mt-3 text-sm font-bold">
+            Go Home
+          </p>
+        </Link>
       </div>
     </form>
   );

@@ -120,7 +120,7 @@ export const AddNewEventPage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full text-white"
+              className="btn btn-primary px-4 py-2 rounded-lg hover:bg-primary-dark w-full text-accent"
               disabled={loading || isLoading}
             >
               {loading || isLoading ? "Please wait" : " Submit"}

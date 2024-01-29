@@ -1,6 +1,6 @@
 type IProps = {
   title: string;
-  subTitle: string;
+  subTitle?: string;
   subTitleClasses?: string;
   titleClasses?: string;
 };

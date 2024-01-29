@@ -31,7 +31,7 @@ const ManageEventsPage = () => {
     <div>
       <div className="py-3 px-3">
         <Link to="/dashboard/add-new-event">
-          <button className="btn btn-sm btn-primary text-white">
+          <button className="btn btn-sm btn-primary text-accent">
             Add New Event <FaPlus />
           </button>
         </Link>

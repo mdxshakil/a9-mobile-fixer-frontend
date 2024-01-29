@@ -12,6 +12,7 @@ import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { deleteConfirmationModal } from "../../../utils/deleteConfirmationModal";
+import SectionTitle from "../../../components/SectionTitle";
 
 const ManageUsersPage = () => {
   const [page, setPage] = useState(1);
@@ -126,15 +127,16 @@ const ManageUsersPage = () => {
   }
 
   return (
-    <div>
-      <div className="py-3 px-3">
+    <div className="py-3 px-3">
+      <SectionTitle title="Manage Users" titleClasses="text-xl" />
+      <div>
         <Link to="/dashboard/add-user">
-          <button className="btn btn-sm btn-primary text-white ">
+          <button className="btn btn-xs md:btn-sm btn-primary text-accent">
             Add New User <FaPlus />
           </button>
         </Link>
       </div>
-      <div className="my-3 flex justify-center">
+      <div>
         {/* sort users - createdAt*/}
         <select
           className="select"

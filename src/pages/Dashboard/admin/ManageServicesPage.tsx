@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import PaginationButton from "../../../components/pagination/PaginationButton";
+import SectionTitle from "../../../components/SectionTitle";
 
 const ManageServicesPage = () => {
   const [page, setPage] = useState(1);
@@ -98,7 +99,7 @@ const ManageServicesPage = () => {
                   <div className="badge badge-outline">{service.category}</div>
                 </td>
                 <td>
-                  <div className="badge badge-primary text-white">
+                  <div className="badge badge-primary text-accent">
                     {service.status}
                   </div>
                 </td>
@@ -108,7 +109,10 @@ const ManageServicesPage = () => {
                       <FaEdit size={20} />
                     </button>
                   </Link>
-                  <button onClick={() => handleServiceDelete(service.id)}>
+                  <button
+                    className={deleteState.isLoading ? "loading" : ""}
+                    onClick={() => handleServiceDelete(service.id)}
+                  >
                     <FaTrash size={20} />
                   </button>
                 </td>
@@ -121,15 +125,16 @@ const ManageServicesPage = () => {
   }
 
   return (
-    <div>
+    <div className="mt-3">
+      <SectionTitle title="Manage Services" titleClasses="text-xl" />
       <div className="p-3">
         <Link to="/dashboard/add-service">
-          <button className="btn btn-sm btn-primary text-white">
-            Add New Service <FaPlus />
+          <button className="btn btn-xs md:btn-sm btn-primary text-accent">
+            Add Service <FaPlus />
           </button>
         </Link>
       </div>
-      <div className="mt-3 flex gap-2">
+      <div className="flex gap-2">
         <div>
           {/* sort bookings - createdAt*/}
           <select

@@ -44,7 +44,7 @@ const ScrollToTop = () => {
 
   return !show ? null : (
     <button
-      className="btn btn-primary btn-circle fixed bottom-2 right-2 btn-md z-50 text-white"
+      className="btn btn-primary btn-circle fixed bottom-2 right-2 btn-md z-50 text-accent"
       onClick={() => window.scrollTo(0, 0)}
     >
       <RiArrowUpDoubleLine size={25} className="animate-bounce" />

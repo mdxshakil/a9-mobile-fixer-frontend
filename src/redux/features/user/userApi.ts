@@ -15,7 +15,7 @@ const userApi = api.injectEndpoints({
         method: "PATCH",
         body: { newEmail },
       }),
-      invalidatesTags: ["all_users_profile"],
+      invalidatesTags: ["all_users_profile","user"],
     }),
   }),
 });
