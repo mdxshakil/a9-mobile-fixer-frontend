@@ -24,11 +24,12 @@ const Header = () => {
 
   return (
     <Fade>
-      <section className="pb-2 md:pb-18 sm:pt-16 min-h-screen flex flex-col items-center justify-center relative sm:mt-6">
-        <div className="w-[200px] md:w-[400px] h-[100px] md:h-[150px] rounded-full bg-primary absolute -z-10 top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[90px] opacity-75"></div>
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <section className="min-h-screen flex flex-col items-center justify-center relative">
+        <div className="w-[200px] md:w-[400px] h-[100px] md:h-[150px] rounded-full bg-primary absolute -z-10 top-[25%] left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[90px] opacity-75"></div>
+        {/* header text */}
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 min-h-[80vh] md:min-h-screen flex items-center justify-center parallax-content">
           <div className="text-center">
-            <h1 className="max-w-4xl mx-auto mb-4 text-3xl font-bold text-gray-900 sm:text-5xl lg:text-6xl tracking-wide">
+            <h1 className="max-w-4xl mx-auto mb-4 text-3xl text-gray-900 sm:text-5xl lg:text-6xl tracking-wide font-extrabold">
               The best{" "}
               <span className="text-primary border border-primary rounded-lg shadow-md">
                 mobile{" "}
@@ -70,7 +71,9 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white w-full">
+        {/* header text end */}
+        {/* image */}
+        <div className="bg-white w-full -mt-28">
           <div className="relative mx-auto mt-4 md:mt-8">
             <div className="lg:max-w-full lg:mx-auto">
               <img
@@ -80,6 +83,7 @@ const Header = () => {
             </div>
           </div>
         </div>
+        {/* image end */}
         <div className="-mt-10 z-30 w-full px-8">
           <CountUpSection />
         </div>

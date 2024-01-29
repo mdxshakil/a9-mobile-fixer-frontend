@@ -119,7 +119,7 @@ const MyOrdersPage = () => {
                   {item.status === "pending" && (
                     <button
                       className={`btn btn-xs btn-error ${
-                        cancelState.isLoading ? "loading-bars" : ""
+                        cancelState.isLoading ? "loading" : ""
                       }`}
                       disabled={cancelState.isLoading}
                       onClick={() => cancelBooking(item.id)}

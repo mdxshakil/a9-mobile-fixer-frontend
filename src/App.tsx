@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       {isLoading ? <LoadingSpinner /> : <RouterProvider router={router} />}
-      <Toaster />
+      <Toaster position="top-right"  />
     </>
   );
 }
