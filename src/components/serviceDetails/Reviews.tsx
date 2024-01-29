@@ -26,7 +26,7 @@ const Reviews = ({ serviceId }: { serviceId: string }) => {
         <div className="chat-header text-xs">
           <span className="text-accent/50"> {review.profile.firstName}</span>
           <span className="ml-6 text-primary">
-            {moment(review?.createdAt).startOf("hour").fromNow()}
+            {moment(review?.createdAt).startOf("second").fromNow()}
           </span>
         </div>
         <div className="chat-bubble bg-white border text-accent text-sm">

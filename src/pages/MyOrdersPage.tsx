@@ -11,6 +11,8 @@ import {
 } from "../redux/features/booking/bookingApi";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import moment from "moment";
+import SectionTitle from "../components/SectionTitle";
 
 const MyOrdersPage = () => {
   const [page, setPage] = useState(1);
@@ -74,7 +76,7 @@ const MyOrdersPage = () => {
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
+                      <div className="mask mask-circle w-10 h-10">
                         <img
                           src={item.service.image}
                           alt={item.service.category}
@@ -83,18 +85,22 @@ const MyOrdersPage = () => {
                     </div>
                     <div>
                       <Link to={`/service/${item.service.id}`}>
-                        <div className="font-bold">{item.service.title}</div>
+                        <div className="font-bold text-xs md:text-sm">
+                          {item.service.title}
+                        </div>
                       </Link>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <div className="badge badge-secondary">
-                    {item.service.cost}
+                  <div className="badge badge-primary font-bold text-accent">
+                    &#2547;{item.service.cost}
                   </div>
                 </td>
                 <td>
-                  <div className="badge  badge-warning">{item.bookingTime}</div>
+                  <div className="badge badge-warning badge-outline text-xs md:text-sm">
+                    {moment(item.bookingTime).format("l")}
+                  </div>
                 </td>
                 <td className="flex gap-2 items-center">
                   <div
@@ -131,12 +137,10 @@ const MyOrdersPage = () => {
   }
   return (
     <div>
-      <div className="py-3 px-2">
-        <h1 className="text-center text-4xl my-3">My Bookings</h1>
-        <p className="text-center">
-          Total orders: {myBookings?.data?.meta?.total}
-        </p>
-      </div>
+      <SectionTitle
+        title="My Bookings"
+        subTitle={`Total orders: ${myBookings?.data?.meta?.total}`}
+      />
       <div className="flex">
         <div>
           {/* filter by booking status*/}

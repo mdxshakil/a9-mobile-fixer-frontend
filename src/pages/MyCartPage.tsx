@@ -13,6 +13,7 @@ import { deleteConfirmationModal } from "../utils/deleteConfirmationModal";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import PaginationButton from "../components/pagination/PaginationButton";
+import SectionTitle from "../components/SectionTitle";
 
 const MyCartPage = () => {
   const [page, setPage] = useState(1);
@@ -81,7 +82,7 @@ const MyCartPage = () => {
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
+                      <div className="mask mask-circle w-10 h-10">
                         <img
                           src={item.service.image}
                           alt={item.service.category}
@@ -89,13 +90,17 @@ const MyCartPage = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{item.service.title}</div>
+                      <div className="font-bold md:text-base text-xs">
+                        <Link to={`/service/${item.serviceId}`}>
+                          {item.service.title}
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <div className="badge badge-primary">
-                    {item.service.cost} bdt
+                  <div className="badge badge-primary font-bold">
+                    &#2547;{item.service.cost}
                   </div>
                 </td>
                 <td>
@@ -103,14 +108,18 @@ const MyCartPage = () => {
                     {item.service.category}
                   </div>
                 </td>
-                <td className="flex gap-2 items-center">
-                  <button className="tooltip" data-tip="Place Order">
+                <td className="flex gap-3 items-center mt-3">
+                  <button className="tooltip" data-tip="Book service">
                     <Link to={`/confirm-booking/${item.id}`}>
                       <FaBookmark size={20} />
                     </Link>
                   </button>
 
-                  <button onClick={() => handleRemoveFromCart(item.id)}>
+                  <button
+                    onClick={() => handleRemoveFromCart(item.id)}
+                    className="tooltip"
+                    data-tip="Remove from cart"
+                  >
                     <FaTrash size={20} />
                   </button>
                 </td>
@@ -124,15 +133,13 @@ const MyCartPage = () => {
 
   return (
     <div>
-      <div className="py-3 px-2">
-        <h1 className="text-center text-4xl my-3">My Cart</h1>
-        <p className="text-center">
-          Total service in cart: {myCart?.data?.data?.total}
-        </p>
-        <button className="btn btn-sm btn-primary text-white">
-          <Link to={"/my-orders"}>My Bookings</Link>
-        </button>
-      </div>
+      <SectionTitle
+        title="My Cart"
+        subTitle={`Total items in cart: ${myCart?.data?.meta?.total}`}
+      />
+      <button className="btn btn-xs md:btn-sm btn-primary text-accent mb-3">
+        <Link to={"/my-orders"}>My Bookings</Link>
+      </button>
       <div>
         {/* sort bookings - createdAt*/}
         <select

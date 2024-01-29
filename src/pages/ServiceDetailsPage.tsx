@@ -88,10 +88,10 @@ const ServiceDetailsPage = () => {
                 )}
                 {/* footer */}
                 <div className="flex items-center justify-between mt-6">
-                  <p className="text-primary font-bold text-3xl">
+                  <p className="text-primary font-bold text-lg md:text-3xl">
                     Slots: {slotsPerDay}
                   </p>
-                  <p className="text-primary font-bold text-3xl">
+                  <p className="text-primary font-bold text-lg md:text-3xl">
                     &#2547;{cost}
                   </p>
                   {role === "user" && (

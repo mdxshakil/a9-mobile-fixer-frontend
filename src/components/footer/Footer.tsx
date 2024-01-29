@@ -100,39 +100,29 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-
-            <div className="mt-8 border-t border-gray-100 pt-8">
-              <ul className="flex flex-wrap gap-4 text-xs">
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-500 transition hover:opacity-75"
-                  >
-                    Terms & Conditions
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-500 transition hover:opacity-75"
-                  >
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-500 transition hover:opacity-75"
-                  >
-                    Cookies
-                  </a>
-                </li>
-              </ul>
-              <p className="mt-8 text-xs text-gray-500">
-                &copy; 2023. mobileFix. All rights reserved.
-              </p>
-            </div>
           </div>
+        </div>
+        <div className="my-6 border-t border-gray-100 text-center">
+          <ul className="flex flex-wrap gap-4 text-xs items-center justify-center">
+            <li>
+              <a href="#" className="text-gray-500 transition hover:opacity-75">
+                Terms & Conditions
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-500 transition hover:opacity-75">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" className="text-gray-500 transition hover:opacity-75">
+                Cookies
+              </a>
+            </li>
+          </ul>
+          <p className="mt-8 text-xs text-gray-500">
+            &copy; 2024. irepair, All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

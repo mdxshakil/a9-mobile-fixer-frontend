@@ -32,10 +32,10 @@ const ActionButtons = ({ profileId, serviceId }: IProps) => {
   }, [isError, isSuccess, error]);
 
   return (
-    <div className="flex -mx-2 mb-4">
+    <div className="flex -mx-2">
       <div className="w-full px-2">
         <button
-          className="btn btn-primary btn-sm rounded-full text-accent font-bold"
+          className="btn btn-primary btn-xs md:btn-sm rounded-full text-accent font-bold"
           disabled={isLoading}
           onClick={handleAddToCart}
         >

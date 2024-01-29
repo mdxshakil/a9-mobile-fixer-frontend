@@ -26,7 +26,7 @@ const ReviewForm = ({ profileId, serviceId }: IProps) => {
       toast.error("Failed to add review");
     }
     if (isSuccess) {
-      toast.success("Revied addded");
+      toast.success("Review addded");
       setComment("");
     }
   }, [isError, isSuccess]);
@@ -45,10 +45,11 @@ const ReviewForm = ({ profileId, serviceId }: IProps) => {
               className="input input-bordered outline-none focus:outline-none focus:border-primary w-full max-w-xs rounded-full"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
+              required
             />
             <button
               type="submit"
-              className={`${isLoading ? "loading" : ""}`}
+              className={`${isLoading ? "loading" : ""} hover:text-primary`}
               disabled={isLoading}
             >
               <AiOutlineSend size={25} />
@@ -56,7 +57,9 @@ const ReviewForm = ({ profileId, serviceId }: IProps) => {
           </form>
         </div>
       ) : (
-        <p>Purchase this service to add a review</p>
+        <p className="text-xl font-bold text-accent mb-3">
+          Purchase this service to add a review
+        </p>
       )}
     </div>
   );

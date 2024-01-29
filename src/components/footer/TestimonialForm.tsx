@@ -27,7 +27,7 @@ const TestimonialForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Testimonial submitted");
+      toast.success("Feedback submitted");
       setMessage("");
       setExperience("");
     }
@@ -40,11 +40,11 @@ const TestimonialForm = () => {
     <div className="mt-8 space-y-4 lg:mt-0">
       <span className=" h-1 w-full rounded bg-primary block"></span>
       <div>
-        <h2 className="text-2xl font-medium text-gray-900">
+        <h2 className="text-lg md:text-2xl font-medium text-gray-900">
           Tell something about our service
         </h2>
 
-        <p className="mt-4 max-w-lg text-gray-500">
+        <p className="mt-4 max-w-lg text-gray-500 text-sm md:text-base">
           Tell use your experience about the service that you have taken from
           us. Share your experience with every one. This helps use to improve
           our service.
@@ -57,12 +57,12 @@ const TestimonialForm = () => {
       </div>
       {/* if user is not logged in or didnt purchased a service they cant provide testimonial */}
       <form
-        className="mt-6 w-full flex items-center gap-3"
+        className="mt-6 w-full flex md:flex-row flex-col md:items-center items-start gap-3"
         onSubmit={handleTestimonialSubmit}
       >
         <div>
           <select
-            className="select"
+            className="select select-sm md:select-large"
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
             disabled={role !== "user" || !isPurchased}
@@ -76,23 +76,25 @@ const TestimonialForm = () => {
             <option value={"average"}>Average</option>
           </select>
         </div>
-        <textarea
-          className="textarea w-full sm:w-2/3 textarea-error"
-          placeholder="Say something about our service"
-          disabled={role !== "user" || !isPurchased}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          className={`btn btn-ghost p-0 ${
-            role !== "user" || !isPurchased ? "cursor-not-allowed" : ""
-          } ${isLoading ? "loading-bars" : ""}`}
-          disabled={isLoading}
-        >
-          <AiOutlineSend size={35} className="text-primary" />
-        </button>
+        <div className="flex items-center gap-2 w-full">
+          <textarea
+            className="textarea w-full sm:w-2/3 border-gray-300 textarea-xs focus:outline-none focus:border-primary"
+            placeholder="Say something about our service"
+            disabled={role !== "user" || !isPurchased}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
+          <button
+            type="submit"
+            className={`btn btn-ghost p-0 hover:bg-transparent ${
+              role !== "user" || !isPurchased ? "cursor-not-allowed" : ""
+            } ${isLoading ? "loading-bars" : ""}`}
+            disabled={isLoading}
+          >
+            <AiOutlineSend className="text-accent text-3xl hover:text-primary" />
+          </button>
+        </div>
       </form>
     </div>
   );
