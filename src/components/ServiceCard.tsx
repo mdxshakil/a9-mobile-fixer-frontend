@@ -51,11 +51,13 @@ const ServiceCard = ({ service }: { service: IService }) => {
             </span>
           )}
           <div className="mt-2 pb-2 px-3">
-            <h2 className="card-title hover:underline hover:text-primary text-xs  md:text-xl font-semibold tracking-tight text-accent">
+            <h2 className="hover:underline hover:text-primary text-xs  md:text-xl font-semibold tracking-tight text-accent h-8 md:h-14 overflow-hidden">
               {status !== "upcoming" ? (
                 <Link to={`/service/${id}`}>{title}</Link>
               ) : (
-                <span>{title}</span>
+                <span>
+                  {title}
+                </span>
               )}
             </h2>
             <div className="mt-2.5 mb-0 md:mb-5 flex items-center justify-between gap-2">
@@ -81,7 +83,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
         </div>
         {/* header end */}
         {/* footer */}
-        <div className="flex items-center justify-between px-3">
+        <div className="flex items-center justify-between p-3">
           <p className="text-xs md:text-2xl font-bold text-accent">
             &#2547;{cost}
           </p>
