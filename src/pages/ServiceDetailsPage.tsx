@@ -59,7 +59,7 @@ const ServiceDetailsPage = () => {
                 <div className="flex items-center gap-3">
                   <div className="flex items-center">
                     {Array.from({ length: rating }).map((_rating, i) => (
-                      <FaStar key={i} className="text-yellow-300" />
+                      <FaStar key={i} className="text-yellow-400" />
                     ))}
                     {rating === 0 &&
                       Array.from({ length: 5 }).map((_rating, i) => (
@@ -71,7 +71,7 @@ const ServiceDetailsPage = () => {
                     {"  "}
                     <span className="text-sm">
                       ({ratings?.length}{" "}
-                      {ratings?.length > 1 ? "reviews" : "review"})
+                      {ratings?.length > 1 ? "ratings" : "rating"})
                     </span>
                   </p>
                 </div>
@@ -94,12 +94,10 @@ const ServiceDetailsPage = () => {
                   <p className="text-primary font-bold text-lg md:text-3xl">
                     &#2547;{cost}
                   </p>
-                  {role === "user" && (
-                    <ActionButtons
-                      profileId={profileId}
-                      serviceId={serviceId as string}
-                    />
-                  )}
+                  <ActionButtons
+                    profileId={profileId}
+                    serviceId={serviceId as string}
+                  />
                 </div>
                 {/* footer end */}
               </div>

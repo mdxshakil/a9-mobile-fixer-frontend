@@ -29,7 +29,7 @@ const Reviews = ({ serviceId }: { serviceId: string }) => {
             {moment(review?.createdAt).startOf("second").fromNow()}
           </span>
         </div>
-        <div className="chat-bubble bg-white border text-accent text-sm">
+        <div className="chat-bubble bg-base-100 border text-accent text-sm">
           {review.comment}
         </div>
       </div>

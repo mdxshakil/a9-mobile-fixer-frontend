@@ -3,7 +3,7 @@ import { ITestimonial } from "../../interface";
 const TestimonialCard = ({ testimonial }: { testimonial: ITestimonial }) => {
   const { profile, experience, message } = testimonial || {};
   return (
-    <div className="mb-6 shadow-md rounded-md">
+    <div className="mb-6 rounded-md hover:scale-105 transition-all shadow-sm shadow-primary/50">
       <div className="mb-6 flex justify-center">
         <img
           src={profile.profilePicture}

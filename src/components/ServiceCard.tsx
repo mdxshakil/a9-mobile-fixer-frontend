@@ -36,7 +36,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
   const rating = calculateAvgRating(ratings as [IRating]);
 
   return (
-    <div className="relative w-full rounded-lg overflow-hidden">
+    <div className="relative w-full rounded-lg overflow-hidden hover:scale-105 transition-all shadow-sm shadow-primary/50">
       <div className="flex justify-between h-full flex-col gap-2">
         {/* header start */}
         <div>
@@ -60,12 +60,16 @@ const ServiceCard = ({ service }: { service: IService }) => {
             </h2>
             <div className="mt-2.5 mb-0 md:mb-5 flex items-center justify-between gap-2">
               <div className="flex items-start md:items-center md:flex-row flex-col">
-                <span className="mr-2 rounded bg-yellow-200 px-1 md:px-2.5 text-xs font-semibold">
+                <span className="mr-2 rounded bg-yellow-400 px-1 md:px-2.5 text-xs font-semibold">
                   {rating || 0}.0
                 </span>
                 <div className="flex">
                   {Array.from({ length: rating }).map((_rating, i) => (
-                    <FaStar key={i} className="text-yellow-300 md:text-lg text-[10px]" />
+                    <FaStar
+                      size={15}
+                      key={i}
+                      className="text-yellow-400 md:text-lg text-[10px]"
+                    />
                   ))}
                 </div>
               </div>

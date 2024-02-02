@@ -6,17 +6,26 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
+
   plugins: [require("daisyui")],
   daisyui: {
     themes: [{
-      myTheme: {
+      light: {
         "primary": "#FF8551",
         "secondary": "#f6d860",
         "accent": "#111827",
         "neutral": "#3d4451",
         "base-100": "#ffffff",
+      },
+      dark: {
+        "primary": "#FF8551",
+        "secondary": "#f6d860",
+        "accent": "#f5f5f5",
+        "neutral": "#3d4451",
+        "base-100": "#15202B",
       }
     }],
   },

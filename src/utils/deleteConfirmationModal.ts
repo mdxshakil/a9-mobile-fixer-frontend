@@ -14,7 +14,7 @@ export const deleteConfirmationModal = (
     confirmButtonColor: "#FF8551",
     cancelButtonColor: "#111827",
     confirmButtonText: "Confirm",
-    customClass:"bg-white/40 backdrop-blur-md",
+    customClass:"bg-base-100/40 backdrop-blur-md",
   }).then((result) => {
     if (result.isConfirmed) {
       confirmCallback();
