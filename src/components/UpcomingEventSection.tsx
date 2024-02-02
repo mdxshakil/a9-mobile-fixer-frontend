@@ -1,5 +1,4 @@
 import { Fade } from "react-awesome-reveal";
-import { Link } from "react-router-dom";
 import { useGetUpcomingEventsQuery } from "../redux/features/event/eventApi";
 import LoadingSpinner from "./Loader/LoadingSpinner";
 import ErrorElement from "./shared/ErrorElement";
@@ -7,6 +6,7 @@ import NoContantFound from "./shared/NoContantFound";
 import { IEvent } from "../interface";
 import EventCard from "./EventCard";
 import SectionTitle from "./SectionTitle";
+import BrowseAllBtn from "./buttons/BrowseAllBtn";
 
 const UpcomingEventSection = () => {
   const {
@@ -37,9 +37,7 @@ const UpcomingEventSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
           {content}
         </div>
-        <Link to={"/all-events"}>
-          <button className="btn btn-sm mt-3">Browse all events</button>
-        </Link>
+        <BrowseAllBtn to="/all-events" text="Browse all events" />
       </div>
     </Fade>
   );

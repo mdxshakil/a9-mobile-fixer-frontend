@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { IService } from "../../interface";
 import { useGetHomePageServicesQuery } from "../../redux/features/service/serviceApi";
 import LoadingSpinner from "../Loader/LoadingSpinner";
@@ -7,6 +6,7 @@ import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import { Fade } from "react-awesome-reveal";
 import SectionTitle from "../SectionTitle";
+import BrowseAllBtn from "../buttons/BrowseAllBtn";
 
 const OurServices = () => {
   const {
@@ -38,11 +38,7 @@ const OurServices = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 place-items-center py-6 px-3 items-stretch">
           {content}
         </div>
-        <div className="text-center">
-          <Link to={"/all-services"}>
-            <button className="btn btn-sm mt-3 text-accent">Browse all services</button>
-          </Link>
-        </div>
+        <BrowseAllBtn to="/all-services" text="Browse all services" />
       </div>
     </Fade>
   );
