@@ -19,9 +19,9 @@ const OurServices = () => {
   if (isLoading) {
     content = <ServiceCardLoader length={8} />;
   } else if (!isLoading && isError) {
-    content = <ErrorElement message="Failed to load data." />;
+    content = <ErrorElement message="Failed to load services." />;
   } else if (!isLoading && !isError && services?.data?.length === 0) {
-    content = <NoContantFound message="No data available" />;
+    content = <NoContantFound message="No service available" />;
   } else if (!isLoading && !isError && services?.data?.length > 0) {
     content = (
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 place-items-center py-6 px-3">

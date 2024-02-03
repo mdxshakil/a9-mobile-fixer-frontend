@@ -21,9 +21,7 @@ const CountUpSection = () => {
           <div className="stat">
             <div className="stat-title">Total Services</div>
             {isLoading ? (
-              <span className="text-sm text-primary italic">
-                Retiving stats....
-              </span>
+              <StatsSkeleton />
             ) : (
               <div className="stat-value text-accent">
                 {counterOn && <CountUp start={100} end={serviceCount} />}
@@ -33,24 +31,18 @@ const CountUpSection = () => {
 
           <div className="stat">
             <div className="stat-title">Trusted Clients</div>
-
             {isLoading ? (
-              <span className="text-sm text-primary italic">
-                Retiving stats....
-              </span>
+              <StatsSkeleton />
             ) : (
               <div className="stat-value text-accent">
                 {counterOn && <CountUp start={100} end={userCount} />}
               </div>
             )}
           </div>
-
           <div className="stat">
             <div className="stat-title">Completed Orders</div>
             {isLoading ? (
-              <span className="text-sm text-primary italic">
-                Retiving stats....
-              </span>
+              <StatsSkeleton />
             ) : (
               <div className="stat-value text-accent">
                 {counterOn && <CountUp start={100} end={orderCount} />}
@@ -64,3 +56,9 @@ const CountUpSection = () => {
 };
 
 export default CountUpSection;
+
+const StatsSkeleton = () => {
+  return (
+    <span className="text-sm text-primary italic w-1/2 mx-auto skeleton"></span>
+  );
+};
