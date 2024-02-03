@@ -9,7 +9,7 @@ const FeedBackSection = () => {
           <div className="mx-auto flex flex-col items-center md:flex-row my-6 md:my-24">
             <div className="flex flex-col w-full lg:w-1/2 p-8">
               <div className="w-full h-4 rounded-md bg-primary"></div>
-              <p className="text-3xl md:text-5xl my-4 leading-relaxed md:leading-snug text-accent">
+              <p className="text-3xl md:text-5xl my-4 leading-relaxed md:leading-snug text-accent font-bold">
                 Any questions? Don't hesitate to contact us!
               </p>
               <p className="text-sm md:text-base leading-snug">
@@ -21,12 +21,12 @@ const FeedBackSection = () => {
             <div className="flex flex-col w-full lg:w-2/3 justify-center">
               <div className="container w-full px-4">
                 <div className="flex flex-wrap justify-center">
-                  <div className="w-full lg:w-2/3 px-4">
-                    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg bg-base-200">
+                  <div className="w-full lg:w-2/3 px-4 bg-base-200/50">
+                    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg">
                       <div className="flex-auto p-5 lg:p-10">
-                        <h4 className="text-2xl mb-4 text-accent font-semibold">
+                        {/* <h4 className="text-2xl mb-4 text-accent font-bold">
                           Have a Question or suggestion?
-                        </h4>
+                        </h4> */}
                         <FeedbackForm />
                       </div>
                     </div>

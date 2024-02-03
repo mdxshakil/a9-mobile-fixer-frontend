@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/confirm-booking/:cartItemId",
+        path: "/confirm-booking/:serviceId",
         element: (
           <RequireAuth>
             <ConfirmBookingPage />

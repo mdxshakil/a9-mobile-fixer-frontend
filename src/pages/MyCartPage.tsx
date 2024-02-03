@@ -110,14 +110,16 @@ const MyCartPage = () => {
                 </td>
                 <td className="flex gap-3 items-center mt-3">
                   <button className="tooltip" data-tip="Book service">
-                    <Link to={`/confirm-booking/${item.id}`}>
+                    <Link to={`/confirm-booking/${item.serviceId}`}>
                       <FaBookmark size={20} />
                     </Link>
                   </button>
 
                   <button
                     onClick={() => handleRemoveFromCart(item.id)}
-                    className="tooltip"
+                    className={`tooltip ${
+                      removeState.isLoading ? "loading" : ""
+                    }`}
                     data-tip="Remove from cart"
                   >
                     <FaTrash size={20} />

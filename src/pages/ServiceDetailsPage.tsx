@@ -94,10 +94,13 @@ const ServiceDetailsPage = () => {
                   <p className="text-primary font-bold text-lg md:text-3xl">
                     &#2547;{cost}
                   </p>
-                  <ActionButtons
-                    profileId={profileId}
-                    serviceId={serviceId as string}
-                  />
+                  {/* Show the button if role is user or user is not logged in */}
+                  {(!role || role === "user") && (
+                    <ActionButtons
+                      profileId={profileId}
+                      serviceId={serviceId as string}
+                    />
+                  )}
                 </div>
                 {/* footer end */}
               </div>

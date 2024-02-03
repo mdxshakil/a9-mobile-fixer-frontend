@@ -24,12 +24,12 @@ const Header = () => {
 
   return (
     <Fade>
-      <section className="min-h-screen flex flex-col items-center justify-center relative">
+      <section className="min-h-screen flex flex-col items-center justify-center relative bg-hero-pattern">
         <div className="w-[200px] md:w-[400px] h-[100px] md:h-[150px] rounded-full bg-primary absolute -z-10 top-[25%] left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[90px] opacity-75"></div>
         {/* header text */}
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 min-h-[80vh] md:min-h-screen flex items-center justify-center parallax-content">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 min-h-[80vh] md:min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="max-w-4xl mx-auto mb-4 text-3xl text-accent sm:text-5xl lg:text-6xl tracking-wide font-extrabold">
+            <h1 className="max-w-4xl mx-auto mb-4 text-3xl text-accent sm:text-5xl lg:text-7xl font-extrabold">
               The best{" "}
               <span className="text-primary border border-primary rounded-lg shadow-md">
                 mobile{" "}
@@ -79,6 +79,7 @@ const Header = () => {
               <img
                 className="px-4 md:px-8 h-52 md:h-96 object-cover w-full"
                 src={HeroImage}
+                loading="lazy"
               />
             </div>
           </div>

@@ -94,13 +94,16 @@ const Navbar = () => {
                   <>
                     <div className="dropdown">
                       <button className="btn btn-ghost btn-circle">
-                        <IoNotificationsSharp size={20} color="#111827" />
+                        <IoNotificationsSharp
+                          size={25}
+                          className="text-accent"
+                        />
                       </button>
                       <Notification />
                     </div>
                     <button className="btn btn-ghost btn-circle">
                       <Link to={`/my-cart/${profileId}`}>
-                        <FaCartArrowDown size={20} color="#111827" />
+                        <FaCartArrowDown size={25} className="text-accent" />
                       </Link>
                     </button>
                   </>

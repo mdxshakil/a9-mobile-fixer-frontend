@@ -6,6 +6,7 @@ import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import LatestNewsCard from "./LatestNewsCard";
 import SectionTitle from "../SectionTitle";
+import BrowseAllBtn from "../buttons/BrowseAllBtn";
 
 const LatestNewsSection = () => {
   const {
@@ -34,7 +35,7 @@ const LatestNewsSection = () => {
   return (
     <Fade>
       <div className="container py-12 md:py-18 mx-auto">
-        <section className="text-center">
+        <section className="text-center mb-6">
           <div className="mb-12">
             <h1 className="text-3xl md:text-4xl font-bold text-center"></h1>
           </div>
@@ -44,6 +45,7 @@ const LatestNewsSection = () => {
           />
           {content}
         </section>
+        <BrowseAllBtn to="/blogs" />
       </div>
     </Fade>
   );

@@ -8,7 +8,7 @@ const cartApi = api.injectEndpoints({
         method: "POST",
         body: payload,
       }),
-      invalidatesTags: ["cart"],
+      invalidatesTags: ["cart", "is_in_cart"],
     }),
     removeFromCart: builder.mutation({
       query: (blogId) => ({
@@ -30,6 +30,13 @@ const cartApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
+    isAlreadyInCart: builder.query({
+      query: ({ serviceId, profileId }) => ({
+        url: `/cart/is-in-cart/${serviceId}?profileId=${profileId}`,
+        method: "GET",
+      }),
+      providesTags: ["is_in_cart"],
+    }),
   }),
 });
 
@@ -38,4 +45,5 @@ export const {
   useRemoveFromCartMutation,
   useGetMyCartQuery,
   useGetCartItemQuery,
+  useIsAlreadyInCartQuery,
 } = cartApi;

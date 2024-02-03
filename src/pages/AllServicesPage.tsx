@@ -57,6 +57,7 @@ const AllServicesPage = () => {
       </div>
     );
   }
+  
 
   return (
     <div>
@@ -72,13 +73,15 @@ const AllServicesPage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+      
       <div className="flex gap-3 px-3">
         <div className="mt-3">
           <select
             className="select select-bordered w-full max-w-xs"
+            value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
           >
-            <option disabled selected>
+            <option value="" disabled>
               Price
             </option>
             <option value="asc">Low to high</option>
@@ -89,11 +92,13 @@ const AllServicesPage = () => {
         <div className="mt-3">
           <select
             className="select select-bordered w-full max-w-xs"
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option disabled selected>
+            <option value="" disabled>
               Category
             </option>
+            <option value="">All</option>
             {serviceCategories.map((cat, index) => (
               <option key={index} value={cat.value}>
                 {cat.label}
@@ -102,6 +107,7 @@ const AllServicesPage = () => {
           </select>
         </div>
       </div>
+
       {content}
       <PaginationButton
         setPage={setPage}

@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetCartItemQuery } from "../redux/features/cart/cartApi";
 import {
   useCheckRemainingSlotsQuery,
   useConfirmBookingMutation,
@@ -10,15 +9,20 @@ import useGetUserFromStore from "../hooks/useGetUser";
 import toast from "react-hot-toast";
 import SectionTitle from "../components/SectionTitle";
 import moment from "moment";
+import { useGetServiceByIdQuery } from "../redux/features/service/serviceApi";
+import ErrorElement from "../components/shared/ErrorElement";
 
 const ConfirmBookingPage = () => {
   const navigate = useNavigate();
   const { profileId, role } = useGetUserFromStore();
   const [bookingTime, setBookingTime] = useState("");
-  const { cartItemId } = useParams();
+  const { serviceId } = useParams();
   //get the cart item data to dispaly on confirm booking page
-  const { data: cartItem, isLoading: cartItemLoading } =
-    useGetCartItemQuery(cartItemId);
+  const {
+    data: service,
+    isLoading: serviceLoading,
+    isError: serviceError,
+  } = useGetServiceByIdQuery(serviceId);
   //check remaining slots on the user selected day for that service
   const {
     data: slotData,
@@ -26,7 +30,7 @@ const ConfirmBookingPage = () => {
     isError,
   } = useCheckRemainingSlotsQuery(
     {
-      serviceId: cartItem?.data?.service?.id,
+      serviceId,
       bookingTime,
     },
     { skip: !bookingTime }
@@ -40,9 +44,8 @@ const ConfirmBookingPage = () => {
   const handleBooking = () => {
     confirmBooking({
       profileId,
-      serviceId: cartItem?.data?.serviceId,
+      serviceId: service?.data?.id,
       bookingTime,
-      cartItemId,
     });
   };
 
@@ -62,22 +65,25 @@ const ConfirmBookingPage = () => {
     }
   }, [confirmState, navigate, role, isError, bookingTime]);
 
-  if (cartItemLoading) {
+  if (serviceLoading) {
     return <LoadingSpinner />;
+  }
+  if (serviceError) {
+    return <ErrorElement message="Failed to fetch service data" />;
   }
   return (
     <div className="p-3">
       <div className="w-full md:w-1/2 mx-auto rounded-lg">
         <SectionTitle
           title="Confirm Your Booking for"
-          subTitle={cartItem?.data?.service?.title}
+          subTitle={service?.data?.title}
           titleClasses="text-lg"
           subTitleClasses="text-primary font-bold mt-1 md:mt-3 text-sm md:text-lg"
         />
         <div>
           <img
-            src={cartItem?.data?.service?.image}
-            alt={cartItem?.data?.service?.title}
+            src={service?.data?.image}
+            alt={service?.data?.title}
             className="rounded-lg w-full object-cover aspect-video h-28 md:h-52"
           />
         </div>
@@ -91,7 +97,7 @@ const ConfirmBookingPage = () => {
                     Available slots per day
                   </div>
                   <div className="stat-value text-xl md:text-4xl text-primary">
-                    0{cartItem?.data?.service?.slotsPerDay}
+                    0{service?.data?.slotsPerDay}
                   </div>
                 </div>
               </div>

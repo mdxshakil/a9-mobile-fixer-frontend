@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useAddFeedbackMutation } from "../../redux/features/feedback/feedbackApi";
 import toast from "react-hot-toast";
-import { BsSend } from "react-icons/bs";
+import { IoIosSend } from "react-icons/io";
 
 const FeedbackForm = () => {
   const [email, setEmail] = useState("");
@@ -61,7 +61,6 @@ bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
           rows={4}
           cols={80}
           className="border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-full"
-          placeholder="Your feedback....."
           required
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -70,13 +69,13 @@ bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
       <div className="text-center mt-6">
         <button
           id="feedbackBtn"
-          className="btn-primary text-sm font-bold px-6 py-3 rounded w-full text-accent flex items-center gap-3 justify-center"
+          className="btn-primary text-sm font-bold px-6 py-3 rounded w-full text-accent flex items-center justify-center gap-2"
           type="submit"
           style={{ transition: "all 0.15s ease 0s" }}
           disabled={isLoading}
         >
           {isLoading ? "Please wait..." : "Send"}
-          <BsSend size={18} />
+          <IoIosSend size={25} />
         </button>
       </div>
     </form>

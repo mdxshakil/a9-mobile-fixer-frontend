@@ -38,7 +38,7 @@ const OurServices = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 place-items-center py-6 px-3 items-stretch">
           {content}
         </div>
-        <BrowseAllBtn to="/all-services" text="Browse all services" />
+        <BrowseAllBtn to="/all-services" />
       </div>
     </Fade>
   );

@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useAddToCartMutation } from "../../redux/features/cart/cartApi";
+import {
+  useAddToCartMutation,
+  useIsAlreadyInCartQuery,
+} from "../../redux/features/cart/cartApi";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
@@ -10,6 +13,7 @@ type IProps = {
 
 const ActionButtons = ({ profileId, serviceId }: IProps) => {
   const navigate = useNavigate();
+  const { data } = useIsAlreadyInCartQuery({ serviceId, profileId });
   const [addToCart, { isLoading, isError, isSuccess, error }] =
     useAddToCartMutation();
 
@@ -31,17 +35,35 @@ const ActionButtons = ({ profileId, serviceId }: IProps) => {
     }
   }, [isError, isSuccess, error]);
 
+  const handleNavigateToBookingPgae = () => {
+    if (!profileId) {
+      navigate("/login");
+    } else {
+      navigate(`/confirm-booking/${serviceId}`);
+    }
+  };
+
   return (
-    <div className="flex -mx-2">
-      <div className="w-full px-2">
-        <button
-          className="btn btn-primary btn-xs md:btn-sm rounded-full text-accent font-bold"
-          disabled={isLoading}
-          onClick={handleAddToCart}
-        >
-          {isLoading ? "Please wait..." : "Add to Cart"}
-        </button>
-      </div>
+    <div>
+      <button
+        className={`btn btn-primary btn-xs md:btn-sm rounded-l-full border border-white border-r-2 font-bold text-accent ${
+          data?.data?.isAlreadyInCart ? "italic" : ""
+        }`}
+        disabled={isLoading || data?.data?.isAlreadyInCart}
+        onClick={handleAddToCart}
+      >
+        {isLoading
+          ? "Please wait..."
+          : data?.data?.isAlreadyInCart
+          ? "In Cart"
+          : "Add to Cart"}
+      </button>
+      <button
+        className="btn btn-primary btn-xs md:btn-sm rounded-r-full border border-white border-l-2 font-bold text-accent"
+        onClick={handleNavigateToBookingPgae}
+      >
+        Book Now
+      </button>
     </div>
   );
 };

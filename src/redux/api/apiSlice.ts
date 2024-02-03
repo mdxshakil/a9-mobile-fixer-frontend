@@ -47,5 +47,6 @@ export const api = createApi({
     "testimonials",
     "approved_testimonials",
     "events",
+    "is_in_cart"
   ],
 });

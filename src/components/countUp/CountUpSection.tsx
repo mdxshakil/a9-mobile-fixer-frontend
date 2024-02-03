@@ -6,7 +6,7 @@ import { useGetStatsQuery } from "../../redux/features/stat/statApi";
 
 const CountUpSection = () => {
   const [counterOn, setCounterOn] = useState(false);
-  const { data: stats } = useGetStatsQuery(undefined);
+  const { data: stats, isLoading } = useGetStatsQuery(undefined);
 
   const { userCount, orderCount, serviceCount } = stats?.data || {};
 
@@ -20,23 +20,42 @@ const CountUpSection = () => {
         <div className="stats stats-vertical lg:stats-horizontal shadow w-full text-center">
           <div className="stat">
             <div className="stat-title">Total Services</div>
-            <div className="stat-value text-accent">
-              {counterOn && <CountUp start={100} end={serviceCount} />}
-            </div>
+            {isLoading ? (
+              <span className="text-sm text-primary italic">
+                Retiving stats....
+              </span>
+            ) : (
+              <div className="stat-value text-accent">
+                {counterOn && <CountUp start={100} end={serviceCount} />}
+              </div>
+            )}
           </div>
 
           <div className="stat">
             <div className="stat-title">Trusted Clients</div>
-            <div className="stat-value text-accent">
-              {counterOn && <CountUp start={100} end={userCount} />}
-            </div>
+
+            {isLoading ? (
+              <span className="text-sm text-primary italic">
+                Retiving stats....
+              </span>
+            ) : (
+              <div className="stat-value text-accent">
+                {counterOn && <CountUp start={100} end={userCount} />}
+              </div>
+            )}
           </div>
 
           <div className="stat">
             <div className="stat-title">Completed Orders</div>
-            <div className="stat-value text-accent">
-              {counterOn && <CountUp start={100} end={orderCount} />}
-            </div>
+            {isLoading ? (
+              <span className="text-sm text-primary italic">
+                Retiving stats....
+              </span>
+            ) : (
+              <div className="stat-value text-accent">
+                {counterOn && <CountUp start={100} end={orderCount} />}
+              </div>
+            )}
           </div>
         </div>
       </div>

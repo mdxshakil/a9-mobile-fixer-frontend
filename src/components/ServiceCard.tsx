@@ -2,7 +2,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import useGetUserFromStore from "../hooks/useGetUser";
 import { IRating, IService } from "../interface";
-import { useAddToCartMutation } from "../redux/features/cart/cartApi";
+import {
+  useAddToCartMutation,
+  useIsAlreadyInCartQuery,
+} from "../redux/features/cart/cartApi";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
@@ -15,6 +18,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
   const navigate = useNavigate();
   const [addToCart, { isLoading, isError, isSuccess, error }] =
     useAddToCartMutation();
+  const { data } = useIsAlreadyInCartQuery({ serviceId: id, profileId });
 
   const handleAddToCart = () => {
     if (!profileId) {
@@ -55,9 +59,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
               {status !== "upcoming" ? (
                 <Link to={`/service/${id}`}>{title}</Link>
               ) : (
-                <span>
-                  {title}
-                </span>
+                <span>{title}</span>
               )}
             </h2>
             <div className="mt-2.5 mb-0 md:mb-5 flex items-center justify-between gap-2">
@@ -89,12 +91,12 @@ const ServiceCard = ({ service }: { service: IService }) => {
           </p>
           {(!role || role === "user") && status !== "upcoming" && (
             <button
-              className="btn btn-ghost text-primary flex items-center gap-1 rounded-md hover:bg-transparent hover:text-accent disabled:bg-transparent btn-xs text-[8px] md:text-sm"
+              className="btn btn-ghost text-primary flex items-center gap-1 rounded-md hover:bg-transparent hover:text-accent p-0 disabled:bg-transparent btn-xs text-[10px] md:text-sm"
               onClick={handleAddToCart}
-              disabled={isLoading}
+              disabled={isLoading || data?.data?.isAlreadyInCart}
             >
               <BsCart2 />
-              Add to cart
+              {data?.data?.isAlreadyInCart ? "Added in cart" : "Add to cart"}
             </button>
           )}
         </div>
