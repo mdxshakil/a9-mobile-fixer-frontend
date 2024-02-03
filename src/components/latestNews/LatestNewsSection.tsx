@@ -30,7 +30,7 @@ const LatestNewsSection = () => {
         ))}
       </div>
     );
-  }
+  }  
 
   return (
     <Fade>
