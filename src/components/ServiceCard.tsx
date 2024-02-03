@@ -55,7 +55,7 @@ const ServiceCard = ({ service }: { service: IService }) => {
             </span>
           )}
           <div className="mt-2 pb-2 px-3">
-            <h2 className="hover:underline hover:text-primary text-xs  md:text-xl font-semibold tracking-tight text-accent h-8 md:h-14 overflow-hidden">
+            <h2 className="hover:text-primary text-xs  md:text-xl font-semibold tracking-tight text-accent h-8 md:h-14 overflow-hidden">
               {status !== "upcoming" ? (
                 <Link to={`/service/${id}`}>{title}</Link>
               ) : (

@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom";
-import LoadingSpinner from "../components/Loader/LoadingSpinner";
 import ServiceCard from "../components/ServiceCard";
 import PaginationButton from "../components/pagination/PaginationButton";
 import { serviceCategories } from "../constants";
@@ -9,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 import ErrorElement from "../components/shared/ErrorElement";
 import NoContantFound from "../components/shared/NoContantFound";
+import ServiceCardLoader from "../components/Loader/ServiceCardSkeleton";
 
 const AllServicesPage = () => {
   const [page, setPage] = useState(1);
@@ -43,21 +43,20 @@ const AllServicesPage = () => {
 
   let content;
   if (isLoading) {
-    return <LoadingSpinner />;
+    content = <ServiceCardLoader length={8} />;
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load services." />;
   } else if (!isLoading && !isError && services?.data?.data?.length === 0) {
     content = <NoContantFound message="No services available" />;
   } else if (!isLoading && !isError && services?.data?.data?.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center py-6 px-3 items-stretch">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 place-items-center py-6 px-3">
         {services?.data?.data?.map((service: IService) => (
           <ServiceCard key={service.id} service={service} />
         ))}
       </div>
     );
   }
-  
 
   return (
     <div>
@@ -73,7 +72,7 @@ const AllServicesPage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      
+
       <div className="flex gap-3 px-3">
         <div className="mt-3">
           <select
