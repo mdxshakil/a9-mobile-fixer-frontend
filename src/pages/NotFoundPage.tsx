@@ -5,34 +5,29 @@ const NotFoundPage = () => {
   return (
     <div className="w-full h-screen flex flex-col lg:flex-row items-center justify-center space-y-16 lg:space-y-0 space-x-8 2xl:space-x-0">
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center lg:px-2 xl:px-0 text-center">
-        <p className="text-7xl md:text-8xl lg:text-9xl font-bold tracking-wider text-gray-300">
+        <p className="text-7xl md:text-8xl lg:text-9xl font-bold tracking-wider text-primary">
           404
         </p>
-        <p className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-gray-300 mt-2">
+        <p className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-accent mt-2">
           Page Not Found
         </p>
-        <p className="text-lg md:text-xl lg:text-2xl text-gray-500 my-12">
-          Sorry, the page you are looking for could not be found.
-        </p>
-        <Link
-          to="/"
-          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded transition duration-150"
-          title="Return Home"
-        >
-          <AiOutlineArrowLeft />
-          <span>Return Home</span>
-        </Link>
+        <button className="btn btn-primary font-bold my-6">
+          <Link to="/" className="flex items-center gap-2">
+            <AiOutlineArrowLeft />
+            <span>Return Home</span>
+          </Link>
+        </button>
       </div>
       <div className="w-1/2 lg:h-full flex lg:items-end justify-center p-4">
         <svg
-          className="w-full text-blue-600"
+          className="w-full text-primary"
           xmlns="http://www.w3.org/2000/svg"
           data-name="Layer 1"
           viewBox="0 0 1120.59226 777.91584"
           xmlnsXlink="http://www.w3.org/1999/xlink"
         >
           <title>not found</title>
-          <circle cx="212.59226" cy="103" r="64" fill="#ff6584"></circle>
+          <circle cx="212.59226" cy="103" r="64" fill="#FF8551"></circle>
           <path
             d="M563.68016,404.16381c0,151.01141-89.77389,203.73895-200.51559,203.73895S162.649,555.17522,162.649,404.16381,363.16457,61.04208,363.16457,61.04208,563.68016,253.1524,563.68016,404.16381Z"
             transform="translate(-39.70387 -61.04208)"
