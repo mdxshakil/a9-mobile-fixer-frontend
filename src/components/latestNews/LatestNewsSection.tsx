@@ -1,8 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 import { IBlog } from "../../interface";
 import { useGetLatestBlogsQuery } from "../../redux/features/blog/blogApi";
-import LoadingSpinner from "../Loader/LoadingSpinner";
-import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import LatestNewsCard from "./LatestNewsCard";
 import SectionTitle from "../SectionTitle";
@@ -10,6 +8,8 @@ import BrowseAllBtn from "../buttons/BrowseAllBtn";
 import { useState } from "react";
 import ScrollTrigger from "react-scroll-trigger";
 import FeaturedNewsCard from "./FeaturedNewsCard";
+import LatestBlogLoader from "../Loader/LatestBlogsLoader";
+import ErrorElement from "../shared/ErrorElement";
 
 const LatestNewsSection = () => {
   const [willSkip, setWillSkip] = useState(true);
@@ -21,7 +21,7 @@ const LatestNewsSection = () => {
 
   let content;
   if (isLoading) {
-    content = <LoadingSpinner />;
+    content = <LatestBlogLoader />;
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load news." />;
   } else if (!isLoading && !isError && latestBlogs?.data?.length === 0) {
@@ -43,11 +43,8 @@ const LatestNewsSection = () => {
     // @ts-ignore }
     <ScrollTrigger onEnter={() => setWillSkip(false)}>
       <Fade>
-        <div className="container py-12 md:py-18 mx-auto">
-          <section className="mb-6">
-            <div className="mb-12">
-              <h1 className="text-3xl md:text-4xl font-bold text-center"></h1>
-            </div>
+        <div className="container pt-12 md:pt-20 mx-auto">
+          <section>
             <SectionTitle
               title="Latest Blogs"
               subTitle="Stay updated about new tech and gadgets"

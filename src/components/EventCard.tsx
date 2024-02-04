@@ -36,24 +36,26 @@ const EventCard = ({ event }: { event: IEvent }) => {
     }
   }, [deleteEventState, changeState]);
 
+  const isEnded = new Date().getTime() < new Date(eventDate).getTime();
+
   return (
-    <div className="card image-full">
+    <div className="card image-full relative overflow-hidden">
       <figure>
         <img src={banner} alt="Event" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title text-[14px] md:text-[20px]">
-          <span>{title}</span>
-          <span
-            className={`badge badge-sm md:badge-md text-accent ${
-              status === "upcoming" ? "badge-primary" : "badge-error"
-            }`}
-          >
-            {new Date().getTime() < new Date(eventDate).getTime()
-              ? status
-              : "Ended"}
-          </span>
-        </h2>
+        <span
+          className={`absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 text-center text-sm font-bold ${
+            isEnded ? "bg-primary text-accent" : "bg-accent text-primary"
+          }`}
+        >
+          {isEnded ? status : "Ended"}
+        </span>
+        <div>
+          <h2 className="card-title text-[14px] md:text-[20px]">
+            <span>{title}</span>
+          </h2>
+        </div>
         <p className=" text-xs md:text-sm">
           Dont miss the opportunity. Participate in this event to gather
           valuable knowledge

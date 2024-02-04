@@ -7,14 +7,10 @@ const FaqSection = () => {
   return (
     <Fade>
       <div
-        className="flex items-center justify-center pb-12 md:pb-18"
+        className="flex items-center justify-center pt-12 md:pt-20"
         id="faq-section"
       >
-        <div className="mt-12">
-          <div className="mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-center"></h1>
-            <p className="text-center mt-2"></p>
-          </div>
+        <div>
           <SectionTitle
             title="Frequently asked questions"
             subTitle="Still have question? You can contact us anytime"

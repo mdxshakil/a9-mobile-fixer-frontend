@@ -38,7 +38,7 @@ const UpcomingEventSection = () => {
     // @ts-ignore
     <ScrollTrigger onEnter={() => setWillSkip(false)}>
       <Fade>
-        <div className="text-center py-12 md:py-18">
+        <div className="text-center pt-12 md:pt-20">
           <SectionTitle
             title="Our Events"
             subTitle="Stay updated about our upcoming events"

@@ -8,7 +8,7 @@ const FeaturedNewsCard = ({ blog }: { blog: IBlog }) => {
 
   return (
     <div className="col-span-12 md:col-span-8 p-3">
-      <div className="mt-3 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
+      <div className="mt-3 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
         <div className="lg:pl-16">
           <div className="flex items-center mb-2">
             <img
@@ -26,12 +26,11 @@ const FeaturedNewsCard = ({ blog }: { blog: IBlog }) => {
               </div>
             </div>
           </div>
-          <a
-            href="#"
+          <h1
             className="text-accent font-bold text-xl md:text-3xl mb-2 hover:text-primary transition duration-500 ease-in-out"
           >
             {title}
-          </a>
+          </h1>
           <p className="text-base md:text-lg text-accent/80 mt-2 w-full md:w-5/6">
             {description}
           </p>

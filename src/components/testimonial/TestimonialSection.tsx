@@ -42,7 +42,7 @@ const TestimonialSection = () => {
     // @ts-ignore
     <ScrollTrigger onEnter={() => setWillSkip(false)}>
       <Fade>
-        <div className="container py-12 md:py-18 mx-auto">
+        <div className="container pt-12 md:py-20 mx-auto">
           <section className="text-center">
             <SectionTitle
               title="Testimonials"

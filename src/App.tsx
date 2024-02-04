@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const { isLoading } = usePersistLogin();
+  
   return (
     <>
       {isLoading ? <LoadingSpinner /> : <RouterProvider router={router} />}

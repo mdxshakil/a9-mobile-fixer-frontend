@@ -3,6 +3,7 @@ import { api } from "./api/apiSlice";
 import authSlice from "./features/auth/authSlice";
 
 export const store = configureStore({
+  devTools: import.meta.env.MODE === "development",
   reducer: {
     auth: authSlice,
     [api.reducerPath]: api.reducer,

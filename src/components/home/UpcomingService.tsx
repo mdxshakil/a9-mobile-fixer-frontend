@@ -40,7 +40,7 @@ const UpcomingService = () => {
     // @ts-ignore
     <ScrollTrigger onEnter={() => setWillSkip(false)}>
       <Fade>
-        <div className="py-12 md:py-18">
+        <div className="pt-12 md:pt-20">
           <SectionTitle
             title="Upcoming services"
             subTitle="More services are on their way"

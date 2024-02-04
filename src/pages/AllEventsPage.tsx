@@ -31,8 +31,8 @@ const AllEventsPage = () => {
     <Fade>
       <div className="p-3">
         <SectionTitle
-          title="Our Blogs"
-          subTitle={`Total blogs: ${events?.data?.length}`}
+          title="Our Events"
+          subTitle={`Total events: ${events?.data?.length}`}
         />
         <div className="mt-6">{content}</div>
       </div>

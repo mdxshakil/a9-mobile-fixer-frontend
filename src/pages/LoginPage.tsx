@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import toast from "react-hot-toast";
-import { Slide } from "react-awesome-reveal";
+import { Fade } from "react-awesome-reveal";
 import { FaArrowLeft } from "react-icons/fa";
 
 type RoleCredentials = {
@@ -76,14 +76,14 @@ const LoginPage = () => {
           <div className="flex h-full flex-wrap items-center justify-center lg:justify-between">
             {/* Left column  */}
             <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-              <Slide direction="left">
+              <Fade>
                 <img src={LoginImage} className="w-full" alt="Login image" />
-              </Slide>
+              </Fade>
             </div>
 
             {/*  Right column */}
             <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
-              <Slide direction="right">
+              <Fade>
                 <div className="mb-6">
                   <h2 className="text-accent font-bold text-lg md:text-4xl">
                     Sign in to unlock the best of{" "}
@@ -164,7 +164,7 @@ const LoginPage = () => {
                     </p>
                   </Link>
                 </form>
-              </Slide>
+              </Fade>
             </div>
           </div>
         </div>
