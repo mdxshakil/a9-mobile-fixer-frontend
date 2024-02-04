@@ -1,27 +1,38 @@
-import { AiOutlineLink } from "react-icons/ai";
-import { FaNewspaper } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IBlog } from "../../interface";
+import { AiOutlineLink } from "react-icons/ai";
+import moment from "moment";
 
 const LatestNewsCard = ({ blog }: { blog: IBlog }) => {
-  const { title, description, id } = blog || {};
+  const { title, description, id, createdAt, profile } = blog || {};
+
   return (
-    <div className="p-6 border border-gray-200 rounded-lg text-start flex flex-col justify-between">
-      <div>
-        <FaNewspaper size={25} className="text-primary" />
-        <h5 className="mb-2 text-sm md:text-xl font-semibold tracking-tighter md:tracking-tight text-gray-900 text-start">
-          {title}
-        </h5>
-        <p className="mb-3 font-normal text-sm text-gray-500">
-          {description.slice(0, 100)}....
-        </p>
+    <div className="border-b px-3 py-2 rounded-lg">
+      <div className="flex items-center mb-2">
+        <img
+          src={profile?.profilePicture}
+          alt="Avatar"
+          className="w-8 h-8 rounded-full object-cover mr-4"
+        />
+        <div>
+          <div className="text-sm font-medium text-accent">
+            {profile.firstName + " " + profile.lastName}
+          </div>
+          <div className="text-xs text-accent/60">
+            {moment(createdAt).format("ll")}
+          </div>
+        </div>
       </div>
-      <div className="text-end">
+      <p className="text-sm font-bold leading-tight mb-1">{title}</p>
+      <p className="text-xs leading-tight mb-1">
+        {description.slice(0, 50)}...
+      </p>
+      <div>
         <Link
           to={`/blog/${id}`}
-          className="inline-flex items-center text-primary text-sm hover:underline"
+          className="inline-flex gap-1 items-center text-sm text-primary hover:text-accent"
         >
-          Read news
+          Read blog
           <AiOutlineLink />
         </Link>
       </div>
