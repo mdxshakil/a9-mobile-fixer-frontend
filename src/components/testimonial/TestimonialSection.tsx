@@ -1,7 +1,6 @@
 import { Fade } from "react-awesome-reveal";
 import { ITestimonial } from "../../interface";
 import { useGetApprovedTestimonialsQuery } from "../../redux/features/testimonial/testimonialApi";
-import LoadingSpinner from "../Loader/LoadingSpinner";
 import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import TestimonialCard from "./TestimonialCard";
@@ -10,6 +9,7 @@ import { useState } from "react";
 import ScrollTrigger from "react-scroll-trigger";
 import Slider from "react-slick";
 import { testimonialCarouselSettings } from "../../constants";
+import TestimonialCardSkeleton from "../Loader/TestimonialCardSkeleton";
 
 const TestimonialSection = () => {
   const [willSkip, setWillSkip] = useState(true);
@@ -21,7 +21,7 @@ const TestimonialSection = () => {
 
   let content;
   if (isLoading) {
-    content = <LoadingSpinner />;
+    content = <TestimonialCardSkeleton />;
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load testimonials." />;
   } else if (!isLoading && !isError && testimonials?.data?.length === 0) {
