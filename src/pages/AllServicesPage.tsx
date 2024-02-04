@@ -43,7 +43,7 @@ const AllServicesPage = () => {
 
   let content;
   if (isLoading) {
-    content = <ServiceCardLoader length={8} />;
+    content = <ServiceCardLoader length={4} />;
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load services." />;
   } else if (!isLoading && !isError && services?.data?.data?.length === 0) {
@@ -61,7 +61,7 @@ const AllServicesPage = () => {
   return (
     <div>
       <div className="flex flex-col items-center gap-3">
-        <h1 className="text-4xl font-bold text-center mt-3">
+        <h1 className="text-3xl md:text-4xl font-bold text-center mt-3">
           Our available services
         </h1>
         <input

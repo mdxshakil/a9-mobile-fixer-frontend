@@ -7,7 +7,7 @@ const LatestNewsCard = ({ blog }: { blog: IBlog }) => {
   const { title, description, id, createdAt, profile } = blog || {};
 
   return (
-    <div className="border-b px-3 py-2 rounded-lg">
+    <div className="shadow-sm shadow-primary/30 px-3 py-2 rounded-lg">
       <div className="flex items-center mb-2">
         <img
           src={profile?.profilePicture}
