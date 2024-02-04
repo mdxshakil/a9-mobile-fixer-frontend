@@ -8,6 +8,8 @@ import TestimonialCard from "./TestimonialCard";
 import SectionTitle from "../SectionTitle";
 import { useState } from "react";
 import ScrollTrigger from "react-scroll-trigger";
+import Slider from "react-slick";
+import { testimonialCarouselSettings } from "../../constants";
 
 const TestimonialSection = () => {
   const [willSkip, setWillSkip] = useState(true);
@@ -19,15 +21,21 @@ const TestimonialSection = () => {
 
   let content;
   if (isLoading) {
-    return <LoadingSpinner />;
+    content = <LoadingSpinner />;
   } else if (!isLoading && isError) {
     content = <ErrorElement message="Failed to load testimonials." />;
   } else if (!isLoading && !isError && testimonials?.data?.length === 0) {
     content = <NoContantFound message="No testimonial available" />;
   } else if (!isLoading && !isError && testimonials?.data?.length > 0) {
-    content = testimonials?.data?.map((testimonial: ITestimonial) => (
-      <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-    ));
+    content = (
+      <div className="slider-container">
+        <Slider {...testimonialCarouselSettings}>
+          {testimonials?.data?.map((testimonial: ITestimonial) => (
+            <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+          ))}
+        </Slider>
+      </div>
+    );
   }
 
   return (
@@ -40,9 +48,7 @@ const TestimonialSection = () => {
               title="Testimonials"
               subTitle="Some feedbacks of our beloved customers"
             />
-            <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
-              {content}
-            </div>
+            {content}
           </section>
         </div>
       </Fade>

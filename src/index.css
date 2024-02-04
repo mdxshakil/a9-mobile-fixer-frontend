@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #FF8551
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -39,7 +43,15 @@
   0% {
     background-position: -200%;
   }
+
   100% {
     background-position: 200%;
   }
+}
+
+
+/* slick carousel */
+.slick-slide.slick-center .testimonial-card {
+  transform: scale(1.1);
+  background-color: rgba(255, 133, 81, 0.1);
 }

@@ -3,21 +3,21 @@ import { ITestimonial } from "../../interface";
 const TestimonialCard = ({ testimonial }: { testimonial: ITestimonial }) => {
   const { profile, experience, message } = testimonial || {};
   return (
-    <div className="mb-6 rounded-md hover:scale-105 transition-all shadow-sm shadow-primary/50">
-      <div className="mb-6 flex justify-center">
+    <div className="mb-6 rounded-lg transition-all shadow-sm shadow-primary/50 mx-2 md:mx-3 testimonial-card">
+      <div className="flex justify-center mt-3">
         <img
           src={profile.profilePicture}
-          className="w-32 h-32 rounded-full object-cover shadow-lg dark:shadow-black/20"
+          className="w-16 md:w-20 h-16 md:h-20 rounded-full object-cover shadow-lg shadow-primary/20 my-3"
           alt={profile.firstName}
         />
       </div>
-      <h5 className="mb-2 text-lg font-bold">
+      <h5 className="text-lg font-bold text-accent">
         {profile.firstName + " " + profile.lastName}
       </h5>
-      <h6 className="mb-4 font-medium font-mono uppercase leading-loose text-primary dark:text-primary-400">
-        {experience}
+      <h6 className="font-medium font-mono uppercase text-primary">
+        {experience.split("_").join(" ")}
       </h6>
-      <p className="mb-4">
+      <p className="text-accent p-3 text-sm">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 96 960 960"

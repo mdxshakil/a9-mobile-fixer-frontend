@@ -10,14 +10,14 @@ const ServiceCardLoader = ({ length }: { length: number }) => {
           >
             <div>
               <div className="h-24 md:h-32 w-18 rounded-t-lg skeleton"></div>
-              <div className="mt-3 pb-2 h-8 md:h-10 skeleton"></div>
+              <div className="mt-3 pb-2 h-8 md:h-10 rounded-lg skeleton"></div>
               <div className="mt-6 flex items-center justify-between">
-                <div className="h-6 md:h-8 w-1/3 rounded-lg skeleton"></div>
-                <div className="h-6 md:h-8 w-1/3 rounded-lg skeleton"></div>
+                <div className="h-4 w-1/3 rounded-lg skeleton"></div>
+                <div className="h-4 w-1/3 rounded-lg skeleton"></div>
               </div>
               <div className="mt-6 flex items-center gap-6">
-                <div className="h-6 md:h-8 w-full rounded-lg skeleton"></div>
-                <div className="h-6 md:h-8 w-full rounded-lg skeleton"></div>
+                <div className="h-4 md:h-6 w-full rounded-lg skeleton"></div>
+                <div className="h-4 md:h-6 w-full rounded-lg skeleton"></div>
               </div>
             </div>
           </div>
