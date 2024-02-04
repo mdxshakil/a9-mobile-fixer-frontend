@@ -7,13 +7,16 @@ import { IEvent } from "../interface";
 import EventCard from "./EventCard";
 import SectionTitle from "./SectionTitle";
 import BrowseAllBtn from "./buttons/BrowseAllBtn";
+import { useState } from "react";
+import ScrollTrigger from "react-scroll-trigger";
 
 const UpcomingEventSection = () => {
+  const [willSkip, setWillSkip] = useState(true);
   const {
     data: upcomingEvents,
     isLoading,
     isError,
-  } = useGetUpcomingEventsQuery(undefined);
+  } = useGetUpcomingEventsQuery(undefined, { skip: willSkip });
 
   let content;
   if (isLoading) {
@@ -28,18 +31,21 @@ const UpcomingEventSection = () => {
     ));
   }
   return (
-    <Fade>
-      <div className="text-center py-12 md:py-18">
-        <SectionTitle
-          title="Our Events"
-          subTitle="Stay updated about our upcoming events"
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
-          {content}
+    // @ts-ignore
+    <ScrollTrigger onEnter={() => setWillSkip(false)}>
+      <Fade>
+        <div className="text-center py-12 md:py-18">
+          <SectionTitle
+            title="Our Events"
+            subTitle="Stay updated about our upcoming events"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center py-6 px-3 items-stretch">
+            {content}
+          </div>
+          <BrowseAllBtn to="/all-events" />
         </div>
-        <BrowseAllBtn to="/all-events" />
-      </div>
-    </Fade>
+      </Fade>
+    </ScrollTrigger>
   );
 };
 

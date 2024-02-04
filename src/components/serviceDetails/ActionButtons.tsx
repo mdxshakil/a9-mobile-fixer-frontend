@@ -13,7 +13,10 @@ type IProps = {
 
 const ActionButtons = ({ profileId, serviceId }: IProps) => {
   const navigate = useNavigate();
-  const { data } = useIsAlreadyInCartQuery({ serviceId, profileId });
+  const { data } = useIsAlreadyInCartQuery(
+    { serviceId, profileId },
+    { skip: !profileId }
+  );
   const [addToCart, { isLoading, isError, isSuccess, error }] =
     useAddToCartMutation();
 

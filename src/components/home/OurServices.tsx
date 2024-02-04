@@ -7,13 +7,16 @@ import { Fade } from "react-awesome-reveal";
 import SectionTitle from "../SectionTitle";
 import BrowseAllBtn from "../buttons/BrowseAllBtn";
 import ServiceCardLoader from "../Loader/ServiceCardSkeleton";
+import { useState } from "react";
+import ScrollTrigger from "react-scroll-trigger";
 
 const OurServices = () => {
+  const [willSkip, setWillSkip] = useState(true);
   const {
     data: services,
     isLoading,
     isError,
-  } = useGetHomePageServicesQuery(undefined);
+  } = useGetHomePageServicesQuery(undefined, { skip: willSkip });
 
   let content;
   if (isLoading) {
@@ -33,16 +36,19 @@ const OurServices = () => {
   }
 
   return (
-    <Fade>
-      <div className="py-12 md:py-18">
-        <SectionTitle
-          title="Our services"
-          subTitle="Browse through our varieties of services"
-        />
-        {content}
-        <BrowseAllBtn to="/all-services" />
-      </div>
-    </Fade>
+    // @ts-ignore
+    <ScrollTrigger onEnter={() => setWillSkip(false)}>
+      <Fade>
+        <div className="py-12 md:py-18">
+          <SectionTitle
+            title="Our services"
+            subTitle="Browse through our varieties of services"
+          />
+          {content}
+          <BrowseAllBtn to="/all-services" />
+        </div>
+      </Fade>
+    </ScrollTrigger>
   );
 };
 

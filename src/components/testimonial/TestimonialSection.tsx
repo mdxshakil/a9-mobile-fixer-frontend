@@ -6,13 +6,16 @@ import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import TestimonialCard from "./TestimonialCard";
 import SectionTitle from "../SectionTitle";
+import { useState } from "react";
+import ScrollTrigger from "react-scroll-trigger";
 
 const TestimonialSection = () => {
+  const [willSkip, setWillSkip] = useState(true);
   const {
     data: testimonials,
     isLoading,
     isError,
-  } = useGetApprovedTestimonialsQuery(undefined);
+  } = useGetApprovedTestimonialsQuery(undefined, { skip: willSkip });
 
   let content;
   if (isLoading) {
@@ -28,19 +31,22 @@ const TestimonialSection = () => {
   }
 
   return (
-    <Fade>
-      <div className="container py-12 md:py-18 mx-auto">
-        <section className="text-center">
-          <SectionTitle
-            title="Testimonials"
-            subTitle="Some feedbacks of our beloved customers"
-          />
-          <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
-            {content}
-          </div>
-        </section>
-      </div>
-    </Fade>
+    // @ts-ignore
+    <ScrollTrigger onEnter={() => setWillSkip(false)}>
+      <Fade>
+        <div className="container py-12 md:py-18 mx-auto">
+          <section className="text-center">
+            <SectionTitle
+              title="Testimonials"
+              subTitle="Some feedbacks of our beloved customers"
+            />
+            <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
+              {content}
+            </div>
+          </section>
+        </div>
+      </Fade>
+    </ScrollTrigger>
   );
 };
 

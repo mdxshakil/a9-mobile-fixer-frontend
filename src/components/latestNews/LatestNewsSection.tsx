@@ -7,13 +7,16 @@ import NoContantFound from "../shared/NoContantFound";
 import LatestNewsCard from "./LatestNewsCard";
 import SectionTitle from "../SectionTitle";
 import BrowseAllBtn from "../buttons/BrowseAllBtn";
+import { useState } from "react";
+import ScrollTrigger from "react-scroll-trigger";
 
 const LatestNewsSection = () => {
+  const [willSkip, setWillSkip] = useState(true);
   const {
     data: latestBlogs,
     isLoading,
     isError,
-  } = useGetLatestBlogsQuery(undefined);
+  } = useGetLatestBlogsQuery(undefined, { skip: willSkip });
 
   let content;
   if (isLoading) {
@@ -30,24 +33,27 @@ const LatestNewsSection = () => {
         ))}
       </div>
     );
-  }  
+  }
 
   return (
-    <Fade>
-      <div className="container py-12 md:py-18 mx-auto">
-        <section className="text-center mb-6">
-          <div className="mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-center"></h1>
-          </div>
-          <SectionTitle
-            title="Latest News"
-            subTitle="Stay updated about new tech and gadgets"
-          />
-          {content}
-        </section>
-        <BrowseAllBtn to="/blogs" />
-      </div>
-    </Fade>
+    // @ts-ignore }
+    <ScrollTrigger onEnter={() => setWillSkip(false)}>
+      <Fade>
+        <div className="container py-12 md:py-18 mx-auto">
+          <section className="text-center mb-6">
+            <div className="mb-12">
+              <h1 className="text-3xl md:text-4xl font-bold text-center"></h1>
+            </div>
+            <SectionTitle
+              title="Latest News"
+              subTitle="Stay updated about new tech and gadgets"
+            />
+            {content}
+          </section>
+          <BrowseAllBtn to="/blogs" />
+        </div>
+      </Fade>
+    </ScrollTrigger>
   );
 };
 

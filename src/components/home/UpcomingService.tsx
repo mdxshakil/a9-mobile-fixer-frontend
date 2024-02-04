@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { IService } from "../../interface";
 import { useGetUpcomingServiceQuery } from "../../redux/features/service/serviceApi";
 import ServiceCard from "../ServiceCard";
@@ -7,13 +8,16 @@ import { Fade } from "react-awesome-reveal";
 import SectionTitle from "../SectionTitle";
 import BrowseAllBtn from "../buttons/BrowseAllBtn";
 import ServiceCardLoader from "../Loader/ServiceCardSkeleton";
+import ScrollTrigger from "react-scroll-trigger";
+import { useState } from "react";
 
 const UpcomingService = () => {
+  const [willSkip, setWillSkip] = useState(true);
   const {
     data: upcomingServices,
     isLoading,
     isError,
-  } = useGetUpcomingServiceQuery(undefined);
+  } = useGetUpcomingServiceQuery(undefined, { skip: willSkip });
 
   let content;
   if (isLoading) {
@@ -33,16 +37,19 @@ const UpcomingService = () => {
   }
 
   return (
-    <Fade>
-      <div className="py-12 md:py-18">
-        <SectionTitle
-          title="Upcoming services"
-          subTitle="More services are on their way"
-        />
-        {content}
-        <BrowseAllBtn to="/all-services" />
-      </div>
-    </Fade>
+    // @ts-ignore
+    <ScrollTrigger onEnter={() => setWillSkip(false)}>
+      <Fade>
+        <div className="py-12 md:py-18">
+          <SectionTitle
+            title="Upcoming services"
+            subTitle="More services are on their way"
+          />
+          {content}
+          <BrowseAllBtn to="/all-services" />
+        </div>
+      </Fade>
+    </ScrollTrigger>
   );
 };
 

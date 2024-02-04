@@ -17,11 +17,11 @@ const CountUpSection = () => {
       onExit={() => setCounterOn(false)}
     >
       <div className="px-4 md:px-8">
-        <div className="stats stats-vertical lg:stats-horizontal shadow w-full text-center">
+        <div className="stats stats-vertical lg:stats-horizontal shadow-sm shadow-primary/50 w-full text-center">
           <div className="stat">
             <div className="stat-title">Total Services</div>
             {isLoading ? (
-              <StatsSkeleton />
+              <div className="skeleton w-1/3 h-6 rounded-lg mx-auto"></div>
             ) : (
               <div className="stat-value text-accent">
                 {counterOn && <CountUp start={100} end={serviceCount} />}
@@ -31,18 +31,20 @@ const CountUpSection = () => {
 
           <div className="stat">
             <div className="stat-title">Trusted Clients</div>
+
             {isLoading ? (
-              <StatsSkeleton />
+              <div className="skeleton w-1/3 h-6 rounded-lg mx-auto"></div>
             ) : (
               <div className="stat-value text-accent">
                 {counterOn && <CountUp start={100} end={userCount} />}
               </div>
             )}
           </div>
+
           <div className="stat">
             <div className="stat-title">Completed Orders</div>
             {isLoading ? (
-              <StatsSkeleton />
+              <div className="skeleton w-1/3 h-6 rounded-lg mx-auto"></div>
             ) : (
               <div className="stat-value text-accent">
                 {counterOn && <CountUp start={100} end={orderCount} />}
@@ -56,9 +58,3 @@ const CountUpSection = () => {
 };
 
 export default CountUpSection;
-
-const StatsSkeleton = () => {
-  return (
-    <span className="text-sm text-primary italic w-1/2 mx-auto skeleton"></span>
-  );
-};

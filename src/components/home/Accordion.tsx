@@ -1,12 +1,19 @@
+import { useState } from "react";
 import { IFaq } from "../../interface";
 import { useGetAllFaqsQuery } from "../../redux/features/faq/faqApi";
 import FaqAccordionSkeleton from "../Loader/FaqAccordionSkeleton";
 import ErrorElement from "../shared/ErrorElement";
 import NoContantFound from "../shared/NoContantFound";
 import AccordionItem from "./AccordionItem";
+import ScrollTrigger from "react-scroll-trigger";
 
 const Accordion = () => {
-  const { data: faqs, isLoading, isError } = useGetAllFaqsQuery(undefined);
+  const [willSkip, setWillSkip] = useState(true);
+  const {
+    data: faqs,
+    isLoading,
+    isError,
+  } = useGetAllFaqsQuery(undefined, { skip: willSkip });
 
   let content;
   if (isLoading) {
@@ -25,7 +32,12 @@ const Accordion = () => {
     );
   }
 
-  return <div>{content}</div>;
+  return (
+    // @ts-ignore
+    <ScrollTrigger onEnter={() => setWillSkip(false)}>
+      <div>{content}</div>
+    </ScrollTrigger>
+  );
 };
 
 export default Accordion;

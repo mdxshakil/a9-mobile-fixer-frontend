@@ -18,7 +18,10 @@ const ServiceCard = ({ service }: { service: IService }) => {
   const navigate = useNavigate();
   const [addToCart, { isLoading, isError, isSuccess, error }] =
     useAddToCartMutation();
-  const { data } = useIsAlreadyInCartQuery({ serviceId: id, profileId });
+  const { data } = useIsAlreadyInCartQuery(
+    { serviceId: id, profileId },
+    { skip: !role }
+  );
 
   const handleAddToCart = () => {
     if (!profileId) {
